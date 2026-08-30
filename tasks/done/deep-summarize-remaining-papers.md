@@ -2,18 +2,18 @@
 id: deep-summarize-remaining-papers
 title: Deep-summarize the remaining papers, one at a time
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Work through the list below in order, one paper per commit.
+next:
 probe: bash probes/deep-summarize-remaining-papers.sh
-progress: 4/13 papers have a Detailed Summary
-probe_status: RUN
+progress: 13/13 papers have a Detailed Summary
+probe_status: OK
 stall_flag:
-outcome:
-artifacts:
+outcome: all 12 option-writing papers deep-summarized with methodology, sample, quantitative results, and sophie-option-research connections
+artifacts: papers/option-writing/*.md
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -70,4 +70,19 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 
 ## Result
 
-<!-- pointer only: how many of the 12 got done, and the folder is the real answer -->
+All 12 remaining option-writing research papers in `papers/option-writing/` (plus the benchmark paper `israelov-nielsen-2015-covered-calls-uncovered`) have been deep-summarized with full methodology, empirical dataset & sample periods, key quantitative table results, and concrete connections to `sophie-option-research`:
+
+1. `augustin-cheng-vandenbergen-2021-volmageddon.md`
+2. `carr-wu-2009-variance-risk-premia.md`
+3. `cheng-2019-vix-premium.md`
+4. `coval-shumway-2001-expected-option-returns.md`
+5. `della-corte-ramadorai-sarno-2016-fx-volatility-risk-premia.md`
+6. `frazzini-pedersen-2012-embedded-leverage.md`
+7. `jurek-stafford-2015-cost-of-capital-alternative-investments.md`
+8. `santa-clara-saretto-2009-option-strategies-margin-calls.md`
+9. `vazquez-2014-option-pricing-tail-risks.md`
+10. `wysocki-2025-sizing-risk.md`
+11. `wysocki-2026-harvesting-vrp-ltr.md`
+12. `wysocki-slepaczuk-2024-construction-hedging.md`
+
+All notes are committed in `papers/option-writing/`.
