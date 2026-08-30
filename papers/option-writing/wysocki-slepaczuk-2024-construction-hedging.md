@@ -73,3 +73,16 @@ In `sophie-option-research`, Wysocki and Ślepaczuk (2024) provides essential pr
 2. **Hedging Model Selection**: Confirms that BSM implied-volatility delta hedging remains the most robust and computationally efficient model for practical tail-risk control in `src/lab/engine.py`, outperforming complex stochastic jump models like Variance-Gamma.
 3. **VIX-Rank Sizing Architecture**: Supports the volatility percentile scaling modules in `src/lab/sizing.py`, confirming that scaling contract sizes inversely with VIX ranks drastically reduces max drawdown depth and duration across market stress periods (2018 Volmageddon, 2020 COVID).
 
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Highly applicable empirical study comparing high-frequency delta hedging and position sizing architectures on SPX short option portfolios (puts, calls, strangles). Establishes that moderate intraday rehedging (every 130 minutes / 3 times daily) using standard BSM implied deltas provides optimal tail VaR/CVaR protection while avoiding turnover drag, and proves VIX-rank sizing effectively curtails drawdowns during market crashes.
+
+## Notable Citations to Follow Up
+
+1. **Madan, Dilip B., Peter Carr, and Eric C. Chang (1998)** — *The Variance Gamma Process and Option Pricing* (European Finance Review, 2(1), 79-105).
+   - Introduces the Variance-Gamma stochastic volatility and jump model, providing the foundational mathematics for modeling skewness and leptokurtosis in option returns.
+2. **Hull, John, and Alan White (2017)** — *Optimal Delta Hedging for Options* (Journal of Banking & Finance, 82, 180-190).
+   - Formulates optimal discrete delta-hedging strategies that balance tracking error against transaction frictions and market impact.
+3. **Chaput, J. Scott, and Louis H. Ederington (2003)** — *Option Spread and Combination Trading* (The Journal of Derivatives, 10(4), 70-88).
+   - Provides extensive empirical documentation on how institutional traders use multi-leg combination strategies (straddles, strangles, vertical spreads) to trade volatility vs. directional views.
