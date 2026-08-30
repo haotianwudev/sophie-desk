@@ -97,17 +97,6 @@ decision log or gotchas would help someone hit the same problem in an unrelated 
 promote that specific lesson into the relevant *skill* (not this one) before archiving — the
 task disappears into the archive folder, the durable lesson shouldn't disappear with it.
 
-## Tracking papers worth fetching later
-
-`papers/FOLLOWUP-CANDIDATES.md` is the todo list — not a library, a backlog. A paper worth
-getting but not yet gathered (surfaced via citation-following, or any other way) goes here as
-a row, with who surfaced it and why. **A future `librarian-round-N` gathering pass should
-check this file first**, before searching from scratch, and remove (or move to "Passed on")
-each entry it actually resolves. This exists because a per-paper "Notable Citations to Follow
-Up" section (see the review pattern below) is real, useful information, but 24+ of them
-scattered across individual notes isn't an actionable todo list — this file is the
-consolidated one.
-
 ## Every paper note needs frontmatter — classification, not just prose
 
 24 papers deep, plain-prose notes stopped being scannable — no way to filter by area, sort by

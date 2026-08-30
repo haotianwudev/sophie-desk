@@ -31,9 +31,13 @@ version; that one is the source of truth.
 - `sophie/work-model.md` — the whole design, in plain English, if you want the *why*.
 - `Runbook.md` — exact commands for recurring operations.
 - `supervisor/README.md` — what the automated supervisor does (and doesn't).
-- `papers/` — the research paper library; `papers/option-writing/` is the current one, one
-  `.pdf` + `.md` note per paper. See the skill's "deep-summarize one paper" pattern if that's
-  the kind of task you've been given.
+- `papers/` — the research paper library. `Papers.md` is the live board (by relevance, by
+  area, what's missing a deep summary); `FOLLOWUP-CANDIDATES.md` is the todo list of papers
+  not yet gathered — check it before searching from scratch. `option-writing/` holds one
+  `.pdf` + classified `.md` note per paper already in the library — every note needs the
+  frontmatter schema in the skill's "Every paper note needs frontmatter" section, not just
+  prose. See the skill's "deep-summarize one paper" pattern if that's the kind of task you've
+  been given.
 
 Full detail on all of the above lives in `.agents/skills/sophie-desk/SKILL.md` — this file is
 deliberately short; when in doubt, that one wins.
