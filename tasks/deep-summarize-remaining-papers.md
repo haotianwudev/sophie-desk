@@ -61,6 +61,7 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 - 2026-08-30: 5/12 done: della-corte-ramadorai-sarno-2016-fx-volatility-risk-premia
 - 2026-08-30: 6/12 done: frazzini-pedersen-2012-embedded-leverage
 - 2026-08-30: 7/12 done: jurek-stafford-2015-cost-of-capital-alternative-investments
+- 2026-08-30: 8/12 done: santa-clara-saretto-2009-option-strategies-margin-calls
 
 ## Result
 
