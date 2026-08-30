@@ -1,20 +1,22 @@
 {
-  "generated_at": "2026-08-30T11:33:30+00:00Z",
+  "generated_at": "2026-08-30T11:50:42+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
+  "stalled_active": [],
   "tasks": [
     {
-      "id": "deep-summarize-remaining-papers",
-      "title": "Deep-summarize the remaining papers, one at a time",
+      "id": "librarian-round-4-option-writing",
+      "title": "Find NEW option-writing papers (round 4) \u2014 record anything you can't download",
       "lane": "research",
       "status": "active",
       "assignee": "agy",
       "gate": "",
+      "stall_flag": "",
       "probe_status": "RUN",
-      "progress": "4/13 papers have a Detailed Summary"
+      "progress": "18 notes total (baseline 18), 0 new yet"
     },
     {
       "id": "spx-option-backfill",
@@ -23,8 +25,9 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
+      "stall_flag": "",
       "probe_status": "RUN",
-      "progress": "SPXW 475/1360 \u00b7 log 3h ago"
+      "progress": "SPXW 477/1360 \u00b7 log 3h ago"
     }
   ]
 }

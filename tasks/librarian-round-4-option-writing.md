@@ -2,15 +2,15 @@
 id: librarian-round-4-option-writing
 title: Find NEW option-writing papers (round 4) — record anything you can't download
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
 next: Claim, check all 18 existing papers first, then search broadly again.
 probe: bash probes/librarian-round-4-option-writing.sh
-progress:
-probe_status:
+progress: 18 notes total (baseline 18), 0 new yet
+probe_status: RUN
 outcome:
 artifacts:
 created: 2026-08-30
