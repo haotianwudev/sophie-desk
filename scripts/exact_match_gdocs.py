@@ -179,18 +179,22 @@ def write_report(results: list[dict], out_path: Path) -> None:
     """Write markdown table report sorted by tier priority."""
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    tier_order = {
-        "exact": 1,
-        "case-insensitive": 2,
-        "suffix-tolerant": 3,
-        "no match in index": 5,
-        "fetch failed": 6,
-    }
+    # A match is a match -- exact / case-insensitive / suffix-tolerant all mean
+    # "this article's googleDoc is confidently this local doc_id". The tier
+    # that resolved it is an internal detail (still in the Decision log for
+    # anyone who needs it), not something worth showing per row once resolved.
+    MATCHED_TIERS = {"exact", "case-insensitive", "suffix-tolerant"}
+
+    def display_tier(tier: str) -> str:
+        return "matched" if tier in MATCHED_TIERS else tier
+
+    tier_order = {"matched": 1, "no match in index": 3, "fetch failed": 4}
 
     def tier_key(tier: str) -> int:
-        if tier.startswith("ambiguous"):
-            return 4
-        return tier_order.get(tier, 99)
+        disp = display_tier(tier)
+        if disp.startswith("ambiguous"):
+            return 2
+        return tier_order.get(disp, 99)
 
     # Sort by tier priority first, then slug
     sorted_results = sorted(
@@ -199,9 +203,7 @@ def write_report(results: list[dict], out_path: Path) -> None:
     )
 
     counts = {
-        "exact": sum(1 for r in results if r["match_tier"] == "exact"),
-        "case-insensitive": sum(1 for r in results if r["match_tier"] == "case-insensitive"),
-        "suffix-tolerant": sum(1 for r in results if r["match_tier"] == "suffix-tolerant"),
+        "matched": sum(1 for r in results if r["match_tier"] in MATCHED_TIERS),
         "ambiguous": sum(1 for r in results if r["match_tier"].startswith("ambiguous")),
         "no match in index": sum(1 for r in results if r["match_tier"] == "no match in index"),
         "fetch failed": sum(1 for r in results if r["match_tier"] == "fetch failed"),
@@ -212,9 +214,7 @@ def write_report(results: list[dict], out_path: Path) -> None:
         "",
         f"Total articles with googleDoc evaluated: {len(results)}",
         "",
-        f"- **Exact matches**: {counts['exact']}",
-        f"- **Case-insensitive matches**: {counts['case-insensitive']}",
-        f"- **Suffix-tolerant matches** (stale local `(N)` filename, live title clean): {counts['suffix-tolerant']}",
+        f"- **Matched**: {counts['matched']}",
         f"- **Ambiguous** (multiple docs share a base title): {counts['ambiguous']}",
         f"- **No match in index**: {counts['no match in index']}",
         f"- **Fetch failed**: {counts['fetch failed']}",
@@ -227,7 +227,7 @@ def write_report(results: list[dict], out_path: Path) -> None:
         slug_str = escape_markdown(r["slug"])
         title_str = escape_markdown(r["title"])
         extracted_str = escape_markdown(r["extracted_title"]) if r["extracted_title"] else ""
-        tier_str = r["match_tier"]
+        tier_str = display_tier(r["match_tier"])
         doc_id_str = escape_markdown(r["matched_doc_id"]) if r["matched_doc_id"] else ""
 
         lines.append(
@@ -336,14 +336,15 @@ def main() -> None:
 
     write_report(results, args.out)
 
-    exact_count = sum(1 for r in results if r["match_tier"] == "exact")
-    ci_count = sum(1 for r in results if r["match_tier"] == "case-insensitive")
+    matched_tiers = {"exact", "case-insensitive", "suffix-tolerant"}
+    matched_count = sum(1 for r in results if r["match_tier"] in matched_tiers)
+    ambiguous_count = sum(1 for r in results if r["match_tier"].startswith("ambiguous"))
     no_match_count = sum(1 for r in results if r["match_tier"] == "no match in index")
     failed_count = sum(1 for r in results if r["match_tier"] == "fetch failed")
 
     print(f"\nReport written to: {args.out}")
     print(
-        f"Summary: {exact_count} exact, {ci_count} case-insensitive, "
+        f"Summary: {matched_count} matched, {ambiguous_count} ambiguous, "
         f"{no_match_count} no match in index, {failed_count} fetch failed (Total: {len(results)})"
     )
 
