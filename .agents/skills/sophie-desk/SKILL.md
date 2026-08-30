@@ -35,10 +35,18 @@ at once), not to estimate.
 
 Copy `templates/task.md` into `tasks/<id>.md`. Fill in `id`, `title`, `lane`
 (`content`/`research`/`platform`), `repo`, `status` (usually `queued`), `assignee`
-(`claude`/`agy`/`ollama`/`either`/`none`), and `gate` if this needs a human sign-off before it
+(`claude`/`agy`/`either`/`none`), and `gate` if this needs a human sign-off before it
 can be called done (see `sophie/work-model.md` for what a gate is). Leave `probe` as `none`
 unless you're also writing one (see below). Commit it — creating a task is itself a commit,
 same as claiming one.
+
+**`ollama` is never a valid `assignee`.** It has no tool use, no file access, and nothing
+dispatches to it the way `dispatch_to_agy()` dispatches to agy — it's a plain text/embeddings
+API (`scripts/ollama_call.py generate|embed`, confirmed working against the local server on
+`:11434` with `qwen3.5` and `bge-m3`), not a worker. If a task benefits from cheap bulk
+skimming or embeddings (triaging many candidate papers, say), say so in its `## Plan` — "use
+`scripts/ollama_call.py` for the first pass" — and assign the task itself to `claude` or
+`agy`, whoever will actually read the output, decide what matters, and close it out.
 
 **Frontmatter must stay flat** — plain scalars, no nested YAML, no lists-of-objects. Dataview
 (the Obsidian plugin that renders `Desk.md`) reads it literally; anything nested breaks the

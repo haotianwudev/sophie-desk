@@ -3,7 +3,10 @@ id:
 title:
 lane:            # content | research | platform
 status: queued   # queued | active | blocked | gate | done
-assignee: none   # claude | agy | ollama | either | none
+assignee: none   # claude | agy | either | none -- NOT ollama: it can't claim, read, or close
+                 # a task on its own (no tool use, no file access). It's a script-callable
+                 # utility (scripts/ollama_call.py) that whoever holds the task can use for
+                 # cheap bulk work -- note that in the Plan, not in this field.
 gate:            # g1 | g2 | g3 | (empty if none)
 repo:            # sophie-pipeline | ai-stock-suggestion-server | ai-stock-suggestion-client | sophie-option-research
 blocker:

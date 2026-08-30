@@ -71,10 +71,13 @@ out if this were done wrong, and how much would it cost you?**
 - If a mistake would be invisible and expensive — that's yours, or the more careful worker's
   (Claude). Anything that touches the live database, anything that decides whether a research
   result is real, anything that spans multiple systems at once.
-- There's also a free, local option (a small AI model running on your own machine) for anything
-  where being wrong costs literally nothing — skimming a hundred research papers to find the
-  handful worth a second look, for instance. It runs over everything because it's free, and it
-  never gets the final say on anything.
+- There's also a free, local option (a small AI model running on your own machine, via Ollama)
+  for anything where being wrong costs literally nothing — skimming a hundred research papers
+  to find the handful worth a second look, for instance. It's worth being precise about what
+  this actually is: not a third worker that claims its own tasks, but a plain question-answering
+  tool that Claude or agy calls *while* working a task they hold — it has no way to read a file
+  or act on its own. It runs over everything because it's free, and it never gets the final say
+  on anything.
 
 That routing decision gets written down once, when a task is created, so you're not re-deciding
 it every time someone picks the work back up.
