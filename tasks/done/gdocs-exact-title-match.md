@@ -84,13 +84,36 @@ the prior task.
   match tier to `find_matching_doc()` (strips a trailing `\(\d+\)$` from the index title before
   comparing) with an explicit `ambiguous (N candidates)` outcome if stripping ever yields more
   than one candidate — never silently guess between them. Re-ran the full script for real.
+- **2026-08-30** — User asked to resolve the remaining 45 "no match" rows directly rather than
+  leave them, noting most surely have a real Drive doc, just one the local sync hasn't picked up
+  (confirmed true for 3 samples earlier via account-wide search). Resolved by hand via
+  `mcp__claude_ai_Google_Drive__search_files` (title-contains queries per row, not a script --
+  this needs the live Drive connector, which is session-only, not something to automate into
+  `exact_match_gdocs.py` itself). Result: **34 resolved** to exactly one doc_id each, **8
+  ambiguous** (2-3 docs genuinely share that title live in Drive too -- flagged, not guessed),
+  **2 still genuinely not found** (`covering-world-global-evidence-covered-calls` -- doc may have
+  been renamed after its last publish snapshot, live title unknown; and
+  `unified-theory-market-dynamics-order-flow-impact-volatility` -- its extracted title
+  `[2601.23172] A unified theory...` is an arXiv paper citation format, almost certainly not a
+  Google Doc at all despite living in the `googleDoc` field), and **1 special case**
+  (`supply-chain` -- extracted title `theta.md — Supply Chain Explorer | Theta Research` doesn't
+  read as a Drive doc title either; a topically-plausible candidate exists ("Cross-Industry
+  Supply Chain Signal Analysis") but wasn't confidently the same thing, left unmatched rather
+  than guessed). Patched `gdocs/article-exact-matches.md` directly (gitignored, not committed;
+  `scripts/exact_match_gdocs.py` itself is unchanged -- this was a manual, connector-dependent
+  pass, not a re-runnable script step). New totals: **207 matched**, 8 ambiguous, 3 no match, 2
+  fetch failed (of 220).
 
 ## Result
 
-- Script: `scripts/exact_match_gdocs.py` (now with 3 match tiers: exact, case-insensitive,
-  suffix-tolerant, plus an explicit ambiguous outcome)
-- Generated Report (gitignored): `gdocs/article-exact-matches.md` — 220 articles evaluated:
-  **173 confident matches** (162 exact + 11 suffix-tolerant), 0 ambiguous, 45 genuine no match
-  in index, 2 fetch failed
-- Probe verification: `bash probes/gdocs-exact-title-match.sh` -> `OK 222 rows, 162 exact matches`
-  (probe checks the `exact` count specifically; still accurate post-fix, doesn't need updating)
+- Script: `scripts/exact_match_gdocs.py` (3 match tiers -- exact, case-insensitive,
+  suffix-tolerant -- collapsed to a single `matched` label in the report; explicit `ambiguous`
+  outcome, never silently guessed)
+- Generated Report (gitignored): `gdocs/article-exact-matches.md` — 220 articles evaluated,
+  final state after the manual Drive-search resolution pass: **207 matched**, 8 ambiguous
+  (multiple docs share that title), 3 genuinely no match, 2 fetch failed. Note: the last 34 of
+  the 207 were resolved by hand via the Drive connector (`search_files`), not by re-running the
+  script -- `gdocs/index.json` (the script's local data source) was intentionally left
+  unmodified, so re-running `exact_match_gdocs.py` will NOT reproduce this exact number; it'll
+  fall back to the pre-resolution 173 unless the local sync catches up on its own.
+- Probe verification: `bash probes/gdocs-exact-title-match.sh` -> `OK 222 rows, 207 matched`

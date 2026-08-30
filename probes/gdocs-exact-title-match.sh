@@ -15,7 +15,7 @@ if [ ! -f "gdocs/article-exact-matches.md" ]; then
 fi
 
 rows=$(grep -c '^|' gdocs/article-exact-matches.md 2>/dev/null || echo 0)
-matched=$(grep -c '| matched |' gdocs/article-exact-matches.md 2>/dev/null || echo 0)
+matched=$(grep -cE '\| *matched *\|' gdocs/article-exact-matches.md 2>/dev/null || echo 0)
 
 if [ "$rows" -lt 5 ]; then
   echo "RUN too few rows (${rows}) to be a real run"
