@@ -7,6 +7,7 @@ Design rationale (the visual pitch): https://claude.ai/code/artifact/089d0f72-45
 The same design in plain English, living in this repo: [sophie/work-model.md](sophie/work-model.md)
 
 ```
+AGENTS.md          start here if you're an agent (agy or otherwise) working in this repo
 Desk.md            the dashboard — all Dataview queries, nothing hand-maintained
 Runbook.md         exact commands for recurring operations — relaunch, restart, connect
 Skills.md          the skill catalogue, classified by role — generated, clickable

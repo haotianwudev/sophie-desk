@@ -220,8 +220,7 @@ def dispatch_to_agy(task_id: str) -> bool:
     blocking the supervisor's own tick; it runs the whole task to completion
     in the background, independent of this process."""
     prompt = (
-        f"Read F:\\workspace\\sophie-desk\\.agents\\skills\\sophie-desk\\SKILL.md for how "
-        f"tasks work in this repo. Then read and work the task at "
+        f"Read F:\\workspace\\sophie-desk\\AGENTS.md first. Then read and work the task at "
         f"F:\\workspace\\sophie-desk\\tasks\\{task_id}.md -- it is assigned to you and has "
         f"just been marked active. Follow its Goal/Plan, append to its Decision log as you "
         f"go, fill in Result and set status: done when finished, commit and push."
