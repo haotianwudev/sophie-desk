@@ -1,3 +1,15 @@
+---
+title: "The VIX Premium"
+authors: "Ing-Haw Cheng"
+year: 2019
+link: "https://utoronto.scholaris.ca/items/1cfdb03f-e696-46b1-959c-15bcb51163d5"
+area: vrp-timing
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # The VIX Premium
 
 - **Authors:** Ing-Haw Cheng

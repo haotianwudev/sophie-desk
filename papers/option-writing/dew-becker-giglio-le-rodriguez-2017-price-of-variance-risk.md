@@ -1,3 +1,15 @@
+---
+title: "The Price of Variance Risk"
+authors: "Ian Dew-Becker, Stefano Giglio, Anh Le, Marius Rodriguez"
+year: 2017
+link: "https://www.nber.org/system/files/working_papers/w21182/w21182.pdf"
+area: vrp-measurement
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # The Price of Variance Risk
 
 - **Authors:** Ian Dew-Becker, Stefano Giglio, Anh Le, Marius Rodriguez

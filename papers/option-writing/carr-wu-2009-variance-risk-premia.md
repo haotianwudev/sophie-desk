@@ -1,3 +1,15 @@
+---
+title: "Variance Risk Premia"
+authors: "Peter Carr, Liuren Wu"
+year: 2009
+link: "https://engineering.nyu.edu/sites/default/files/2019-01/CarrReviewofFinStudiesMarch2009-a.pdf"
+area: vrp-measurement
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Variance Risk Premia
 
 - **Authors:** Peter Carr, Liuren Wu

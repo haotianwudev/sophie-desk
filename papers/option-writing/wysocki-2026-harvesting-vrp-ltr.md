@@ -1,3 +1,15 @@
+---
+title: "Harvesting the Volatility Risk Premium: A Learning-to-Rank Approach"
+authors: "Maciej Wysocki"
+year: 2026
+link: "https://arxiv.org/abs/2608.24786"
+area: ml-strategy
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Harvesting the Volatility Risk Premium: A Learning-to-Rank Approach
 
 - **Authors:** Maciej Wysocki

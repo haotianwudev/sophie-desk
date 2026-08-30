@@ -1,3 +1,15 @@
+---
+title: "An Empirical Investigation of Continuous-Time Equity Return Models"
+authors: "Torben G. Andersen, Luca Benzoni, Jesper Lund"
+year: 2002
+link: "https://www.nber.org/papers/w8510"
+area: return-dynamics-modeling
+relevance: Medium
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # An Empirical Investigation of Continuous-Time Equity Return Models
 
 - **Authors:** Torben G. Andersen, Luca Benzoni, Jesper Lund

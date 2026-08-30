@@ -1,3 +1,15 @@
+---
+title: "Cross-Section of Option Returns and Volatility"
+authors: "Amit Goyal, Alessio Saretto"
+year: 2009
+link: "https://doi.org/10.1016/j.jfineco.2008.08.006"
+area: option-returns-anomaly
+relevance: Medium
+has_pdf: false
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Cross-Section of Option Returns and Volatility
 
 **STATUS: PDF NOT DOWNLOADED — paywalled / Cloudflare-blocked repository (Journal of Financial Economics / Purdue e-Pubs)**

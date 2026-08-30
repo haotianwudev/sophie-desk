@@ -1,3 +1,15 @@
+---
+title: "Expected Option Returns"
+authors: "Joshua D. Coval, Tyler Shumway"
+year: 2001
+link: "https://www.nber.org/papers/w7888"
+area: option-returns-anomaly
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Expected Option Returns
 
 - **Authors:** Joshua D. Coval, Tyler Shumway

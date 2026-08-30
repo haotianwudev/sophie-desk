@@ -1,3 +1,15 @@
+---
+title: "Option Strategies: Good Deals and Margin Calls"
+authors: "Pedro Santa-Clara, Alessio Saretto"
+year: 2009
+link: "https://www.nber.org/papers/w11693"
+area: sizing-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Option Strategies: Good Deals and Margin Calls
 
 - **Authors:** Pedro Santa-Clara, Alessio Saretto

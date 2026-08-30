@@ -108,6 +108,49 @@ Up" section (see the review pattern below) is real, useful information, but 24+ 
 scattered across individual notes isn't an actionable todo list — this file is the
 consolidated one.
 
+## Every paper note needs frontmatter — classification, not just prose
+
+24 papers deep, plain-prose notes stopped being scannable — no way to filter by area, sort by
+relevance, or find what still needs work without opening every file. Fixed by giving each
+paper's own `.md` note in `papers/option-writing/` real frontmatter (retrofitted onto all 24
+at once; new papers should just write it directly, no separate retrofit pass going forward):
+
+```yaml
+---
+title: "<paper title>"
+authors: "<comma-separated>"
+year: <int>
+link: "<url>"
+area: <one tag -- vrp-measurement | tail-risk | covered-calls | sizing-risk | cross-asset |
+       ml-strategy | hedging-mechanics | market-microstructure | option-returns-anomaly |
+       event-risk | vrp-timing | return-dynamics-modeling | (add a new one if none fit --
+       this list isn't closed, just what's been needed so far)
+relevance: High | Medium | Low         # from its own "Relevance to Personal Trading" section
+has_pdf: true | false                  # false = recorded-but-not-downloaded (round 4 convention)
+has_detailed_summary: true | false     # true only if it has a real "## Detailed Summary" section
+citations_surfaced: <int>              # count under "Notable Citations to Follow Up"
+---
+```
+
+**Same flat-YAML rule as tasks** — Dataview needs to actually parse this, not just a lenient
+regex; this is exactly the class of thing that broke a task's frontmatter once already. Keep
+every value a plain scalar, quote strings that contain a colon or start oddly, never nest.
+
+`papers/Papers.md` is the live board over this frontmatter (parallel to `Desk.md` for tasks) —
+by relevance, by area, which papers still lack a deep summary, which are recorded-but-not-downloaded.
+Update it (or at least don't break its queries) if the schema above ever gains a field.
+
+## Tracking papers worth fetching later
+
+`papers/FOLLOWUP-CANDIDATES.md` is the todo list — not a library, a backlog. A paper worth
+getting but not yet gathered (surfaced via citation-following, or any other way) goes here as
+a row, with who surfaced it and why. **A future `librarian-round-N` gathering pass should
+check this file first**, before searching from scratch, and remove (or move to "Passed on")
+each entry it actually resolves. This exists because a per-paper "Notable Citations to Follow
+Up" section (see the review pattern below) is real, useful information, but 24+ of them
+scattered across individual notes isn't an actionable todo list — this file is the
+consolidated one.
+
 ## Worked pattern: deep-summarize one paper
 
 Confirmed working end-to-end multiple times (single-paper dispatch in ~75s; a 12-paper batch

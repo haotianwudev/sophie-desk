@@ -1,3 +1,15 @@
+---
+title: "Embedded Leverage"
+authors: "Andrea Frazzini, Lasse Heje Pedersen"
+year: 2012
+link: "https://www.nber.org/papers/w18558"
+area: sizing-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Embedded Leverage
 
 - **Authors:** Andrea Frazzini, Lasse Heje Pedersen

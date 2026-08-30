@@ -1,3 +1,15 @@
+---
+title: "Option Pricing, Historical Volatility and Tail Risks"
+authors: "Samuel E. Vazquez"
+year: 2014
+link: "https://arxiv.org/abs/1402.1255"
+area: tail-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Option Pricing, Historical Volatility and Tail Risks
 
 - **Authors:** Samuel E. Vazquez

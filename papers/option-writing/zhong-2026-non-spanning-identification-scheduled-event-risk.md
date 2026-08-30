@@ -1,3 +1,15 @@
+---
+title: "Non-Spanning Identification of Scheduled Event Risk in Option Pricing"
+authors: "Tenghan Zhong"
+year: 2026
+link: "https://arxiv.org/abs/2606.12872"
+area: event-risk
+relevance: Medium
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Non-Spanning Identification of Scheduled Event Risk in Option Pricing
 
 - **Authors:** Tenghan Zhong

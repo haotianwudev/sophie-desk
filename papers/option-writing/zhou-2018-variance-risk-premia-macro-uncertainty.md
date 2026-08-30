@@ -1,3 +1,15 @@
+---
+title: "Variance Risk Premia, Asset Predictability Puzzles, and Macroeconomic Uncertainty"
+authors: "Hao Zhou"
+year: 2018
+link: "https://www.federalreserve.gov/pubs/feds/2010/201014/201014pap.pdf"
+area: cross-asset
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Variance Risk Premia, Asset Predictability Puzzles, and Macroeconomic Uncertainty
 
 - **Authors:** Hao Zhou

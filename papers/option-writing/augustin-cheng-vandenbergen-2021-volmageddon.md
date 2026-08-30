@@ -1,3 +1,15 @@
+---
+title: "Volmageddon and the Failure of Short Volatility Products"
+authors: "Patrick Augustin, Ing-Haw Cheng, Ludovic Van den Bergen"
+year: 2021
+link: "https://utoronto.scholaris.ca/bitstreams/98fc477b-df23-4394-915b-d48dcd4642ef/download"
+area: tail-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Volmageddon and the Failure of Short Volatility Products
 
 - **Authors:** Patrick Augustin, Ing-Haw Cheng, Ludovic Van den Bergen

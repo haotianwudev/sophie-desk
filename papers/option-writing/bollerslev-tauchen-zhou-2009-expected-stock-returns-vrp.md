@@ -1,3 +1,15 @@
+---
+title: "Expected Stock Returns and Variance Risk Premia"
+authors: "Tim Bollerslev, George Tauchen, Hao Zhou"
+year: 2009
+link: "https://www.federalreserve.gov/pubs/feds/2007/200711/200711pap.pdf"
+area: vrp-measurement
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Expected Stock Returns and Variance Risk Premia
 
 - **Authors:** Tim Bollerslev, George Tauchen, Hao Zhou

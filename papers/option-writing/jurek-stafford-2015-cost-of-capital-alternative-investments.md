@@ -1,3 +1,15 @@
+---
+title: "The Cost of Capital for Alternative Investments"
+authors: "Jakub W. Jurek, Erik Stafford"
+year: 2015
+link: "https://www.nber.org/papers/w17376"
+area: sizing-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # The Cost of Capital for Alternative Investments
 
 - **Authors:** Jakub W. Jurek, Erik Stafford

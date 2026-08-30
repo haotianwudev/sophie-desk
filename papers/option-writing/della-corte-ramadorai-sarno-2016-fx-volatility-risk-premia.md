@@ -1,3 +1,15 @@
+---
+title: "Volatility Risk Premia and Exchange Rate Predictability"
+authors: "Pasquale Della Corte, Tarun Ramadorai, Lucio Sarno"
+year: 2016
+link: "https://www.aeaweb.org/conference/2014/retrieve.php?pdfid=554"
+area: cross-asset
+relevance: Medium
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Volatility Risk Premia and Exchange Rate Predictability
 
 - **Authors:** Pasquale Della Corte, Tarun Ramadorai, Lucio Sarno

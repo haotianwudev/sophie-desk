@@ -1,3 +1,15 @@
+---
+title: "Demand-Based Option Pricing"
+authors: "Nicolae Gârleanu, Lasse Heje Pedersen, Allen M. Poteshman"
+year: 2009
+link: "https://www.nber.org/papers/w11843"
+area: market-microstructure
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Demand-Based Option Pricing
 
 - **Authors:** Nicolae Gârleanu, Lasse Heje Pedersen, Allen M. Poteshman

@@ -1,3 +1,15 @@
+---
+title: "Sizing the Risk: Kelly, VIX, and Hybrid Approaches in Put-Writing on Index Options"
+authors: "Maciej Wysocki"
+year: 2025
+link: "https://arxiv.org/abs/2508.16598"
+area: sizing-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Sizing the Risk: Kelly, VIX, and Hybrid Approaches in Put-Writing on Index Options
 
 - **Authors:** Maciej Wysocki

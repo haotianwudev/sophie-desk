@@ -1,3 +1,15 @@
+---
+title: "Covered Calls Uncovered"
+authors: "Roni Israelov, Lars N. Nielsen"
+year: 2015
+link: "https://ssrn.com/abstract=2444999"
+area: covered-calls
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Covered Calls Uncovered
 
 - **Authors:** Roni Israelov, Lars N. Nielsen

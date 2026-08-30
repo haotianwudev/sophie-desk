@@ -1,3 +1,15 @@
+---
+title: "Downside Variance Risk Premium"
+authors: "Bruno Feunou, Mohammad R. Jahan-Parvar, Cédric Okou"
+year: 2018
+link: "https://www.oar-rao.bank-banque-canada.ca/record/6595/files/wp2015-36.pdf"
+area: vrp-measurement
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Downside Variance Risk Premium
 
 - **Authors:** Bruno Feunou, Mohammad R. Jahan-Parvar, Cédric Okou

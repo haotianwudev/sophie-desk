@@ -1,3 +1,15 @@
+---
+title: "Why Are Put Options So Expensive?"
+authors: "Oleg Bondarenko"
+year: 2014
+link: "https://doi.org/10.1142/S2010139214500153"
+area: option-returns-anomaly
+relevance: High
+has_pdf: false
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # Why Are Put Options So Expensive?
 
 **STATUS: PDF NOT DOWNLOADED — paywalled (World Scientific / Quarterly Journal of Finance)**

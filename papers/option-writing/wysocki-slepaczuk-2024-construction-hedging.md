@@ -1,3 +1,15 @@
+---
+title: "Construction and Hedging of Equity Index Options Portfolios"
+authors: "Maciej Wysocki, Robert Ślepaczuk"
+year: 2024
+link: "https://arxiv.org/abs/2407.13908"
+area: hedging-mechanics
+relevance: High
+has_pdf: true
+has_detailed_summary: true
+citations_surfaced: 3
+---
+
 # Construction and Hedging of Equity Index Options Portfolios
 
 - **Authors:** Maciej Wysocki, Robert Ślepaczuk

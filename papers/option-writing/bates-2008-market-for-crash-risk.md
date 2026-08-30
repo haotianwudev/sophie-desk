@@ -1,3 +1,15 @@
+---
+title: "The Market for Crash Risk"
+authors: "David S. Bates"
+year: 2008
+link: "https://www.nber.org/papers/w8557"
+area: tail-risk
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # The Market for Crash Risk
 
 - **Authors:** David S. Bates

@@ -1,3 +1,15 @@
+---
+title: "The VIX, the Variance Premium and Stock Market Volatility"
+authors: "Geert Bekaert, Marie Hoerova"
+year: 2014
+link: "https://www.ecb.europa.eu/pub/pdf/scpwps/ecbwp1675.pdf"
+area: vrp-measurement
+relevance: High
+has_pdf: true
+has_detailed_summary: false
+citations_surfaced: 3
+---
+
 # The VIX, the Variance Premium and Stock Market Volatility
 
 - **Authors:** Geert Bekaert, Marie Hoerova
