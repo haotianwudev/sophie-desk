@@ -87,6 +87,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 18/24 done: santa-clara-saretto-2009-option-strategies-margin-calls (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 19/24 done: vazquez-2014-option-pricing-tail-risks (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 20/24 done: wysocki-2025-sizing-risk (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 21/24 done: wysocki-2026-harvesting-vrp-ltr (Rated High; 3 citation candidates surfaced).
 
 ## Result
 

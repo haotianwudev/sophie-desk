@@ -22,3 +22,4 @@
 | [`santa-clara-saretto-2009-option-strategies-margin-calls`](santa-clara-saretto-2009-option-strategies-margin-calls.md) | High | Proves margin haircuts (7-43x) and forced liquidations turn unmanaged short option Sharpe ratios negative. | 3 |
 | [`vazquez-2014-option-pricing-tail-risks`](vazquez-2014-option-pricing-tail-risks.md) | High | Decomposes option drift into convexity, skew, and kurtosis premia; confirms skew/jump aversion drives OTM put edge. | 3 |
 | [`wysocki-2025-sizing-risk`](wysocki-2025-sizing-risk.md) | High | Validates hybrid fractional Kelly & VIX percentile sizing for short-dated SPXW puts; achieves 14-23% return with <11% DD. | 3 |
+| [`wysocki-2026-harvesting-vrp-ltr`](wysocki-2026-harvesting-vrp-ltr.md) | High | Formulates LambdaRank ML strike selection with cash SKIP option; achieves 3.10 WF and 5.76 OOT Sharpe with 2.28% max DD. | 3 |

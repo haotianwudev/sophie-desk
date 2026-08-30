@@ -80,3 +80,16 @@ In `sophie-option-research`, Wysocki (2026) serves as the primary modern bluepri
 2. **Abstention as an Alpha Driver**: Confirms that integrating an explicit cash / SKIP action and confidence gate in `src/lab/strategy.py` is the single most potent defense against left-tail crashes in short volatility.
 3. **Multi-Testing Deflation Protocols**: Establishes the requirement in `src/lab/metrics.py` and `src/lab/report.py` to evaluate backtests not merely on nominal Sharpe ratios, but with Probabilistic Sharpe Ratios (PSR) and Deflated Sharpe Ratios (DSR; $N_t$ trial adjustments) to eliminate false discoveries from parameter mining.
 
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Foundational modern architecture for machine-learning option selection; demonstrates that formulating strike selection as a Learning-to-Rank (LambdaRank) problem with an explicit cash 'SKIP' option and uncertainty-aware confidence gate achieves superior walk-forward Sharpe (3.10) and out-of-time Sharpe (5.76) on 0DTE SPXW puts with negligible drawdown (-2.28%). Direct blueprint for the ML pipeline, feature selection, and Deflated Sharpe Ratio (DSR) protocols in `sophie-option-research`.
+
+## Notable Citations to Follow Up
+
+1. **Burges, Christopher J.C. (2010)** — *From RankNet to LambdaRank to LambdaMART: An Overview* (Microsoft Research Technical Report MSR-TR-2010-82).
+   - Theoretical foundation for the LambdaRank algorithm, detailing the pairwise gradient optimization mechanism that makes listwise ranking computationally tractable.
+2. **Geifman, Yonatan, and Ran El-Yaniv (2017)** — *Selective Classification for Deep Neural Networks* (Advances in Neural Information Processing Systems, 30, 4885-4894).
+   - Formalizes the mathematics of rejection/abstention mechanisms (confidence gating) to guarantee risk-bounded predictive accuracy under model uncertainty.
+3. **Andersen, Torben G., Nicola Fusari, and Viktor Todorov (2017)** — *Short-Term Market Risks Implied by Weekly Options* (The Journal of Finance, 72(3), 1335-1386).
+   - Documents the high-frequency term structure and jump dynamics unique to weekly (SPXW) index options, validating the concentration of edge in ultra-short expirations.
