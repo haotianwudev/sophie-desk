@@ -1,25 +1,11 @@
 {
-  "generated_at": "2026-08-30T21:44:51+00:00Z",
-  "task_count": 2,
+  "generated_at": "2026-08-30T21:55:53+00:00Z",
+  "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
   ],
-  "stalled_probes": [
-    "spx-option-backfill"
-  ],
-  "stalled_active": [],
+  "stalled_probes": [],
   "tasks": [
-    {
-      "id": "gdocs-citation-candidates-v2",
-      "title": "Extract cited research papers from Gemini docs (v2 -- domain-anchored filter)",
-      "lane": "research",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "script exists but no citation candidate rows added yet"
-    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
@@ -27,9 +13,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "STALL",
-      "progress": "SPXW 516/1360 \u00b7 log idle 8h \u00b7 4 python procs"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (75800 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
