@@ -68,6 +68,23 @@ follow their docstrings, don't re-derive the approach from scratch.
      - Passed domain pre-filter: 694
      - Passed full quality filter & deduped: 484 unique candidate papers (311 new candidate rows added, 173 existing rows merged)
      - Filtered out: 1817 non-research / marketing / lecture / noise items
+- **2026-08-30** — Independently verified. Overall quality held up well (no reject-list
+  leakage found by title scan), but a mechanical check for reused `Why` text across different
+  titles found **35 pairs** sharing identical text -- up sharply from 1 pair in the 19-doc
+  pilot (~0.6% rate there vs. ~7% here), worth watching as volume scales further. Confirmed one
+  as a genuine content-accuracy bug, not just a style issue: "Understanding the correlation risk
+  premium" and "Understanding the Volatility Risk Premium" are two different real citations from
+  two different source docs, but shared word-for-word Why text describing correlation
+  decomposition -- wrong for the volatility-premium row. Re-verified the volatility-premium
+  citation directly against its source doc's Works Cited context (AQR Capital Management
+  whitepaper, cited as a foundational VRP source) and corrected its `Why`/`Authors` fields by
+  hand. Also found and merged one exact duplicate the extraction missed: "Deep Reinforcement
+  Learning in Quantitative Algorithmic Trading: A Review" listed twice, once with a "- ar5iv"
+  mirror-site suffix. **Did not** individually verify the other ~33 reused-Why pairs -- most
+  looked like plausible same-subject near-duplicates from a title scan (e.g. two Cboe dispersion
+  index citations, two Australian buy-write studies) rather than confirmed mismatches, but this
+  needs the full grouping/dedup pass across all batches the user asked for at the end, not
+  piecemeal per-batch fixes. Final count after fixes: **483** citation candidate rows.
      - Multi-source candidates (cited across >1 article): 18
   4. 5 example new rows:
      - `From Prompt Injections to SQL Injection Attacks:How Protected is Your LLM-Integrated Web Application?` | Why: "ACM / IEEE cybersecurity study demonstrating how adversarial prompt injection attacks can propagate through LLM agents to execute unauthorized SQL database operations." | Surfaced by: `[Database Agents with MCP and LangChain](https://www.sophie-ai-finance.com/articles/database-agents-mcp-langchain)`
