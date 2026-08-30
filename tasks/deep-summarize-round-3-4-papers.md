@@ -59,6 +59,8 @@ that's a separate, future task.
 
 ## Decision log
 
+- 2026-08-30: 1/10 done: andersen-benzoni-lund-2002-continuous-time-equity-return-models
+
 ## Result
 
 <!-- pointer only: how many of the 10 got done, papers/Papers.md is the real answer -->
