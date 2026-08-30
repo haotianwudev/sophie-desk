@@ -9,8 +9,8 @@ repo: sophie-option-research
 blocker:
 next: Claim, then work through all 24 papers one at a time, committing after each.
 probe: bash probes/review-papers-relevance-and-citations.sh
-progress: 4/24 papers rated, REVIEW-INDEX.md 8 lines
-probe_status: RUN
+progress: <3>WSL (73249 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+probe_status: ERROR
 stall_flag: 
 outcome:
 artifacts:
