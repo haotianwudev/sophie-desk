@@ -11,6 +11,7 @@ next: Work through the list below in order, one paper per commit.
 probe: bash probes/deep-summarize-remaining-papers.sh
 progress: 4/13 papers have a Detailed Summary
 probe_status: RUN
+stall_flag:
 outcome:
 artifacts:
 created: 2026-08-30
@@ -62,6 +63,7 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 - 2026-08-30: 6/12 done: frazzini-pedersen-2012-embedded-leverage
 - 2026-08-30: 7/12 done: jurek-stafford-2015-cost-of-capital-alternative-investments
 - 2026-08-30: 8/12 done: santa-clara-saretto-2009-option-strategies-margin-calls
+- 2026-08-30: 9/12 done: vazquez-2014-option-pricing-tail-risks
 
 ## Result
 
