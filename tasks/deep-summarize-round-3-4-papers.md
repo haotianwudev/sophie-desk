@@ -2,7 +2,7 @@
 id: deep-summarize-round-3-4-papers
 title: Deep-summarize the 11 remaining papers (rounds 3-4), one at a time
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
