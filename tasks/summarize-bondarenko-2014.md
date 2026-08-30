@@ -9,9 +9,9 @@ repo: sophie-option-research
 blocker:
 next: Read the actual PDF and write a real methodology/results summary.
 probe: bash probes/summarize-bondarenko-2014.sh
-progress:
-probe_status:
-stall_flag:
+progress: no Detailed Summary section yet
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30
