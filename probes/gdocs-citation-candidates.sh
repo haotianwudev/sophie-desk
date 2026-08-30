@@ -11,7 +11,12 @@ if [ ! -f "scripts/extract_gdoc_citations.py" ]; then
   exit 0
 fi
 
-new_rows=$(grep -cE '\(https://www\.sophie-ai-finance\.com/articles/' papers/FOLLOWUP-CANDIDATES.md 2>/dev/null || echo 0)
+# Only count actual table rows (start with '|'), not the schema doc's own
+# example text near the top of the file, which contains this same URL
+# pattern and was a false-positive match here once already.
+set +e
+new_rows=$(grep -E '^\|' papers/FOLLOWUP-CANDIDATES.md 2>/dev/null | grep -cE '\(https://www\.sophie-ai-finance\.com/articles/')
+set -e
 
 if [ "$new_rows" -eq 0 ]; then
   echo "RUN script exists but no citation candidate rows added yet"
