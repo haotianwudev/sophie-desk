@@ -215,10 +215,17 @@ _AGY_CLI = r"C:\Users\lswht\AppData\Local\agy\bin\agy.exe"
 
 def dispatch_to_agy(task_id: str) -> bool:
     """Launch agy (the terminal CLI) with a prompt to read and work one task.
-    -p/--print mode runs synchronously and can legitimately take minutes (its
-    own --print-timeout defaults to 5m) -- Popen here is what keeps this from
-    blocking the supervisor's own tick; it runs the whole task to completion
-    in the background, independent of this process."""
+    -p/--print mode runs synchronously and can take a while -- Popen here is
+    what keeps this from blocking the supervisor's own tick; it runs the
+    whole task to completion in the background, independent of this process.
+
+    --print-timeout is raised to 30m (agy's own default is 5m): hit live on
+    a 12-step task that legitimately took longer than 5 minutes end to end --
+    the session exited cleanly with 6/12 done, no data lost, but nothing
+    continued it automatically. Popen means raising this costs nothing on
+    our side; a --print-timeout closer to real task length matters a lot on
+    agy's side. See check_stalled_active() below for the other half of this
+    fix: detecting a task that stopped mid-way regardless of why."""
     prompt = (
         f"Read F:\\workspace\\sophie-desk\\AGENTS.md first. Then read and work the task at "
         f"F:\\workspace\\sophie-desk\\tasks\\{task_id}.md -- it is assigned to you and has "
@@ -227,13 +234,50 @@ def dispatch_to_agy(task_id: str) -> bool:
     )
     try:
         subprocess.Popen(
-            [_AGY_CLI, "-p", prompt, "--add-dir", str(VAULT), "--dangerously-skip-permissions"],
+            [_AGY_CLI, "-p", prompt, "--add-dir", str(VAULT),
+             "--dangerously-skip-permissions", "--print-timeout", "30m"],
             cwd=VAULT,
         )
         return True
     except Exception as e:  # noqa: BLE001
         log(f"ERROR failed to launch agy for {task_id}: {e}")
         return False
+
+
+# ---------- stall detection ----------
+
+STALL_MINUTES = 12  # generous vs. the ~1-2 min per-step commits seen live; a
+                     # process that's genuinely still working shouldn't trip this
+
+
+def minutes_since_last_commit(rel_path: str) -> float | None:
+    """Minutes since the last commit that touched this path, or None if it's
+    never been committed. Deliberately git-log-based, not file mtime: mtime
+    gets touched by routine supervisor probe-rewrites too (and by git pull,
+    unrelated to real progress), which would mask a genuine stall. A commit
+    only happens when something actually changed."""
+    res = subprocess.run(
+        ["git", "log", "-1", "--format=%ct", "--", rel_path],
+        cwd=VAULT, capture_output=True, text=True,
+    )
+    out = res.stdout.strip()
+    if not out:
+        return None
+    return (time.time() - int(out)) / 60
+
+
+def check_stalled_active(task_id: str, path: Path) -> str | None:
+    """For a task with status: active, is it stalled? Returns a short reason
+    string if so, else None. This only ever flags -- it never re-dispatches
+    or otherwise acts, same reasoning as everywhere else in this file: an
+    ambiguous case becomes something a human notices, not something guessed
+    at. See tasks/deep-summarize-remaining-papers.md's history for exactly
+    the case this exists to catch (stopped at 6/12, nothing noticed for a
+    while)."""
+    age = minutes_since_last_commit(f"tasks/{task_id}.md")
+    if age is not None and age > STALL_MINUTES:
+        return f"no commit in {age:.0f}m while active"
+    return None
 
 
 # ---------- one tick ----------
@@ -286,6 +330,24 @@ def tick(dry_run: bool = False) -> dict:
                     dispatched.append(task_id)
                     log(f"dispatched to agy: {task_id}")
 
+        # Stall detection: a task claimed by an agent (agy/claude) that hasn't
+        # produced a real commit in a while. Only flags -- never re-dispatches,
+        # same "ambiguous case becomes a human's problem" rule as the rest of
+        # this file. Runs on every active task, not just ones dispatched this
+        # tick, so it also catches one dispatched manually outside the loop.
+        stall_reason = None
+        if status == "active" and fm.get("assignee") in ("agy", "claude"):
+            stall_reason = check_stalled_active(task_id, path)
+            new_text, changed = set_frontmatter_fields(
+                text, {"stall_flag": stall_reason or ""}
+            )
+            if changed:
+                if not dry_run:
+                    path.write_text(new_text, encoding="utf-8")
+                any_frontmatter_changed = True
+                if stall_reason:
+                    log(f"WARN stalled active task: {task_id} -- {stall_reason}")
+
         tasks_out.append({
             "id": fm.get("id", path.stem),
             "title": title,
@@ -293,11 +355,15 @@ def tick(dry_run: bool = False) -> dict:
             "status": status,
             "assignee": fm.get("assignee", "none"),
             "gate": fm.get("gate", ""),
+            "stall_flag": stall_reason or "",
             "probe_status": probe_status or fm.get("probe_status", ""),
             "progress": progress or fm.get("progress", ""),
         })
 
-    needs_you = [t for t in tasks_out if t["status"] in NEEDS_YOU_STATUSES]
+    needs_you = [
+        t for t in tasks_out
+        if t["status"] in NEEDS_YOU_STATUSES or t["stall_flag"]
+    ]
     stalled = [t for t in tasks_out if t["probe_status"] == "STALL"]
 
     summary = {
@@ -305,6 +371,7 @@ def tick(dry_run: bool = False) -> dict:
         "task_count": len(tasks_out),
         "needs_you": [t["id"] for t in needs_you],
         "stalled_probes": [t["id"] for t in stalled],
+        "stalled_active": [t["id"] for t in tasks_out if t["stall_flag"]],
         "tasks": tasks_out,
     }
 

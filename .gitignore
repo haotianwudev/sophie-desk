@@ -15,3 +15,12 @@ papers/**/*.pdf
 # supervisor local state (status.json IS committed on purpose)
 supervisor/supervisor.pid
 supervisor/supervisor.log
+
+# python cache
+__pycache__/
+*.pyc
+
+# scratch/working files agents may leave mid-task (e.g. extracted PDF text) --
+# never intentional output, just don't let them get swept into a commit
+scratch_*.txt
+scratch_*.md

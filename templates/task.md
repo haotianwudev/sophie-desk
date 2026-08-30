@@ -11,14 +11,16 @@ gate:            # g1 | g2 | g3 | (empty if none)
 repo:            # sophie-pipeline | ai-stock-suggestion-server | ai-stock-suggestion-client | sophie-option-research
 blocker:
 next:
-probe: none      # shell command, or none. If it calls bash, use the FULL path to Git
-                 # Bash's bash.exe (e.g. "C:\Program Files\Git\bin\bash.exe" probes/x.sh) --
-                 # a bare `bash` resolves differently depending on who's running it (Git
-                 # Bash's own shell vs. plain PowerShell vs. Task Scheduler), and in at
-                 # least one of those it silently resolves to Windows' WSL launcher stub
-                 # instead, which fails outright if WSL isn't set up. See sophie-desk skill.
+probe: none      # shell command, or none. Just write "bash <script>", plain -- run.py's
+                 # resolve_bash() translates it to the real Git Bash binary internally, so
+                 # this never needs a Windows path (which broke Dataview parsing once
+                 # already when tried). See sophie-desk skill for the full story.
 progress:        # written by the supervisor — do not hand-edit
 probe_status:    # OK | RUN | STALL — written by the supervisor
+stall_flag:      # written by the supervisor for status:active tasks only — do not hand-edit.
+                 # Non-empty means "claimed by agy/claude but no commit in 12+ minutes" --
+                 # check whether the dispatched session is actually still running before
+                 # assuming it crashed; if not, it needs a manual resume, see Runbook.md.
 outcome:         # one line, filled on done
 artifacts:       # commits, URLs, study tags, row counts
 created:
