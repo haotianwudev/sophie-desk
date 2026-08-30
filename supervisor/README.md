@@ -57,6 +57,16 @@ code explicitly checks for this, on purpose.
   `supervisor/supervisor.log`, opening `Desk.md` in Obsidian, or asking the
   chat agent once it can read this vault. Wiring an actual channel is a
   clear next step, deliberately left undone rather than guessed at.
+- **It doesn't enforce one-task-per-lane.** Every `status: queued,
+  assignee: agy` task on the filesystem gets dispatched in the same tick —
+  not just one. Hit live: two research-lane tasks queued at once launched
+  two agy processes simultaneously (harmless that time — they touched
+  different files — but it was luck, not a guarantee). Staying to one task
+  in flight per lane is manual discipline for now, not a check in the code.
+  See **Runbook.md**'s "Dispatching work" section for how to actually hold
+  a second task back (hint: committing it doesn't do that — `tick()` reads
+  the live filesystem, not git's index, so an uncommitted file in `tasks/`
+  still gets picked up).
 
 ## Running it
 

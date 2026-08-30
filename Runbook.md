@@ -179,6 +179,51 @@ without you needing to delete the file first. Verified live 2026-08-29.
 
 ---
 
+## Dispatching work
+
+**agy is auto-dispatched** — a task with `status: queued, assignee: agy, gate: (empty)` gets
+picked up by the next tick, no manual step needed. To force it right now instead of waiting
+for the loop: `python supervisor/run.py --once` from the vault root.
+
+**Claude Code is not auto-dispatched** — that's a deliberate choice (see `supervisor/README.md`),
+so dispatching a fresh headless session to work a `status: queued, assignee: claude` task is a
+manual step:
+```bash
+cd /f/workspace/sophie-desk
+python -c "
+import subprocess
+prompt = ('Read F:\\\\workspace\\\\sophie-desk\\\\AGENTS.md first. Then read and work the task at '
+          'F:\\\\workspace\\\\sophie-desk\\\\tasks\\\\<task-id>.md -- it is assigned to you and has '
+          'just been marked active. Follow its Goal/Plan, append to its Decision log as you go, '
+          'fill in Result and set status: done when finished, commit and push.')
+subprocess.Popen(['claude', '-p', prompt, '--dangerously-skip-permissions'], cwd=r'F:\workspace\sophie-desk')
+"
+```
+Then mark it `status: active` yourself (claiming is the dispatcher's job when there's no
+auto-dispatch doing it) — either hand-edit the frontmatter and commit, or run a real tick
+afterward, which will pick up the change on its next pass. Poll for completion with
+`git fetch && git log --oneline -1 origin/master` — a real task can take several minutes
+(web search + downloads are slower than a pure read/write task).
+
+**Only ever have one task in flight per lane at a time — this isn't enforced in code yet,
+it's on you.** `tick()` dispatches *every* `queued`+`assignee: agy` match it finds on the
+filesystem in a single pass — not just one. Two research-lane tasks queued at once will both
+get launched simultaneously, as separate agy processes racing to commit/push to the same repo.
+**Committing doesn't hold a task back either** — `tick()` reads the live filesystem, not git's
+committed state, so a task file sitting uncommitted in `tasks/` still gets picked up on the
+next tick. Hit live twice already (harmlessly both times, but only by luck): if you want a
+second task to wait, don't create its file in `tasks/` at all yet — draft it somewhere else
+and only move it in once the first one is confirmed done.
+
+**If a dispatched task looks stuck, check whether it's actually still working before assuming
+it crashed.** `ps -W | grep agy.exe` (or `Get-Process agy`) — if a process is alive, it's
+probably still going; slow steps (a hard PDF, a big web search) can take minutes. If nothing's
+alive and the task's own `stall_flag` frontmatter field is non-empty, it really did stop —
+resume it manually with the same dispatch command above, telling it explicitly to check the
+Decision log for what's already done and continue from there, not redo it.
+
+---
+
 ## Adding to this file
 
 One command block per operation, in the same shape: **source skill** (so drift gets caught),

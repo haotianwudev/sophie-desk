@@ -15,11 +15,11 @@ treat any other field as declared state, not measured state.
 TABLE WITHOUT ID
   link(file.link, title) AS "Task",
   lane AS "Lane",
-  choice(gate, "gate " + gate, "blocked") AS "Why",
+  choice(stall_flag, "stalled: " + stall_flag, choice(gate, "gate " + gate, "blocked")) AS "Why",
   progress AS "Progress",
   next AS "Next step"
 FROM "tasks"
-WHERE status = "blocked" OR status = "gate"
+WHERE status = "blocked" OR status = "gate" OR stall_flag
 SORT lane ASC
 ```
 

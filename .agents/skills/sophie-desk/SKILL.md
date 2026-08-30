@@ -99,12 +99,14 @@ task disappears into the archive folder, the durable lesson shouldn't disappear 
 
 ## Worked pattern: deep-summarize one paper
 
-Confirmed working end-to-end 2026-08-30 (dispatch to close, ~75 seconds, unattended) — reuse
-this shape rather than redesigning it for the next paper. The library-building pass
-(`librarian-test-option-writing`, now archived) leaves each paper with only an abstract-level
-note; this pattern asks agy to actually read the PDF and add real depth. Currently 8 papers in
-`papers/option-writing/` still only have the shallow note (check each `.md` for a
-`## Detailed Summary` heading — its absence means it hasn't had this pass yet).
+Confirmed working end-to-end multiple times (single-paper dispatch in ~75s; a 12-paper batch
+in one task, resumed once after a timeout, in a few minutes total) — reuse this shape rather
+than redesigning it for the next paper. A librarian-round-N paper-gathering pass leaves each
+paper with only an abstract-level note; this pattern asks agy to actually read the PDF and add
+real depth. Find which papers still need it with:
+```bash
+for f in papers/option-writing/*.md; do grep -q "## Detailed Summary" "$f" || echo "$f"; done
+```
 
 **Task** (`tasks/summarize-<slug>.md`) — copy the shape, not just the fields:
 ```yaml
@@ -152,7 +154,7 @@ dispatch's *only* check before handing a task to an unattended agy session is "d
 task have a gate." Get the field right, or an auto-dispatched task runs with
 `--dangerously-skip-permissions` and no human in the loop at all.
 
-**Three things that have actually gone wrong once each, worth not repeating:**
+**Five things that have actually gone wrong, worth not repeating:**
 
 - **On Windows, verify a process is dead with `tasklist`/`Get-Process`, not bash's own
   `kill`/`timeout` exit code.** A test loop survived two kill attempts from Git Bash and kept
@@ -171,6 +173,23 @@ task have a gate." Get the field right, or an auto-dispatched task runs with
   `-p` flag is a completely separate binary at
   `C:\Users\lswht\AppData\Local\agy\bin\agy.exe`. If agy's behavior ever needs touching again,
   confirm which binary is in play before assuming either one.
+- **`tick()` dispatches every matching task in one pass, not just one — and committing a
+  second task doesn't hold it back.** Queuing two `assignee: agy` research-lane tasks and
+  running one tick launched both simultaneously, as two separate agy processes racing to
+  commit/push to the same repo. Harmless that specific time (different files touched), but
+  it was luck. `tick()` reads the live filesystem, not git's committed state, so leaving a
+  second task uncommitted does *not* prevent dispatch — draft it somewhere outside `tasks/`
+  if you genuinely need to hold it back. See Runbook.md's "Dispatching work" for the actual
+  one-at-a-time discipline (not yet enforced in code).
+- **A 12-step task can legitimately outlast agy's own 5-minute `--print-timeout`.** The
+  dispatched session exits cleanly when it hits that wall — no data lost, whatever committed
+  already stays committed — but nothing continues it automatically. Fixed by raising the
+  supervisor's own dispatch to `--print-timeout 30m`, and by adding stall detection
+  (`stall_flag` in a task's own frontmatter, set when `status: active` but no real commit in
+  12+ minutes — see `supervisor/run.py`'s `check_stalled_active()`). It only flags, never
+  auto-resumes; check `ps -W | grep agy.exe` before assuming a flagged task actually crashed,
+  and if it really did, resume with the same dispatch command, told explicitly to check the
+  Decision log for what's already done first.
 
 ## What this skill is not
 

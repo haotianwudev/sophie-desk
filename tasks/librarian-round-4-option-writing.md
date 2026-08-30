@@ -9,8 +9,8 @@ repo: sophie-option-research
 blocker:
 next: Claim, check all 18 existing papers first, then search broadly again.
 probe: bash probes/librarian-round-4-option-writing.sh
-progress: 18 notes total (baseline 18), 0 new yet
-probe_status: RUN
+progress: <3>WSL (72965 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+probe_status: ERROR
 outcome:
 artifacts:
 created: 2026-08-30

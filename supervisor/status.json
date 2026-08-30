@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-08-30T11:50:42+00:00Z",
+  "generated_at": "2026-08-30T11:55:11+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [],
   "tasks": [
     {
       "id": "librarian-round-4-option-writing",
@@ -14,9 +13,8 @@
       "status": "active",
       "assignee": "agy",
       "gate": "",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "18 notes total (baseline 18), 0 new yet"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (72965 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     },
     {
       "id": "spx-option-backfill",
@@ -25,9 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 477/1360 \u00b7 log 3h ago"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (72968 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
