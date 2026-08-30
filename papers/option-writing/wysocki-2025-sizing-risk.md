@@ -75,3 +75,16 @@ In `sophie-option-research`, Wysocki (2025) provides modern, high-frequency empi
 2. **Ultra-Short DTE (0–5 DTE) Exploitation**: Informs trade generation and scheduling in `src/lab/backtest.py` and `notebooks/01_backtest_baseline.ipynb`, confirming that SPXW daily expirations offer rapid theta decay that can be harvested with high Information Ratios when sized appropriately.
 3. **Signal Selection & Estimator Upgrades**: Recommends using Garman-Klass and Yang-Zhang range estimators in `src/lab/features.py` for volatility inputs, and utilizing VIX9D for near-term option filtering rather than standard 30-day VIX.
 
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Highly practical and directly actionable for `sophie-option-research`; evaluates Monte Carlo fractional Kelly sizing, rolling VIX/VIX9D percentile rank scaling, and hybrid architectures on short-dated (0–5 DTE) SPXW short puts. Proves that hybrid Kelly-VIX sizing achieves strong compounding (14%–23% annualized) while capping max drawdowns below 11% across bull and bear regimes.
+
+## Notable Citations to Follow Up
+
+1. **Maclean, Leonard C., Edward O. Thorp, and William T. Ziemba (2010)** — *Long-Term Capital Growth: The Good and Bad Properties of the Kelly and Fractional Kelly Capital Growth Criteria* (Quantitative Finance, 10(7), 681-689).
+   - Establishes mathematical properties of fractional Kelly betting, demonstrating how scaling down bet size dramatically curtails drawdown duration and volatility with minimal sacrifice in asymptotic growth.
+2. **Malkiel, Burton G., Alexis Rinaudo, and Atanu Saha (2018)** — *Option Writing: Using VIX to Improve Returns* (The Journal of Derivatives, 26(2), 38-49).
+   - Demonstrates that dynamically adjusting option writing allocations based on VIX levels and percentiles boosts risk-adjusted returns over static index strategies.
+3. **Beckmeyer, Heiner, Nicole Branger, and Leander Gayda (2023)** — *Retail Traders Love 0DTE Options... But Should They?* (SSRN Working Paper 4554316).
+   - Detailed empirical study on volume, market maker inventory imbalances, and intraday pricing dynamics of same-day expiration (0DTE) SPX contracts.

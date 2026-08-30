@@ -21,3 +21,4 @@
 | [`jurek-stafford-2015-cost-of-capital-alternative-investments`](jurek-stafford-2015-cost-of-capital-alternative-investments.md) | High | Proves hedge fund alpha is mechanically matched by OTM put writing; formalizes [Z, L] strike and leverage framework. | 3 |
 | [`santa-clara-saretto-2009-option-strategies-margin-calls`](santa-clara-saretto-2009-option-strategies-margin-calls.md) | High | Proves margin haircuts (7-43x) and forced liquidations turn unmanaged short option Sharpe ratios negative. | 3 |
 | [`vazquez-2014-option-pricing-tail-risks`](vazquez-2014-option-pricing-tail-risks.md) | High | Decomposes option drift into convexity, skew, and kurtosis premia; confirms skew/jump aversion drives OTM put edge. | 3 |
+| [`wysocki-2025-sizing-risk`](wysocki-2025-sizing-risk.md) | High | Validates hybrid fractional Kelly & VIX percentile sizing for short-dated SPXW puts; achieves 14-23% return with <11% DD. | 3 |
