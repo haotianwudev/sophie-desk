@@ -89,6 +89,45 @@ decision log or gotchas would help someone hit the same problem in an unrelated 
 promote that specific lesson into the relevant *skill* (not this one) before archiving — the
 task disappears into the archive folder, the durable lesson shouldn't disappear with it.
 
+## Worked pattern: deep-summarize one paper
+
+Confirmed working end-to-end 2026-08-30 (dispatch to close, ~75 seconds, unattended) — reuse
+this shape rather than redesigning it for the next paper. The library-building pass
+(`librarian-test-option-writing`, now archived) leaves each paper with only an abstract-level
+note; this pattern asks agy to actually read the PDF and add real depth. Currently 8 papers in
+`papers/option-writing/` still only have the shallow note (check each `.md` for a
+`## Detailed Summary` heading — its absence means it hasn't had this pass yet).
+
+**Task** (`tasks/summarize-<slug>.md`) — copy the shape, not just the fields:
+```yaml
+lane: research
+assignee: agy
+gate:              # empty -- reading/writing a local note is safe for unattended dispatch
+probe: bash probes/summarize-<slug>.sh
+```
+Goal section: name the exact PDF and note path, ask for a new `## Detailed Summary` section
+(explicitly: leave the existing `## Summary` untouched), and list what it must cover —
+methodology, data/sample period, key quantitative results (real numbers, not vague claims),
+and one paragraph connecting it to something concrete already in `sophie-option-research`
+(a specific module or notebook, not just "this is relevant").
+
+**Probe** (`probes/summarize-<slug>.sh`) — check for the real thing, not a claim:
+```bash
+NOTE="papers/option-writing/<slug>.md"
+if grep -q "## Detailed Summary" "$NOTE"; then
+  words=$(sed -n '/## Detailed Summary/,$p' "$NOTE" | wc -w)
+  [ "$words" -ge 80 ] && echo "OK Detailed Summary present, ${words} words" \
+                      || echo "RUN Detailed Summary section exists but thin (${words} words)"
+else
+  echo "RUN no Detailed Summary section yet"
+fi
+exit 0
+```
+
+The 80-word floor is a cheap sanity check, not a quality bar — it exists to catch a task that
+added a heading with a one-line placeholder under it, not to certify the summary is actually
+good. Read the result yourself before trusting it's genuinely useful.
+
 ## Working with the supervisor
 
 `supervisor/run.py` measures and reports, and — confirmed working live, twice —
