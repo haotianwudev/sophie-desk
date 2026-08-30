@@ -20,7 +20,8 @@ supervisor/supervisor.log
 __pycache__/
 *.pyc
 
-# scratch/working files agents may leave mid-task (e.g. extracted PDF text) --
-# never intentional output, just don't let them get swept into a commit
-scratch_*.txt
-scratch_*.md
+# scratch/working files agents may leave mid-task (e.g. extracted PDF text,
+# a one-off consolidation script) -- never intentional output, just don't
+# let them get swept into a commit. Any extension, not just .txt/.md --
+# missed .py/.json once already.
+scratch_*
