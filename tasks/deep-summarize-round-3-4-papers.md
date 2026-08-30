@@ -60,6 +60,7 @@ that's a separate, future task.
 ## Decision log
 
 - 2026-08-30: 1/10 done: andersen-benzoni-lund-2002-continuous-time-equity-return-models
+- 2026-08-30: 2/10 done: bates-2008-market-for-crash-risk
 
 ## Result
 
