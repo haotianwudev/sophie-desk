@@ -1,25 +1,11 @@
 {
-  "generated_at": "2026-08-30T20:30:11+00:00Z",
-  "task_count": 2,
+  "generated_at": "2026-08-30T20:55:49+00:00Z",
+  "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
   ],
-  "stalled_probes": [
-    "spx-option-backfill"
-  ],
-  "stalled_active": [],
+  "stalled_probes": [],
   "tasks": [
-    {
-      "id": "gdocs-research-paper-candidates",
-      "title": "Classify matched Drive docs as research-paper/news/general-info; candidate the papers",
-      "lane": "research",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "scripts/classify_gdocs_candidates.py missing"
-    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
@@ -27,9 +13,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "STALL",
-      "progress": "SPXW 510/1360 \u00b7 log idle 7h \u00b7 4 python procs"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (75501 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
