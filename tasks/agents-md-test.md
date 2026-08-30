@@ -2,7 +2,7 @@
 id: agents-md-test
 title: Disposable test of the AGENTS.md-first dispatch prompt
 lane: platform
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
@@ -14,7 +14,7 @@ probe_status:
 outcome:
 artifacts:
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-29
 ---
 
 ## Goal

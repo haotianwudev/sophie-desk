@@ -1,11 +1,21 @@
 {
-  "generated_at": "2026-08-30T03:54:39+00:00Z",
-  "task_count": 1,
+  "generated_at": "2026-08-30T03:59:19+00:00Z",
+  "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
   "tasks": [
+    {
+      "id": "agents-md-test",
+      "title": "Disposable test of the AGENTS.md-first dispatch prompt",
+      "lane": "platform",
+      "status": "active",
+      "assignee": "agy",
+      "gate": "",
+      "probe_status": "",
+      "progress": ""
+    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
@@ -13,8 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (70708 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "probe_status": "RUN",
+      "progress": "SPXW 450/1360 \u00b7 log 1h ago"
     }
   ]
 }
