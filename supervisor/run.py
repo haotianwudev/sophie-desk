@@ -205,6 +205,31 @@ def release_singleton() -> None:
         pass
 
 
+# ---------- dispatch to agy ----------
+
+_AGY_CLI = r"C:\Users\lswht\AppData\Local\Programs\Antigravity IDE\bin\antigravity-ide.cmd"
+
+
+def dispatch_to_agy(task_id: str) -> bool:
+    """Launch agy (Antigravity) with a prompt to read and work one task.
+    Fire-and-forget -- confirmed live that the CLI returns in ~2s (VS-Code-
+    style launcher behavior) rather than blocking for the whole agent turn,
+    so this never stalls the supervisor's own tick."""
+    prompt = (
+        f"Read F:\\workspace\\sophie-desk\\.agents\\skills\\sophie-desk\\SKILL.md for how "
+        f"tasks work in this repo. Then read and work the task at "
+        f"F:\\workspace\\sophie-desk\\tasks\\{task_id}.md -- it is assigned to you and has "
+        f"just been marked active. Follow its Goal/Plan, append to its Decision log as you "
+        f"go, fill in Result and set status: done when finished, commit and push."
+    )
+    try:
+        subprocess.Popen([_AGY_CLI, "chat", "-n", "-m", "agent", prompt], cwd=VAULT)
+        return True
+    except Exception as e:  # noqa: BLE001
+        log(f"ERROR failed to launch agy for {task_id}: {e}")
+        return False
+
+
 # ---------- one tick ----------
 
 def tick(dry_run: bool = False) -> dict:
@@ -213,6 +238,7 @@ def tick(dry_run: bool = False) -> dict:
 
     tasks_out = []
     any_frontmatter_changed = False
+    dispatched = []
 
     for path in task_files:
         text = path.read_text(encoding="utf-8")
@@ -232,6 +258,27 @@ def tick(dry_run: bool = False) -> dict:
                 if not dry_run:
                     path.write_text(new_text, encoding="utf-8")
                 any_frontmatter_changed = True
+                text = new_text  # keep the in-memory copy in sync for the dispatch check below
+
+        # Auto-dispatch: only status=queued, assignee=agy, and -- defensively,
+        # even though intake should already enforce this -- never a task that
+        # carries a gate. A gate is a human decision by design; an unattended
+        # dispatch must never be the thing that lets one slip through.
+        task_id = fm.get("id", path.stem)
+        if status == "queued" and fm.get("assignee") == "agy" and not fm.get("gate"):
+            if dry_run:
+                log(f"DRY-RUN would dispatch to agy: {task_id} (not launched)")
+            else:
+                claimed_text, claimed = set_frontmatter_fields(
+                    text, {"status": "active", "updated": today}
+                )
+                if claimed:
+                    path.write_text(claimed_text, encoding="utf-8")
+                    any_frontmatter_changed = True
+                    status = "active"
+                if dispatch_to_agy(task_id):
+                    dispatched.append(task_id)
+                    log(f"dispatched to agy: {task_id}")
 
         tasks_out.append({
             "id": fm.get("id", path.stem),
