@@ -111,10 +111,23 @@ specific reason beyond "it's about the topic," leave it out.
      - `Betting Against Beta` | Why: "Frazzini and Pedersen's foundational framework showing that leverage-constrained investors overpay for high-beta assets, creating a robust Betting Against Beta (BAB) anomaly." | Surfaced by: `[The Architecture of Quantitative Insight: The AQR Research Legacy](https://www.sophie-ai-finance.com/articles/architecture-quantitative-insight-aqr-research-legacy)`
      - `PlanCompiler: A Deterministic Compilation Architecture for Structured Multi-Step LLM Pipelines` | Why: "Introduces PlanCompiler, an architecture compiling natural language intent into deterministic, statically verifiable execution graphs for multi-step LLM pipelines." | Surfaced by: `[Agent Compiler Framework: Deterministic AI Analysts](https://www.sophie-ai-finance.com/articles/agent-compiler-framework-deterministic-ai-analysts)`
   7. Probe verified: `bash probes/gdocs-citation-candidates.sh` -> `OK 172 citation candidate rows added`.
+- **2026-08-30** — Independently verified rather than trusting the self-check (same discipline
+  that caught v1's failure). Spot-checked ~95 of the 172 titles by eye: all read as genuine,
+  specific research (VRP, tail-risk hedging, factor investing, correlation risk premium, RAG/LLM
+  papers, IMF/BIS reports) -- no reject-list leakage (no marketing pages, ethics essays,
+  Investopedia-style content) found this time, a dramatic improvement over v1. One real issue:
+  a mechanical check for reused `Why` text across different titles found exactly one pair --
+  "High Frequency Market Making" and "High Frequency Trading: Price Dynamics Models and Market
+  Making Strategies" -- both from the same source doc, same `Why` text word-for-word, almost
+  certainly a within-doc near-duplicate the dedup pass should have caught. Fixed by hand:
+  removed the shorter/more generic title, kept the more specific one. Final count: **171**
+  citation candidate rows (170 + 1 pre-existing merge, minus the 1 duplicate just removed).
 
 ## Result
 
 - Script: `scripts/extract_gdoc_citations.py`
-- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` (170 new rows added, 2 existing rows merged)
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **171** rows added from the 19-doc pilot
+  (172 as originally committed, minus 1 near-duplicate found on manual verification and
+  removed). Quality independently spot-checked, not just taken on the task's own self-report.
 - Verification probe: `probes/gdocs-citation-candidates.sh` (172 candidate rows verified)
 
