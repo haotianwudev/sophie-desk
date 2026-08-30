@@ -1,21 +1,11 @@
 {
-  "generated_at": "2026-08-30T03:23:11+00:00Z",
-  "task_count": 2,
+  "generated_at": "2026-08-30T03:23:31+00:00Z",
+  "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
   "tasks": [
-    {
-      "id": "librarian-test-option-writing",
-      "title": "Find option-writing research papers and file them in papers/option-writing/",
-      "lane": "research",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "probe_status": "OK",
-      "progress": "9 notes, 9 local PDFs"
-    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",

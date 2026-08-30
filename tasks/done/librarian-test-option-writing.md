@@ -2,17 +2,17 @@
 id: librarian-test-option-writing
 title: Find option-writing research papers and file them in papers/option-writing/
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Find and file 5-10 open-access option writing papers into papers/option-writing/
+next:
 probe: bash probes/librarian-test-option-writing.sh
 progress: 9 notes, 9 local PDFs
 probe_status: OK
-outcome:
-artifacts:
+outcome: 9 open-access papers filed into papers/option-writing/ with PDFs and testable hypotheses
+artifacts: papers/option-writing/
 created: 2026-08-30
 updated: 2026-08-29
 ---
@@ -56,7 +56,18 @@ without needing the PDFs on hand.
 - **2026-08-30** — Task created as a first real test of the desk's claim-and-work loop with
   agy. If this works cleanly, the next step is turning it into `/librarian`, a recurring
   weekly sweep (see `sophie/work-model.md`, Phase 3).
+- **2026-08-30** — Claimed task (`status: active`). Downloaded 9 open-access PDFs and committed 9 markdown notes with testable hypotheses to `papers/option-writing/`. Verified probe passes with `OK 9 notes, 9 local PDFs`.
 
 ## Result
 
-<!-- filled in on completion -- how many papers, and the folder is the real answer -->
+Filed 9 open-access research papers on option writing, covered calls, short puts, and volatility risk premium into `papers/option-writing/`:
+
+1. `wysocki-2025-sizing-risk`: *Sizing the Risk: Kelly, VIX, and Hybrid Approaches in Put-Writing on Index Options* (2025)
+2. `wysocki-2026-harvesting-vrp-ltr`: *Harvesting the Volatility Risk Premium: A Learning-to-Rank Approach* (2026)
+3. `wysocki-slepaczuk-2024-construction-hedging`: *Construction and Hedging of Equity Index Options Portfolios* (2024)
+4. `israelov-nielsen-2015-covered-calls-uncovered`: *Covered Calls Uncovered* (2015)
+5. `santa-clara-saretto-2009-option-strategies-margin-calls`: *Option Strategies: Good Deals and Margin Calls* (2009)
+6. `jurek-stafford-2015-cost-of-capital-alternative-investments`: *The Cost of Capital for Alternative Investments* (2015)
+7. `frazzini-pedersen-2012-embedded-leverage`: *Embedded Leverage* (2012)
+8. `coval-shumway-2001-expected-option-returns`: *Expected Option Returns* (2001)
+9. `vazquez-2014-option-pricing-tail-risks`: *Option Pricing, Historical Volatility and Tail Risks* (2014)
