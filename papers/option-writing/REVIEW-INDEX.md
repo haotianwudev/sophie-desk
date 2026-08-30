@@ -24,3 +24,4 @@
 | [`wysocki-2025-sizing-risk`](wysocki-2025-sizing-risk.md) | High | Validates hybrid fractional Kelly & VIX percentile sizing for short-dated SPXW puts; achieves 14-23% return with <11% DD. | 3 |
 | [`wysocki-2026-harvesting-vrp-ltr`](wysocki-2026-harvesting-vrp-ltr.md) | High | Formulates LambdaRank ML strike selection with cash SKIP option; achieves 3.10 WF and 5.76 OOT Sharpe with 2.28% max DD. | 3 |
 | [`wysocki-slepaczuk-2024-construction-hedging`](wysocki-slepaczuk-2024-construction-hedging.md) | High | Identifies 130-minute BSM delta hedging as optimal intraday schedule balancing tail-risk protection and fee friction. | 3 |
+| [`zhong-2026-non-spanning-identification-scheduled-event-risk`](zhong-2026-non-spanning-identification-scheduled-event-risk.md) | Medium | Isolates macro event jump risk from continuous volatility; confirms event variance markup in CPI/FOMC straddles. | 3 |
