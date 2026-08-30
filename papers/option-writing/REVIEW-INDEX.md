@@ -12,3 +12,4 @@
 | [`cheng-2019-vix-premium`](cheng-2019-vix-premium.md) | High | Uncovers low premium-response puzzle; proves timing/gating short-vol exposure doubles Sharpe and halves drawdown. | 3 |
 | [`coval-shumway-2001-expected-option-returns`](coval-shumway-2001-expected-option-returns.md) | High | Foundational proof of negative volatility premium; zero-beta straddles lose ~3.15%/wk rewarding systematic option writers. | 3 |
 | [`della-corte-ramadorai-sarno-2016-fx-volatility-risk-premia`](della-corte-ramadorai-sarno-2016-fx-volatility-risk-premia.md) | Medium | Cross-asset proof that VRP exists in FX and provides crisis alpha, but mechanisms are specific to currency spot dynamics. | 3 |
+| [`dew-becker-giglio-le-rodriguez-2017-price-of-variance-risk`](dew-becker-giglio-le-rodriguez-2017-price-of-variance-risk.md) | High | Proves variance risk premium is concentrated at 1-2 months (Sharpe -1.7); forward variance >2mo carries zero premium. | 3 |
