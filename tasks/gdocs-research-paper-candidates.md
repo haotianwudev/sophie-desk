@@ -2,7 +2,7 @@
 id: gdocs-research-paper-candidates
 title: Classify matched Drive docs as research-paper/news/general-info; candidate the papers
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
