@@ -63,6 +63,7 @@ that's a separate, future task.
 - 2026-08-30: 2/10 done: bates-2008-market-for-crash-risk
 - 2026-08-30: 3/10 done: bekaert-hoerova-2014-vix-variance-premium
 - 2026-08-30: 4/10 done: bollerslev-tauchen-zhou-2009-expected-stock-returns-vrp
+- 2026-08-30: 5/10 done: dew-becker-giglio-le-rodriguez-2017-price-of-variance-risk
 
 ## Result
 
