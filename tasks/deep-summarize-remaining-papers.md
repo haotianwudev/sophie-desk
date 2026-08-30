@@ -9,7 +9,7 @@ repo: sophie-option-research
 blocker:
 next: Work through the list below in order, one paper per commit.
 probe: bash probes/deep-summarize-remaining-papers.sh
-progress: 1/13 papers have a Detailed Summary
+progress: 4/13 papers have a Detailed Summary
 probe_status: RUN
 outcome:
 artifacts:

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-30T11:30:59+00:00Z",
-  "task_count": 3,
+  "generated_at": "2026-08-30T11:33:30+00:00Z",
+  "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
@@ -14,17 +14,7 @@
       "assignee": "agy",
       "gate": "",
       "probe_status": "RUN",
-      "progress": "1/13 papers have a Detailed Summary"
-    },
-    {
-      "id": "librarian-round-3-vrp",
-      "title": "Find NEW volatility-risk-premium papers without duplicating rounds 1-2",
-      "lane": "research",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "probe_status": "RUN",
-      "progress": "13 notes total (baseline 13), 0 new yet"
+      "progress": "4/13 papers have a Detailed Summary"
     },
     {
       "id": "spx-option-backfill",
