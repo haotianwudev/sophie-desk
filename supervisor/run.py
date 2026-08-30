@@ -62,7 +62,14 @@ def parse_frontmatter(text: str) -> dict:
     for line in m.group(1).splitlines():
         if re.match(r"^[A-Za-z_-]+:", line):
             key, _, val = line.partition(":")
-            out[key.strip()] = val.strip().strip('"').strip("'")
+            val = val.strip()
+            # only unwrap a quote pair that wraps the WHOLE value -- a value
+            # like `probe: "C:\..." arg` has a quote only around its first
+            # token, and blindly .strip('"')-ing that leaves the closing
+            # quote stranded mid-string, corrupting it. Symmetric check first.
+            if len(val) >= 2 and val[0] == val[-1] and val[0] in ('"', "'"):
+                val = val[1:-1]
+            out[key.strip()] = val
     return out
 
 
@@ -97,10 +104,23 @@ def set_frontmatter_fields(text: str, updates: dict[str, str]) -> tuple[str, boo
 def run_probe(cmd: str, timeout: int = 90) -> tuple[str, str]:
     """Run one task's probe command. Returns (status_token, measurement).
     A probe is a contract: read-only, prints one line, exits 0. The supervisor
-    trusts that contract rather than sandboxing it -- see the README."""
+    trusts that contract rather than sandboxing it -- see the README.
+
+    Parsed into a real argv list and run with shell=False -- cmd.exe's own
+    shell=True quoting breaks on a quoted executable path (e.g. "C:\\Program
+    Files\\Git\\bin\\bash.exe") followed by further arguments, a real failure
+    hit live once this started running from plain PowerShell instead of Git
+    Bash. shlex.split(posix=False) treats backslashes literally, which is
+    what a Windows path needs."""
+    import shlex
     try:
+        argv = shlex.split(cmd, posix=False)
+        # shlex leaves matched quotes in place with posix=False; strip them
+        # off each token so subprocess/CreateProcess sees the real path, not
+        # a literal quote character as part of it.
+        argv = [a[1:-1] if len(a) >= 2 and a[0] == a[-1] == '"' else a for a in argv]
         proc = subprocess.run(
-            cmd, shell=True, cwd=VAULT, timeout=timeout,
+            argv, shell=False, cwd=VAULT, timeout=timeout,
             capture_output=True, text=True, encoding="utf-8", errors="replace",
         )
     except subprocess.TimeoutExpired:

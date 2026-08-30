@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T02:59:41+00:00Z",
+  "generated_at": "2026-08-30T03:02:02+00:00Z",
   "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
@@ -13,8 +13,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "probe_status": "ERROR",
-      "progress": "'C:\\Program' is not recognized as an internal or external command,\noperable program or batch file."
+      "probe_status": "RUN",
+      "progress": "SPXW 446/1360 \u00b7 log 0h ago"
     }
   ]
 }

@@ -9,9 +9,9 @@ repo: sophie-pipeline
 blocker: Vendor/scope decision — accept a monthly-cycle corpus, or pay for a faster tier
 next: Decide scope. 45-DTE studies never touch the near-daily tail that is stalling.
 probe: "C:\Program Files\Git\bin\bash.exe" probes/spx-option-backfill.sh
-progress: 'C:\Program' is not recognized as an internal or external command,
+progress: SPXW 446/1360 · log 0h ago
 operable program or batch file.
-probe_status: ERROR
+probe_status: RUN
 outcome:
 artifacts:
 created: 2026-08-23
