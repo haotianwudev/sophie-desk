@@ -108,17 +108,35 @@ def set_frontmatter_fields(text: str, updates: dict[str, str]) -> tuple[str, boo
 
 # ---------- probes ----------
 
+# A task's `probe:` field is plain YAML read by Dataview too, not just this
+# script -- a Windows path with spaces would need quoting that either breaks
+# Dataview's real YAML parser (unlike this file's own lenient regex one) or
+# stays fragile. So a probe just writes `bash <script>`, and THIS script owns
+# translating "bash" into the real Git Bash binary, once, here -- no task
+# frontmatter ever needs to carry a quoted path.
+_BASH_CANDIDATES = [
+    r"C:\Program Files\Git\bin\bash.exe",
+    r"C:\Program Files (x86)\Git\bin\bash.exe",
+]
+
+
+def resolve_bash() -> str:
+    for c in _BASH_CANDIDATES:
+        if Path(c).exists():
+            return c
+    return "bash"  # last resort -- whatever's on PATH, may be the WSL stub
+
+
 def run_probe(cmd: str, timeout: int = 90) -> tuple[str, str]:
     """Run one task's probe command. Returns (status_token, measurement).
     A probe is a contract: read-only, prints one line, exits 0. The supervisor
     trusts that contract rather than sandboxing it -- see the README.
 
     Parsed into a real argv list and run with shell=False -- cmd.exe's own
-    shell=True quoting breaks on a quoted executable path (e.g. "C:\\Program
-    Files\\Git\\bin\\bash.exe") followed by further arguments, a real failure
-    hit live once this started running from plain PowerShell instead of Git
-    Bash. shlex.split(posix=False) treats backslashes literally, which is
-    what a Windows path needs."""
+    shell=True quoting breaks once a quoted executable path is followed by
+    further arguments, a real failure hit live once this started running
+    from plain PowerShell instead of Git Bash. shlex.split(posix=False)
+    treats backslashes literally, which is what a Windows path needs."""
     import shlex
     try:
         argv = shlex.split(cmd, posix=False)
@@ -126,6 +144,8 @@ def run_probe(cmd: str, timeout: int = 90) -> tuple[str, str]:
         # off each token so subprocess/CreateProcess sees the real path, not
         # a literal quote character as part of it.
         argv = [a[1:-1] if len(a) >= 2 and a[0] == a[-1] == '"' else a for a in argv]
+        if argv and argv[0].lower() in ("bash", "bash.exe"):
+            argv[0] = resolve_bash()
         proc = subprocess.run(
             argv, shell=False, cwd=VAULT, timeout=timeout,
             capture_output=True, text=True, encoding="utf-8", errors="replace",
