@@ -54,6 +54,8 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 
 ## Decision log
 
+- 2026-08-30: 1/12 done: augustin-cheng-vandenbergen-2021-volmageddon
+
 ## Result
 
 <!-- pointer only: how many of the 12 got done, and the folder is the real answer -->
