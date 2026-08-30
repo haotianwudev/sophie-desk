@@ -2,7 +2,7 @@
 id: summarize-bondarenko-2014
 title: Deep-summarize "Why Are Put Options So Expensive?" (Bondarenko)
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
@@ -34,5 +34,7 @@ Leave the existing `## Summary`, `## Relevance to Personal Trading & Research`, 
 `has_detailed_summary: true` in this paper's own frontmatter.
 
 ## Decision log
+
+- 2026-08-30: Claimed task. Read full 40-page PDF draft of Bondarenko (2003/2014). Extracted key empirical tables (Tables 1-6) and theoretical mechanics of the model-free martingale restriction $E_t^v[Z_s / h_s(v)] = Z_t / h_t(v)$ and Average Weighted Return (AWR) metric. Proceeding to write ## Detailed Summary in paper note.
 
 ## Result
