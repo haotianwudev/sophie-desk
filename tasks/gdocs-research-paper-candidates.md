@@ -9,9 +9,9 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-research-paper-candidates.sh
-progress:
-probe_status:
-stall_flag:
+progress: scripts/classify_gdocs_candidates.py missing
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30
