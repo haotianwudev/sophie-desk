@@ -2,17 +2,17 @@
 id: summarize-covered-calls-uncovered
 title: Deep-summarize "Covered Calls Uncovered" (Israelov & Nielsen, 2015)
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Read the actual PDF and write a real methodology/results summary.
+next:
 probe: bash probes/summarize-covered-calls-uncovered.sh
-progress: no Detailed Summary section yet
-probe_status: RUN
-outcome:
-artifacts:
+progress: Detailed Summary present, 982 words
+probe_status: OK
+outcome: Deep summary of Israelov & Nielsen (2015) added to papers/option-writing/israelov-nielsen-2015-covered-calls-uncovered.md covering return decomposition, empirical results, and relevance to option-writing research.
+artifacts: papers/option-writing/israelov-nielsen-2015-covered-calls-uncovered.md
 created: 2026-08-30
 updated: 2026-08-29
 ---
@@ -45,4 +45,11 @@ itself — this is a reading/writing task only.
 
 ## Decision log
 
+- **2026-08-30** — Task claimed (`status: active`, `assignee: agy`). Read full text and exhibit data of `papers/option-writing/israelov-nielsen-2015-covered-calls-uncovered.pdf`.
+- **2026-08-30** — Appended comprehensive `## Detailed Summary` section to `papers/option-writing/israelov-nielsen-2015-covered-calls-uncovered.md` covering methodology (economic decomposition and daily futures delta-hedging), data universe (SPX, BXM, BXY from 1996 to 2014), key quantitative findings (Sharpe ratio 0.37 -> 0.52, risk contribution 26% uncompensated reversal, downside beta 0.85 -> 0.60), and research relevance to `sophie-option-research` (short put delta-hedging, VRP isolation, attribution tooling).
+- **2026-08-30** — Verified probe passed (`OK Detailed Summary present, 982 words`), updated task to `status: done`, and archived to `tasks/done/`.
+
 ## Result
+
+Added detailed methodology, empirical decomposition statistics, and research implications to:
+- [`papers/option-writing/israelov-nielsen-2015-covered-calls-uncovered.md`](file:///F:/workspace/sophie-desk/papers/option-writing/israelov-nielsen-2015-covered-calls-uncovered.md)
