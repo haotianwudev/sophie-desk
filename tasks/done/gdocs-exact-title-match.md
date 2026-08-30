@@ -2,18 +2,18 @@
 id: gdocs-exact-title-match
 title: Exact-match articles to Drive docs via the published page's real <title>
 lane: content
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-exact-title-match.sh
-progress: <3>WSL (74938 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
-probe_status: ERROR
+progress: 222 rows, 162 exact matches
+probe_status: OK
 stall_flag: 
-outcome:
-artifacts:
+outcome: Generated gdocs/article-exact-matches.md evaluating 220 articles (162 exact matches, 56 no match in index, 2 fetch failed).
+artifacts: scripts/exact_match_gdocs.py gdocs/article-exact-matches.md
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -73,7 +73,11 @@ the prior task.
   that it does, exactly, for a doc already confirmed correct by full content comparison in the
   parent conversation. This task operationalizes that as a batch, deterministic check instead of
   one-off manual verification.
+- **2026-08-30** — Implemented `scripts/exact_match_gdocs.py` to parse articles with `googleDoc` URLs from `ai-stock-suggestion-client/src/data/articles/*.ts`, fetch the published Google Doc HTML pages, extract the `<title>` tag text, and match against `gdocs/index.json` (exact match, then case-insensitive / whitespace-collapsed fallback). Evaluated all 220 articles: found 162 exact matches in Drive index, 56 with no exact title match in index, and 2 fetch failures (due to `/edit` URL auth requirements). Output written to `gdocs/article-exact-matches.md`.
+- **2026-08-30** — Verified probe `probes/gdocs-exact-title-match.sh`, confirming OK status (222 rows, 162 exact matches).
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+- Script: `scripts/exact_match_gdocs.py`
+- Generated Report (gitignored): `gdocs/article-exact-matches.md` (220 articles evaluated: 162 exact matches, 56 no match in index, 2 fetch failed)
+- Probe verification: `bash probes/gdocs-exact-title-match.sh` -> `OK 222 rows, 162 exact matches`
