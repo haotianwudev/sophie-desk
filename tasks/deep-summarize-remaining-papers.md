@@ -66,6 +66,7 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 - 2026-08-30: 9/12 done: vazquez-2014-option-pricing-tail-risks
 - 2026-08-30: 10/12 done: wysocki-2025-sizing-risk
 - 2026-08-30: 11/12 done: wysocki-2026-harvesting-vrp-ltr
+- 2026-08-30: 12/12 done: wysocki-slepaczuk-2024-construction-hedging
 
 ## Result
 
