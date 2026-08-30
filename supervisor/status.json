@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-08-30T15:30:58+00:00Z",
-  "task_count": 2,
+  "generated_at": "2026-08-30T15:55:26+00:00Z",
+  "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [],
   "tasks": [
     {
       "id": "spx-option-backfill",
@@ -14,20 +13,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 490/1360 \u00b7 log 2h ago"
-    },
-    {
-      "id": "summarize-bondarenko-2014",
-      "title": "Deep-summarize \"Why Are Put Options So Expensive?\" (Bondarenko)",
-      "lane": "research",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "no Detailed Summary section yet"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (74092 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
