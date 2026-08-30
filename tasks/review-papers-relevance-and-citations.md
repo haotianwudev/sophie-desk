@@ -67,6 +67,8 @@ what's already covered, say so explicitly rather than forcing a citation.
 
 ## Decision log
 
+- 2026-08-30: 1/24 done: andersen-benzoni-lund-2002-continuous-time-equity-return-models (Rated Medium; 3 citation candidates surfaced).
+
 ## Result
 
 <!-- pointer only: how many of the 24 got reviewed, REVIEW-INDEX.md is the real answer -->
