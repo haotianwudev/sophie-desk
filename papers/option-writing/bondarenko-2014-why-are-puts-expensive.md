@@ -5,18 +5,19 @@ year: 2014
 link: "https://doi.org/10.1142/S2010139214500153"
 area: option-returns-anomaly
 relevance: High
-has_pdf: false
+has_pdf: true
 has_detailed_summary: false
 citations_surfaced: 3
 ---
 
 # Why Are Put Options So Expensive?
 
-**STATUS: PDF NOT DOWNLOADED — paywalled (World Scientific / Quarterly Journal of Finance)**
-
 - **Authors:** Oleg Bondarenko
 - **Year:** 2014 (Quarterly Journal of Finance 4(3), 1450015; working paper 2003)
 - **Link:** [https://doi.org/10.1142/S2010139214500153](https://doi.org/10.1142/S2010139214500153)
+- **PDF:** `bondarenko-2014-why-are-puts-expensive.pdf` — the open 2003 working-paper draft
+  (SSRN abstract_id=375784), manually found and downloaded by the user; the 2014 QJF-published
+  version stays paywalled, but this earlier draft covers the same core methodology and findings.
 
 ## Testable Hypothesis
 
