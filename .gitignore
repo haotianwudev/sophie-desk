@@ -1,0 +1,9 @@
+# Obsidian local state — keep shared config, drop per-machine noise
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# supervisor scratch
+desk-status.json.tmp
+*.log
