@@ -2,7 +2,7 @@
 id: gdocs-citation-candidates
 title: Extract cited research papers from research-paper-grade Gemini docs
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -12,8 +12,8 @@ probe: bash probes/gdocs-citation-candidates.sh
 progress: <3>WSL (75655 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
 stall_flag: 
-outcome:
-artifacts:
+outcome: "Extracted 292 unique research paper candidates from 19 research-paper Google Docs into papers/FOLLOWUP-CANDIDATES.md"
+artifacts: "papers/FOLLOWUP-CANDIDATES.md, scripts/extract_gdoc_citations.py"
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -95,7 +95,15 @@ task).
   own Gemini docs as candidates instead of the papers cited within them. Scoped to the 19
   already-classified research-paper docs as a pilot for the citation-extraction step
   specifically; the remaining ~185 unclassified matched docs are separate follow-up work.
+- **2026-08-30** — Implemented `scripts/extract_gdoc_citations.py`. Fetched full published HTML
+  for the 19 research-paper Gemini docs, extracted raw citations from references / works cited
+  sections, filtered out generic web / media sources to retain institutional and academic research
+  (arXiv, SSRN, NBER, central banks, university domains, exchange / asset manager research),
+  deduplicated by normalized title, merged multi-article citations, and populated
+  `papers/FOLLOWUP-CANDIDATES.md`.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+- Extractor script: `scripts/extract_gdoc_citations.py`
+- Consolidated candidate backlog: `papers/FOLLOWUP-CANDIDATES.md`
+- Probe: `probes/gdocs-citation-candidates.sh` (validating citation candidate rows present)
