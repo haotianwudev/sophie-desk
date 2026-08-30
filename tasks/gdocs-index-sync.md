@@ -9,9 +9,9 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-index-sync.sh
-progress: <3>WSL (74374 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
-probe_status: ERROR
-stall_flag:
+progress: scripts/sync_gdocs_index.py or scripts/match_gdoc.py missing
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30

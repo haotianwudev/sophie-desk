@@ -1,10 +1,11 @@
 {
-  "generated_at": "2026-08-30T16:55:34+00:00Z",
+  "generated_at": "2026-08-30T17:05:04+00:00Z",
   "task_count": 3,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
+  "stalled_active": [],
   "tasks": [
     {
       "id": "gdocs-content-link",
@@ -13,6 +14,7 @@
       "status": "queued",
       "assignee": "claude",
       "gate": "",
+      "stall_flag": "",
       "probe_status": "",
       "progress": ""
     },
@@ -20,11 +22,12 @@
       "id": "gdocs-index-sync",
       "title": "Local index + title-matcher for D:\\GoogleDrive research docs",
       "lane": "platform",
-      "status": "queued",
+      "status": "active",
       "assignee": "agy",
       "gate": "",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (74374 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "stall_flag": "",
+      "probe_status": "RUN",
+      "progress": "scripts/sync_gdocs_index.py or scripts/match_gdoc.py missing"
     },
     {
       "id": "spx-option-backfill",
@@ -33,8 +36,9 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (74377 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "stall_flag": "",
+      "probe_status": "RUN",
+      "progress": "SPXW 494/1360 \u00b7 log 4h ago"
     }
   ]
 }
