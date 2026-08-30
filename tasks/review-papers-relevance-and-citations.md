@@ -90,6 +90,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 21/24 done: wysocki-2026-harvesting-vrp-ltr (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 22/24 done: wysocki-slepaczuk-2024-construction-hedging (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 23/24 done: zhong-2026-non-spanning-identification-scheduled-event-risk (Rated Medium; 3 citation candidates surfaced).
+- 2026-08-30: 24/24 done: zhou-2018-variance-risk-premia-macro-uncertainty (Rated High; 3 citation candidates surfaced).
 
 ## Result
 
