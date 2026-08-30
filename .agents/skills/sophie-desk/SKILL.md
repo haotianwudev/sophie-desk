@@ -64,9 +64,20 @@ which have lied on this exact repo's own history), and prints exactly one line e
 
 Always exit 0 — a probe reports, it never fails the caller. Put it in `probes/<task-id>.sh`
 (or `.ps1`/`.py`, doesn't matter, as long as it's directly runnable), and point the task's
-`probe:` field at the exact command to run it, e.g. `bash probes/spx-option-backfill.sh`. See
-`probes/spx-option-backfill.sh` for a working example — it counts real files on disk and checks
-a log's actual age rather than trusting either the log's own text or a prior "complete" claim.
+`probe:` field at the exact command to run it. See `probes/spx-option-backfill.sh` for a
+working example — it counts real files on disk and checks a log's actual age rather than
+trusting either the log's own text or a prior "complete" claim.
+
+**If the probe is a bash script, never write `probe: bash <script>`.** A bare `bash` resolves
+differently depending on who launches the supervisor — from Git Bash itself it's Git's
+`bash.exe`, but from plain PowerShell or Task Scheduler it can resolve to Windows' WSL launcher
+stub instead (`C:\Windows\System32\bash.exe`), which fails outright if WSL isn't set up. Hit
+live: a task's `progress` field got overwritten with a raw WSL error message instead of a real
+measurement, the moment the supervisor started running from a plain PowerShell window instead
+of Git Bash. Write the full path instead:
+```
+probe: "C:\Program Files\Git\bin\bash.exe" probes/<task-id>.sh
+```
 
 ## Closing a task
 
