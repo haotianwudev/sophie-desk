@@ -79,6 +79,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 10/24 done: della-corte-ramadorai-sarno-2016-fx-volatility-risk-premia (Rated Medium; 3 citation candidates surfaced).
 - 2026-08-30: 11/24 done: dew-becker-giglio-le-rodriguez-2017-price-of-variance-risk (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 12/24 done: feunou-jahan-parvar-okou-2018-downside-variance-risk-premium (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 13/24 done: frazzini-pedersen-2012-embedded-leverage (Rated High; 3 citation candidates surfaced).
 
 ## Result
 
