@@ -2,7 +2,7 @@
 id: librarian-round-2-option-writing
 title: Find NEW option-writing papers without duplicating round 1
 lane: research
-status: queued
+status: active
 assignee: claude
 gate:
 repo: sophie-option-research
