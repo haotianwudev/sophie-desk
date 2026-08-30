@@ -93,9 +93,60 @@ follow their docstrings, don't re-derive the approach from scratch.
      - `A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification` | Why: "Angelopoulos and Bates' authoritative tutorial detailing mathematical foundations, non-conformity scores, and finite-sample coverage guarantees in conformal prediction." | Surfaced by: `[Conformal Prediction for Portfolio Risk: Beyond VaR](https://www.sophie-ai-finance.com/articles/conformal-prediction-portfolio-risk-var)`
      - `The Term Structure of Expectations and Bond Yields` | Why: "Decomposes long-term sovereign bond yields into short-rate expectations, inflation expectations, and real term premia across business cycles." | Surfaced by: `[Decoding the Bond Term Premium: Fixed Income Dynamics, Pricing Models, and Portfolio Strategy](https://www.sophie-ai-finance.com/articles/bond-term-premium-fixed-income-dynamics-pricing-models)`
   5. Probe verified: `bash probes/gdocs-classify-batch.sh` -> `OK 70/215 docs classified, 484 citation candidate rows`.
+- **2026-08-30** — User-requested cross-batch cleanup/groupby/dedup pass. Findings and fixes,
+  done by hand (not agy) since a real off-by-one line-number bug during this same pass proved
+  manual `sed -i 'Nd'` on a 480+ row file is too error-prone -- every removal after this was
+  redone using content-matching (exact title text), not line numbers, and verified by row-count
+  before/after each edit:
+  1. **Structural bug found and fixed**: `scripts/extract_gdoc_citations.py` re-fetched and
+     re-derived citations for *every* research-paper-classified doc on every run, not just newly
+     classified ones. This silently undid manual fixes -- a row deleted by hand as a duplicate
+     would just get re-added as "new" on the next batch, which is exactly what happened to the
+     "High Frequency Market Making" duplicate from the entry above. Added
+     `gdocs/extracted_state.json` (gitignored, mirrors `classified_state.json`'s pattern) so a
+     slug's citations are only ever extracted once; `--force` re-enables full reprocessing if
+     ever genuinely needed. Seeded it with the 44 slugs already covered by batches 1-2.
+  2. **5 confirmed duplicates merged/removed** (all same real citation, different formatting):
+     "High Frequency Market Making" (dup of "...Price Dynamics Models and Market Making
+     Strategies"), "Reflexivity in Credit Markets - Article" (dup, stray suffix), "...maximum
+     entropy principle - Illinois Experts" (dup, stray suffix), "Conformal Risk Control \|
+     OpenReview" (dup, stray suffix), and a genuine cross-article case -- "Deep Learning in
+     Quantitative Trading" cited independently by two different Sophie articles -- merged into
+     one row with both `Surfaced by` links and both `doc_id`s comma-separated, per the file's
+     own multi-source convention.
+  3. **Verified no data was lost across the whole file**, not just the new rows: compared every
+     one of the original 71 citation-following rows against the current file by exact title.
+     All 71 are intact; 4 of them (papers *also* independently cited by the user's own Gemini
+     research, e.g. "Betting Against Beta") correctly gained a second `Surfaced by` article link
+     and a `doc_id` while keeping their original `[paper-note-slug]` link -- the merge logic
+     appends, it does not overwrite. Final count: **479 gdocs-sourced + 67 pure-citation-following
+     = 546 real candidate rows** (a couple of intermediate counts quoted mid-pass in this log
+     were off by 1-4 due to my own script/line-number mistakes while investigating, not real
+     data changes -- this final count is the one to trust, independently re-verified twice).
+  4. **Did NOT fix**: the ~33 unverified reused-`Why`-text groups from the prior entry. Closer
+     inspection during this pass showed most of the *largest* ones (up to 21 rows sharing one
+     `Why`) are not near-duplicates at all -- they're genuinely different real papers that fell
+     through to a generic per-topic fallback description in `extract_gdoc_citations.py` because
+     they had no specific `WHY_MAP` entry. Merging these would be wrong (they're real distinct
+     papers); the actual fix is writing individual `WHY_MAP` entries for each, which is real
+     editorial work (~100+ rows), not a dedup operation, and out of scope for this pass.
+  5. **Did NOT attempt**: reorganizing the table into topic-grouped subsections. First attempt
+     silently dropped rows (549 -> 545) during a regex-based rewrite, almost certainly from
+     titles containing literal/escaped pipe characters breaking the cell-split regex. Reverted
+     immediately rather than risk further data loss on a purely cosmetic change. A safe version
+     of this would need to preserve each row's raw line text byte-for-byte and only reorder
+     whole lines (never reconstruct them from parsed cells), with a hard row-count-equality
+     check before writing -- worth doing as its own careful follow-up, not bundled with dedup.
 
 ## Result
 
-- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` (484 verified unique candidate rows)
-- Extractor script: `scripts/extract_gdoc_citations.py`
-- Verification probe: `probes/gdocs-classify-batch.sh` (70/215 docs classified, 484 citation candidate rows)
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **546 real candidate rows** (479
+  gdocs-sourced + 67 pure-citation-following, 4 more citation-following rows enriched with a
+  second gdocs source), verified twice for data integrity after the cleanup pass above.
+- Extractor script: `scripts/extract_gdoc_citations.py`, now with `gdocs/extracted_state.json`
+  tracking to prevent re-deriving (and silently re-duplicating) already-processed docs.
+- Verification probe: `probes/gdocs-classify-batch.sh`
+- **Known gap for a future pass**: ~30+ rows (mostly within a handful of large AI/ML-in-finance
+  citation clusters) have a generic per-topic `Why` description rather than an individually
+  verified one -- titles and sourcing are correct, but treat those specific `Why` fields as
+  unverified until `WHY_MAP` gets individual entries for them.
