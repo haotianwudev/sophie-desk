@@ -85,3 +85,17 @@ In `sophie-option-research`, Cheng (2019) delivers crucial structural insights f
 1. **The Fallacy of Constant / Expanding VRP in Crises**: Systematic option sellers often assume that premium spreads widen during market selloffs. Cheng demonstrates that because dealer hedging demand dries up during volatility shocks, the ex-ante VIX premium compresses or turns negative, making naked short positions poorly compensated precisely when left-tail risk is highest.
 2. **Dynamic Regimes & Gating Signals**: Directly informs the filter rules tested in `notebooks/09_vrp_study.ipynb` and `notebooks/05_walk_forward.ipynb`. Implementing a simple sign-gated filter (shutting off short option/futures exposure when $VIXR \ge 0$ or when the front-month VIX futures curve inverts into backwardation) cuts strategy drawdown in half (from -55% to -26%) and lifts Sharpe ratios from 0.57 to 0.87.
 3. **VVIX and Skew Conditioning**: Confirms that monitoring second-order volatility features (`VVIX` and OTM put skew in `notebooks/02_features.ipynb`) captures dealer risk aversion shifts, providing an early-warning indicator before volatility spikes materialize into catastrophic assignment losses.
+
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Vital empirical study uncovering the "low premium-response puzzle," where volatility risk premia compress or invert during acute market shocks due to dealer hedging retrenchment. Demonstrates that a rule-based cash/short timing filter (disabling short exposure when estimated premium turns negative or backwardated) cuts drawdowns by half (-55% to -26%) and lifts Sharpe ratios from 0.57 to 0.87.
+
+## Notable Citations to Follow Up
+
+1. **Constantinides, George M., Jens C. Jackwerth, and Alexi Savov (2013)** — *The Puzzle of Index Option Returns* (Review of Asset Pricing Studies, 3(2), 229-257).
+   - Shows that standard equilibrium asset pricing models with jumps and stochastic volatility cannot explain the cross-section of S&P 500 option returns.
+2. **Mencía, Javier, and Enrique Sentana (2013)** — *Valuation of VIX Derivatives* (Journal of Financial Economics, 108(2), 367-391).
+   - Establishes a comprehensive structural framework for pricing VIX futures and options with stochastic mean reversion and discrete volatility jumps.
+3. **Moreira, Alan, and Tyler Muir (2017)** — *Volatility-Managed Portfolios* (Journal of Finance, 72(4), 1611-1644).
+   - Documents that dynamically scaling back exposure during volatile regimes dramatically improves Sharpe ratios and alphas without sacrificing long-term returns.

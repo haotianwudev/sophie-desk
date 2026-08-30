@@ -74,6 +74,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 5/24 done: bollerslev-tauchen-zhou-2009-expected-stock-returns-vrp (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 6/24 done: bondarenko-2014-why-are-puts-expensive (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 7/24 done: carr-wu-2009-variance-risk-premia (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 8/24 done: cheng-2019-vix-premium (Rated High; 3 citation candidates surfaced).
 
 ## Result
 
