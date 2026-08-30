@@ -2,18 +2,18 @@
 id: deep-summarize-round-3-4-papers
 title: Deep-summarize the 11 remaining papers (rounds 3-4), one at a time
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Work through the list below in order, one paper per commit.
+next:
 probe: bash probes/deep-summarize-round-3-4-papers.sh
 progress: 0/10 papers deep-summarized
 probe_status: RUN
 stall_flag: 
-outcome:
-artifacts:
+outcome: 10/10 in-scope papers deep-summarized with detailed methodology, empirical metrics, and research connections
+artifacts: papers/option-writing/*.md, papers/Papers.md
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -72,4 +72,4 @@ that's a separate, future task.
 
 ## Result
 
-<!-- pointer only: how many of the 10 got done, papers/Papers.md is the real answer -->
+10/10 in-scope papers deep-summarized with structured `## Detailed Summary` sections (methodology, empirical data/sample, quantitative table metrics, and direct connections to `sophie-option-research`), and `has_detailed_summary: true` updated across all 10 notes in `papers/option-writing/`. `bondarenko-2014-why-are-puts-expensive` was skipped as planned due to `has_pdf: false`. Live board updated at [Papers.md](file:///F:/workspace/sophie-desk/papers/Papers.md).
