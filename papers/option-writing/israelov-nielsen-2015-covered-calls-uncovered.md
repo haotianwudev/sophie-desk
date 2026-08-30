@@ -70,3 +70,17 @@ This paper suggests several concrete, testable avenues for `sophie-option-resear
 1. **Delta-Hedged VRP Extraction**: Evaluating systematic futures delta-hedging (e.g., daily or delta-threshold rebalancing using SPY/MES/SPX futures) against the naked short put book to measure pure VRP Sharpe without directional equity reversal drag.
 2. **Attribution Modeling**: Implementing a performance attribution module in `lab/report.py` / `lab/features.py` that separates strategy returns into passive equity beta, delta-hedged VRP/gamma P&L, and dynamic delta drift.
 3. **Discrete Roll Rules vs. Continuous Hedging**: Benchmarking discrete mechanical adjustments (such as tastylive delta roll rules in `08_rolling.py` / `mgmt04`) against continuous/daily delta hedging to determine how much of the uncompensated reversal variance is mitigated by practical discrete strike management.
+
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Crucial performance attribution framework for covered calls and short put strategies; proves that unhedged short options introduce uncompensated dynamic equity-reversal risk (~25% of strategy variance) due to negative gamma. Demonstrates that active delta management / roll rules isolate pure VRP (Sharpe ~1.0) while reducing downside beta from 0.85 to 0.60.
+
+## Notable Citations to Follow Up
+
+1. **Israelov, Roni, and Lars N. Nielsen (2014)** — *Covered Call Strategies: One Fact and Eight Myths* (Financial Analysts Journal, 70(6), 23-31).
+   - Clarifies the economic mechanics of covered calls, debunking prevalent retail myths about downside protection and yield generation.
+2. **Figelman, Igor (2008)** — *Expected Return and Risk of Covered Call Strategies* (Journal of Portfolio Management, 34(4), 81-97).
+   - Provides an analytical model decomposing covered call returns into equity risk premia and net short call risk premia.
+3. **Hill, Joanne M., Vasant Balasubramanian, Krag Gregory, and Ingrid Tierens (2006)** — *Finding Alpha via Covered Index Writing* (Financial Analysts Journal, 62(5), 29-46).
+   - Evaluates the long-term risk-adjusted performance and alpha generation of systematic buy-write strategies across bull and bear regimes.
