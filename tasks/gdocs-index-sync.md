@@ -2,7 +2,7 @@
 id: gdocs-index-sync
 title: Local index + title-matcher for D:\GoogleDrive research docs
 lane: platform
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
