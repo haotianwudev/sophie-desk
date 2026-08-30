@@ -61,7 +61,13 @@ python supervisor/run.py --loop --interval 900   # every 15 min instead
 
 It refuses to run a second `--loop` against the same vault — `supervisor/supervisor.pid`
 is the lock, checked against the real Windows process table, not just the file's
-existence. Safe to kill any time: nothing lives in memory that isn't already on disk.
+existence. **Safe to kill any time, including a hard kill.** Verified live: a graceful
+Ctrl+C cleans up the pid file immediately, but a `Stop-Process`/`kill`/Task Scheduler stop
+(SIGTERM, or Windows' `TerminateProcess`) skips Python's cleanup entirely and leaves the
+pid file behind with a now-dead pid in it. That's fine — the lock check asks the real
+Windows process table whether that pid is still alive, not just whether the file exists,
+so the very next start correctly ignores the stale file and takes over. Confirmed by
+killing a running loop and immediately starting a fresh one against the same vault.
 
 ## Installing it to start at logon
 

@@ -129,12 +129,52 @@ npm run use:prod-gql     # always switch back to this before pushing/deploying
 
 ## The supervisor
 
-**Status: not built yet** — this is Phase 2 in [sophie/work-model.md](sophie/work-model.md), and
-this entry is a placeholder for the day it exists. When it's built, fill in the actual relaunch
-command here, following the same shape every other entry in this file has: how to check if it's
-already running before you touch it, the exact relaunch command, and how to confirm it actually
-came back up. Model it on the backfill wrapper above — that script *is* a supervisor, just for
-one job — don't invent a different pattern.
+**Source:** `supervisor/run.py` · **Design:** [supervisor/README.md](supervisor/README.md)
+
+It measures and reports (probes, `status.json`, commit + push). It does **not** dispatch work
+to agy or advance any gate — see the README for exactly why that's not built yet.
+
+Check if it's already running before touching it:
+```powershell
+Get-ScheduledTask -TaskName sophie-desk-supervisor | Get-ScheduledTaskInfo
+```
+or, directly:
+```bash
+cat supervisor/supervisor.pid   # if present, that pid is the running loop
+```
+
+Run one tick by hand any time — safe, idempotent, does nothing if nothing changed:
+```bash
+cd /f/workspace/sophie-desk
+python supervisor/run.py --once           # real: writes, commits, pushes
+python supervisor/run.py --once --dry-run # preview only, touches nothing
+```
+
+Relaunch the persistent loop (safe to run even if a stale `supervisor.pid` exists — the lock
+checks the real Windows process table, not just the file):
+```bash
+cd /f/workspace/sophie-desk
+python supervisor/run.py --loop           # every 30 min, foreground
+```
+Or start the registered scheduled task instead of running it by hand:
+```powershell
+Start-ScheduledTask -TaskName sophie-desk-supervisor
+```
+One-time setup, if the scheduled task doesn't exist yet:
+```powershell
+.\supervisor\register-task.ps1
+```
+
+Confirm it actually came back up — `generated_at` should be recent:
+```bash
+cat supervisor/status.json | grep generated_at
+tail -5 supervisor/supervisor.log
+```
+
+**A hard kill is fine, by design.** `Stop-Process` or a Task Scheduler stop skips Python's
+normal cleanup and leaves `supervisor.pid` holding a dead pid — that's cosmetic. The next
+start checks whether that pid is actually alive before refusing to run, so it self-heals
+without you needing to delete the file first. Verified live 2026-08-29.
 
 ---
 

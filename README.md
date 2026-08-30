@@ -12,6 +12,7 @@ Runbook.md         exact commands for recurring operations — relaunch, restart
 Skills.md          the skill catalogue, classified by role — generated, clickable
 skills/            one card per skill
 sophie/            the work model itself, written up in plain English
+supervisor/        the probe loop -- run.py, its design doc, Task Scheduler registration
 tasks/             one file per in-flight task
 tasks/done/        archive — move here on completion
 papers/            research library, one note per paper
