@@ -2,7 +2,7 @@
 id: dispatch-plumbing-test-2
 title: Disposable test of the terminal-CLI auto-dispatch path through tick()
 lane: platform
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -11,10 +11,10 @@ next: (dispatch test only)
 probe: none
 progress:
 probe_status:
-outcome:
-artifacts:
+outcome: confirmed supervisor tick() -> agy.exe CLI auto-dispatch plumbing
+artifacts: none
 created: 2026-08-30
-updated: 2026-08-29
+updated: 2026-08-30
 ---
 
 ## Goal
@@ -25,4 +25,8 @@ Decision log with today's date and "confirmed via tick()", commit, push, set sta
 
 ## Decision log
 
+- **2026-08-30** — Confirmed via tick(): supervisor auto-claimed and dispatched to terminal agy.exe CLI.
+
 ## Result
+
+Supervisor tick() auto-claim and dispatch via terminal agy.exe CLI confirmed working.
