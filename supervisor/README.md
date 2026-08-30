@@ -15,22 +15,35 @@ Each tick (`supervisor/run.py`):
    into **that task's own frontmatter** — `progress`, `probe_status`,
    `updated`. Nothing else in the file is touched; the surrounding prose,
    decision log, and plan are yours, not the supervisor's.
-3. Builds `supervisor/status.json` — task count, which ones need you
+3. **Auto-dispatches to agy.** Any task with `status: queued`, `assignee: agy`,
+   and no `gate` set gets claimed (`status: active`) and handed to agy's real
+   terminal CLI — `agy.exe -p "<brief>" --add-dir <vault> --dangerously-skip-permissions`
+   — launched via `Popen` so it runs in the background without blocking this
+   tick. Confirmed live end-to-end twice: agy read the brief, read the task
+   file, did the actual work, updated its own Decision log/Result, archived
+   itself to `tasks/done/`, committed, and pushed — all with nobody watching.
+4. Builds `supervisor/status.json` — task count, which ones need you
    (`status: blocked` or `status: gate`), which probes came back `STALL`.
-4. Commits and pushes, but only if a probe actually changed something. A
-   quiet tick with nothing new produces no commit.
-5. Logs a line the moment a task newly enters "needs you" — see the gap
+5. Commits and pushes, but only if a probe or a dispatch-claim actually
+   changed something. A quiet tick with nothing new produces no commit.
+6. Logs a line the moment a task newly enters "needs you" — see the gap
    below before assuming that reaches you anywhere.
 
-## What it deliberately does not do
+## The one thing worth being deliberate about: `--dangerously-skip-permissions`
 
-- **It never dispatches work to agy.** Handing a queued task to another AI
-  worker means actually invoking it headlessly, and this repo doesn't know
-  what agy's CLI or API looks like. Building that means fabricating an
-  invocation that might not exist. So today the supervisor only *measures
-  and reports* — claiming a task is still `/desk-next`-style, a human or an
-  agent editing the frontmatter and pushing. If agy has a scriptable
-  entrypoint, this is exactly where it plugs in next.
+Automatic dispatch only works at all because of this flag — without it, agy's
+`-p` mode would stall forever waiting for a permission prompt nobody is there
+to answer. The consequence is real: **an auto-dispatched task runs with no
+per-action approval gate.** This is why the `sophie-desk` skill's `gate`
+check matters more than ever — a task that should require your sign-off
+before anything happens must carry a real `gate:` value, because dispatch's
+only defense against launching something it shouldn't is refusing to touch
+any task that has one. Never assign a `gate`-bearing task to `agy` and expect
+the supervisor to leave it alone by luck; it leaves it alone because the
+code explicitly checks for this, on purpose.
+
+**It also does not do these, still:**
+
 - **It never advances a gate or promotes a study.** `status: gate` tasks
   stay exactly as blocked as they were — that's a human decision by design,
   see `sophie/work-model.md`.

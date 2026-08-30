@@ -131,8 +131,9 @@ npm run use:prod-gql     # always switch back to this before pushing/deploying
 
 **Source:** `supervisor/run.py` · **Design:** [supervisor/README.md](supervisor/README.md)
 
-It measures and reports (probes, `status.json`, commit + push). It does **not** dispatch work
-to agy or advance any gate — see the README for exactly why that's not built yet.
+It measures and reports (probes, `status.json`, commit + push), **and auto-dispatches any
+queued task assigned to agy** (with no `gate` set) to agy's real terminal CLI — confirmed
+working live. It does not advance any gate, that stays a human decision.
 
 Check if it's already running before touching it:
 ```powershell

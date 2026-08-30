@@ -68,16 +68,17 @@ Always exit 0 — a probe reports, it never fails the caller. Put it in `probes/
 working example — it counts real files on disk and checks a log's actual age rather than
 trusting either the log's own text or a prior "complete" claim.
 
-**If the probe is a bash script, never write `probe: bash <script>`.** A bare `bash` resolves
-differently depending on who launches the supervisor — from Git Bash itself it's Git's
-`bash.exe`, but from plain PowerShell or Task Scheduler it can resolve to Windows' WSL launcher
-stub instead (`C:\Windows\System32\bash.exe`), which fails outright if WSL isn't set up. Hit
-live: a task's `progress` field got overwritten with a raw WSL error message instead of a real
-measurement, the moment the supervisor started running from a plain PowerShell window instead
-of Git Bash. Write the full path instead:
-```
-probe: "C:\Program Files\Git\bin\bash.exe" probes/<task-id>.sh
-```
+**If the probe is a bash script, just write `probe: bash <script>` — plain, no quoting.**
+A bare `bash` resolves differently depending on who launches the supervisor (from Git Bash
+itself it's Git's `bash.exe`; from plain PowerShell or Task Scheduler it can resolve to
+Windows' WSL launcher stub instead and fail outright), so the tempting fix is pinning the full
+Git Bash path directly in the frontmatter value. **Don't** — a Windows path with spaces,
+quoted only around its first token, is not valid YAML (a value starting with `"` must be one
+whole quoted scalar), and Dataview uses a *real* YAML parser, unlike this skill's own lenient
+one. That exact fix once made a task silently vanish from every Dataview query — `status`
+itself failed to parse, not just `probe`. The actual fix lives in `supervisor/run.py`
+(`resolve_bash()`): it translates the word `bash` to the real Git Bash binary itself, so the
+frontmatter never needs to carry a Windows path at all.
 
 ## Closing a task
 
@@ -90,12 +91,21 @@ task disappears into the archive folder, the durable lesson shouldn't disappear 
 
 ## Working with the supervisor
 
-`supervisor/run.py` measures and reports; it never dispatches work, never advances a gate,
-never writes outside this repo. Full design in `supervisor/README.md`; exact commands
-(check-if-running, relaunch, confirm-it-came-back-up) in `Runbook.md`'s supervisor section —
-use those, don't improvise new ones.
+`supervisor/run.py` measures and reports, and — confirmed working live, twice —
+**auto-dispatches any `status: queued, assignee: agy` task with no `gate` set**
+to agy's real terminal CLI (`agy.exe -p`, not the "Antigravity IDE" GUI app,
+which opens a window and is the wrong thing — learned that live too). It
+never advances a gate or writes outside this repo. Full design in
+`supervisor/README.md`; exact commands (check-if-running, relaunch,
+confirm-it-came-back-up) in `Runbook.md`'s supervisor section — use those,
+don't improvise new ones.
 
-**Two things that have actually gone wrong once each, worth not repeating:**
+**If you're setting a task's `gate:` field, understand what it actually buys you here**:
+dispatch's *only* check before handing a task to an unattended agy session is "does this
+task have a gate." Get the field right, or an auto-dispatched task runs with
+`--dangerously-skip-permissions` and no human in the loop at all.
+
+**Three things that have actually gone wrong once each, worth not repeating:**
 
 - **On Windows, verify a process is dead with `tasklist`/`Get-Process`, not bash's own
   `kill`/`timeout` exit code.** A test loop survived two kill attempts from Git Bash and kept
@@ -108,6 +118,12 @@ use those, don't improvise new ones.
   result. Fixed there by calling `Get-ScheduledTask` afterward and refusing to claim success
   unless it's independently confirmed — apply the same instinct anywhere else a command's own
   exit message is the only evidence something worked.
+- **agy has (at least) two different launchers and only one of them is right for dispatch.**
+  `antigravity-ide.exe chat -m agent` looks like a CLI but opens a full GUI window — it works,
+  but it's not what "terminal" means here. The actual headless equivalent of Claude Code's
+  `-p` flag is a completely separate binary at
+  `C:\Users\lswht\AppData\Local\agy\bin\agy.exe`. If agy's behavior ever needs touching again,
+  confirm which binary is in play before assuming either one.
 
 ## What this skill is not
 
