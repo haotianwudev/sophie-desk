@@ -77,3 +77,16 @@ In `sophie-option-research`, Santa-Clara and Saretto (2009) is the foundational 
 2. **Path-Dependent Liquidation & Stop-Loss Defense**: Proves that unmanaged option selling strategies fail not because of terminal settlement losses, but because of forced intraday margin call liquidations at market bottoms. This provides direct empirical justification for the discrete stop-loss (e.g., 200%/300% stop) and strike management rules tested in `src/lab/rolling.py` and `notebooks/08_rolling.ipynb` to prevent catastrophic broker close-outs.
 3. **Execution Spread Penalties**: Validates the requirement in `src/lab/market_data.py` to backtest with explicit bid-ask spreads rather than mid-prices, especially when evaluating multi-leg strategies (straddles, strangles, spreads) where transaction friction consumes substantial fractions of theoretical edge.
 
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Foundational study on real-world execution frictions for systematic option sellers; demonstrates that high theoretical Sharpe ratios (1.5–1.9) collapse or turn negative once CBOE/broker margin haircuts (7x to 43x premium) and path-dependent margin call liquidations are enforced. Critical for calibrating realistic margin formulas, position sizing constraints, and stop-loss/roll defenses in `sophie-option-research`.
+
+## Notable Citations to Follow Up
+
+1. **Liu, Jun, and Francis A. Longstaff (2004)** — *Losing Money on Arbitrage: Optimal Dynamic Portfolio Choice in Markets with Arbitrage Opportunities* (Review of Financial Studies, 17(3), 611-641).
+   - Models optimal trading under margin constraints and shows how finite liquidity and margin calls force premature liquidation of fundamentally profitable arbitrage trades.
+2. **George, Thomas J., and Francis A. Longstaff (1993)** — *Bid-Ask Spreads and Trading Activity in the S&P 100 Index Option Market* (Journal of Financial and Quantitative Analysis, 28(3), 381-397).
+   - Provides extensive empirical cross-sectional analysis of option bid-ask spreads across strike moneyness and maturities, essential for realistic transaction cost modeling.
+3. **Leland, Hayne E. (1999)** — *Beyond Mean-Variance: Performance Measurement in a Nonsymmetrical World* (Financial Analysts Journal, 55(1), 27-36).
+   - Derives generalized performance measures and risk-adjusted alphas tailored for non-normal, skewed, and option-like payoff distributions.

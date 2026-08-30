@@ -84,6 +84,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 15/24 done: goyal-saretto-2009-cross-section-option-returns (Rated Medium; 3 citation candidates surfaced).
 - 2026-08-30: 16/24 done: israelov-nielsen-2015-covered-calls-uncovered (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 17/24 done: jurek-stafford-2015-cost-of-capital-alternative-investments (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 18/24 done: santa-clara-saretto-2009-option-strategies-margin-calls (Rated High; 3 citation candidates surfaced).
 
 ## Result
 
