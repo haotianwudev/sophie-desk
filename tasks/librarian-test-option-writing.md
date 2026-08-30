@@ -2,12 +2,12 @@
 id: librarian-test-option-writing
 title: Find option-writing research papers and file them in papers/option-writing/
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Claim this (edit status + push) and start searching.
+next: Find and file 5-10 open-access option writing papers into papers/option-writing/
 probe: bash probes/librarian-test-option-writing.sh
 progress:
 probe_status:
