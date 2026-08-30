@@ -8,8 +8,10 @@ The same design in plain English, living in this repo: [sophie/work-model.md](so
 
 ```
 AGENTS.md               start here if you're an agent (agy or otherwise) working in this repo
-.agents/skills/         sophie-desk skill lives here -- the real operating conventions,
-                        shared with agy (not ~/.claude/skills/, which agy can't see)
+.agents/skills/         sophie-desk skill's CANONICAL copy -- edit here, shared with agy
+.claude/skills/         a generated mirror of the same skill -- Claude Code's own project-
+                        skill discovery reads .claude/, not .agents/; never hand-edit this
+                        copy, run scripts/gen_skills.py to re-sync after editing .agents/
 Desk.md                 the dashboard — all Dataview queries, nothing hand-maintained
 Runbook.md              exact commands for recurring operations — relaunch, restart, connect
 Skills.md               the skill catalogue, classified by role — generated, clickable

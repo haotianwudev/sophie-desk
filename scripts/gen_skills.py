@@ -233,10 +233,38 @@ def write_index(skills: list[dict]) -> None:
     (VAULT / "Skills.md").write_text("\n".join(L), encoding="utf-8")
 
 
+def sync_claude_mirror() -> None:
+    """.agents/skills/sophie-desk/SKILL.md is canonical (shared with agy).
+    Claude Code's own project-skill discovery reads .claude/skills/, not
+    .agents/skills/ -- confirmed by the real, working example in
+    ai-stock-suggestion-client, and by this skill being invisible to Claude
+    Code until this mirror was added. A hard link was tried first and
+    rejected: git checkout replaces a file's inode rather than editing it in
+    place, silently breaking the link with no error -- worse than a plain
+    copy, since a copy's staleness is at least visible in a diff. So: plain
+    copy, kept in sync by re-running this script, same as everything else
+    here. Never hand-edit .claude/skills/sophie-desk/SKILL.md directly."""
+    src = VAULT / ".agents" / "skills" / "sophie-desk" / "SKILL.md"
+    dst = VAULT / ".claude" / "skills" / "sophie-desk" / "SKILL.md"
+    if not src.exists():
+        return
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    content = src.read_text(encoding="utf-8")
+    if not dst.exists() or dst.read_text(encoding="utf-8") != content:
+        # newline="\n" forces LF on write regardless of platform -- without it,
+        # Windows' default text-mode write reintroduces CRLF even though the
+        # in-memory string was already normalized to \n by read_text(),
+        # producing a real diff that isn't a real content difference.
+        with open(dst, "w", encoding="utf-8", newline="\n") as f:
+            f.write(content)
+        print("synced .claude/skills/sophie-desk/SKILL.md from .agents/ copy")
+
+
 if __name__ == "__main__":
     sk = discover()
     write_cards(sk)
     write_index(sk)
+    sync_claude_mirror()
     print(f"{len(sk)} skills -> Skills.md + skills/*.md")
     for s in sk:
         if s["kind"] in ("task", "hybrid"):
