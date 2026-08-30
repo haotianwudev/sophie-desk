@@ -59,6 +59,7 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 - 2026-08-30: 3/12 done: cheng-2019-vix-premium
 - 2026-08-30: 4/12 done: coval-shumway-2001-expected-option-returns
 - 2026-08-30: 5/12 done: della-corte-ramadorai-sarno-2016-fx-volatility-risk-premia
+- 2026-08-30: 6/12 done: frazzini-pedersen-2012-embedded-leverage
 
 ## Result
 
