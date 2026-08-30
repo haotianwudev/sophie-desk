@@ -2,7 +2,7 @@
 id: gdocs-article-match-dedup
 title: Match Drive research docs to Sophie article slugs, and report duplicate docs
 lane: content
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -12,8 +12,8 @@ probe: bash probes/gdocs-article-match-dedup.sh
 progress: missing: scripts/match_articles_gdocs.py scripts/find_gdoc_duplicates.py
 probe_status: RUN
 stall_flag: 
-outcome:
-artifacts:
+outcome: Generated gdocs/article-matches.md (245 articles matched) and gdocs/duplicates.md (41 duplicate groups).
+artifacts: gdocs/article-matches.md gdocs/duplicates.md scripts/match_articles_gdocs.py scripts/find_gdoc_duplicates.py
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -90,7 +90,12 @@ groups for the user to judge.**
   delete on `D:\GoogleDrive` — that syncs to the user's real Google account and needs their
   review of the actual report before anyone touches it, not a judgment call for an unattended
   dispatch to make.
+- **2026-08-30** — Implemented `scripts/match_articles_gdocs.py` to parse all 245 articles across `2025-q2` through `2026-q3` in `ai-stock-suggestion-client/src/data/articles/*.ts`, score them against `gdocs/index.json` (335 Drive docs) via `difflib.SequenceMatcher`, and output `gdocs/article-matches.md` sorted by score descending.
+- **2026-08-30** — Implemented `scripts/find_gdoc_duplicates.py` to group `gdocs/index.json` by normalized title (stripping trailing `\s*\(\d+\)$`, collapsing whitespace, lowercasing), finding 41 duplicate groups across 89 docs, and outputting `gdocs/duplicates.md` sorted by group size descending and modified date newest-first.
+- **2026-08-30** — Ran probe `bash probes/gdocs-article-match-dedup.sh`, confirming OK status (247 article-match rows, 41 duplicate groups). Both scripts and reports verified.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+- Scripts: `scripts/match_articles_gdocs.py`, `scripts/find_gdoc_duplicates.py`
+- Generated Reports (gitignored): `gdocs/article-matches.md` (245 articles scored), `gdocs/duplicates.md` (41 duplicate groups across 89 docs)
+- Probe verification: `bash probes/gdocs-article-match-dedup.sh` -> `OK 247 article-match rows, 41 duplicate groups`
