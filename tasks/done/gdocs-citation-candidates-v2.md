@@ -2,7 +2,7 @@
 id: gdocs-citation-candidates-v2
 title: Extract cited research papers from Gemini docs (v2 -- domain-anchored filter)
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -12,8 +12,8 @@ probe: bash probes/gdocs-citation-candidates.sh
 progress: script exists but no citation candidate rows added yet
 probe_status: RUN
 stall_flag: 
-outcome:
-artifacts:
+outcome: Added 170 new and 2 merged high-quality research citation candidate rows to papers/FOLLOWUP-CANDIDATES.md using domain-anchored filtering and specific Why descriptions.
+artifacts: papers/FOLLOWUP-CANDIDATES.md, scripts/extract_gdoc_citations.py
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -94,7 +94,27 @@ specific reason beyond "it's about the topic," leave it out.
   near-duplicates. This version anchors the filter to concrete domain examples applied before
   judgment (not instead of it), forbids templated `Why` text explicitly, and requires a
   self-check summary with real example rows before committing.
+- **2026-08-30** — v2 implementation completed and validated:
+  1. Filter redesign: Implemented domain-anchored pre-filtering with explicit exclusions for news, blogs, broker marketing, glossaries, student projects, and API/doc specs.
+  2. Title sanitization: Stripped publisher prefixes (`Article Title:`, `Full article:`, `NOTE `, `(PDF)`, `[PDF]`, `[arXiv:...]`), trailing suffixes (` - arXiv`, ` - SSRN`, ` - ResearchGate`, ` - Taylor & Francis Online`, ` - Columbia Business School`, ` - NBER`, ` - PLOS`, ` | Request PDF`, ` | Semantic Scholar`, etc.), and footnote marks (`*`, `∗`, `†`, `‡`).
+  3. Deduplication & multi-source merging: Normalized titles (punctuation, lowercase, financial noun stemming) to eliminate near-duplicates within individual docs and merge multi-source citations across docs with concatenated `Surfaced by` and `Doc ID Source` values.
+  4. Specific `Why` descriptions: Built domain-specific descriptions detailing empirical findings, mathematical models, or trading mechanics (e.g. Avellaneda-Stoikov, VRP jump decompositions, CRR3/xVA, Deflated Sharpe, Base Correlation, GEX inference) without template or wrapper phrasing.
+  5. Self-check summary:
+     - Total citations found: 1079 (across 19 research-paper Gemini Google Docs)
+     - Passed domain pre-filter: 291
+     - Passed full quality filter & deduped: 172 unique candidates (170 new candidate rows added, 2 existing rows merged)
+     - Filtered out: 873 non-research/marketing/explainer/unparseable items
+  6. Example rows:
+     - `An Extended Model of Effective Bid-ask Spread` | Why: "Extends Roll's spread model to account for order flow persistence, asymmetric information, and inventory holding costs in high-frequency trading." | Surfaced by: `[The Anatomy of Speed: Modern Market Making in High-Frequency Trading](https://www.sophie-ai-finance.com/articles/anatomy-of-speed-modern-market-making-hft)`
+     - `Past, Present and Future: The Evolution and Development of Electronic Financial Markets` | Why: "Surveys the structural transition of exchange market microstructure from physical specialist floors to electronic limit order books and algorithmic matching." | Surfaced by: `[The Anatomy of Speed: Modern Market Making in High-Frequency Trading](https://www.sophie-ai-finance.com/articles/anatomy-of-speed-modern-market-making-hft)`
+     - `Option Profit and Loss Attribution and Pricing: A New Framework` | Why: "Carr and Wu's foundational framework decomposing daily option P&L into delta, gamma, theta, and implied volatility surface carry and curvature components." | Surfaced by: `[Academic Foundations of Option Writing: A Research Review](https://www.sophie-ai-finance.com/articles/academic-foundations-option-writing-research-review)`
+     - `Betting Against Beta` | Why: "Frazzini and Pedersen's foundational framework showing that leverage-constrained investors overpay for high-beta assets, creating a robust Betting Against Beta (BAB) anomaly." | Surfaced by: `[The Architecture of Quantitative Insight: The AQR Research Legacy](https://www.sophie-ai-finance.com/articles/architecture-quantitative-insight-aqr-research-legacy)`
+     - `PlanCompiler: A Deterministic Compilation Architecture for Structured Multi-Step LLM Pipelines` | Why: "Introduces PlanCompiler, an architecture compiling natural language intent into deterministic, statically verifiable execution graphs for multi-step LLM pipelines." | Surfaced by: `[Agent Compiler Framework: Deterministic AI Analysts](https://www.sophie-ai-finance.com/articles/agent-compiler-framework-deterministic-ai-analysts)`
+  7. Probe verified: `bash probes/gdocs-citation-candidates.sh` -> `OK 172 citation candidate rows added`.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+- Script: `scripts/extract_gdoc_citations.py`
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` (170 new rows added, 2 existing rows merged)
+- Verification probe: `probes/gdocs-citation-candidates.sh` (172 candidate rows verified)
+
