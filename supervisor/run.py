@@ -182,6 +182,20 @@ def _pid_alive(pid: int) -> bool:
         return False
 
 
+def loop_already_running() -> int | None:
+    """Non-mutating check: is a --loop instance genuinely alive right now?
+    Returns its pid if so, else None. Used by run_once() to avoid racing a
+    live loop -- claim_singleton() itself is loop-only (it takes ownership
+    of the pid file), which is why this needed its own read-only sibling."""
+    if not PID_PATH.exists():
+        return None
+    try:
+        pid = int(PID_PATH.read_text().strip())
+    except ValueError:
+        return None
+    return pid if _pid_alive(pid) else None
+
+
 def claim_singleton() -> bool:
     """Refuse to run a second loop against the same vault. Returns True if
     this process now owns the pid file."""
@@ -418,7 +432,21 @@ def commit_and_push(reason: str) -> bool:
     return True
 
 
-def run_once(dry_run: bool = False) -> None:
+def run_once(dry_run: bool = False, force: bool = False) -> None:
+    # A real (non-dry-run) --once has no coordination with an already-running
+    # --loop -- both would read/write/dispatch against the same files with no
+    # lock between them. Hit live: a manual --once and the user's own foreground
+    # --loop landed close enough together that a task got double-processed
+    # (harmlessly that time -- agy's own redundant claim commit just re-wrote
+    # the same state -- but it could as easily have double-dispatched). --dry-run
+    # never writes, so it's always safe regardless of what else is running.
+    if not dry_run and not force:
+        loop_pid = loop_already_running()
+        if loop_pid:
+            log(f"a --loop is already running (pid {loop_pid}) -- skipping this "
+                f"--once to avoid racing it. Use --dry-run to just look, or "
+                f"--force if you specifically need to run anyway.")
+            return
     summary, changed = tick(dry_run=dry_run)
     log(f"tick: {summary['task_count']} tasks, "
         f"{len(summary['needs_you'])} need you, {len(summary['stalled_probes'])} stalled probes")
@@ -452,9 +480,10 @@ if __name__ == "__main__":
     ap.add_argument("--loop", action="store_true", help="run forever, ticking every --interval seconds")
     ap.add_argument("--interval", type=int, default=1800, help="seconds between ticks in --loop mode (default 1800 = 30 min)")
     ap.add_argument("--dry-run", action="store_true", help="print what would change; touch nothing on disk, commit nothing")
+    ap.add_argument("--force", action="store_true", help="run --once for real even if a --loop is already running (normally refused, to avoid racing it)")
     args = ap.parse_args()
 
     if args.loop:
         run_loop(args.interval)
     else:
-        run_once(dry_run=args.dry_run)
+        run_once(dry_run=args.dry_run, force=args.force)

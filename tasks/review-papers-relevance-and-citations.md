@@ -9,7 +9,7 @@ repo: sophie-option-research
 blocker:
 next: Claim, then work through all 24 papers one at a time, committing after each.
 probe: bash probes/review-papers-relevance-and-citations.sh
-progress: 0/24 papers rated, REVIEW-INDEX.md 0 lines
+progress: 4/24 papers rated, REVIEW-INDEX.md 8 lines
 probe_status: RUN
 stall_flag: 
 outcome:

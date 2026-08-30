@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T12:38:54+00:00Z",
+  "generated_at": "2026-08-30T12:41:01+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
@@ -16,7 +16,7 @@
       "gate": "",
       "stall_flag": "",
       "probe_status": "RUN",
-      "progress": "0/24 papers rated, REVIEW-INDEX.md 0 lines"
+      "progress": "4/24 papers rated, REVIEW-INDEX.md 8 lines"
     },
     {
       "id": "spx-option-backfill",
