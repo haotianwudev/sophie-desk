@@ -2,18 +2,18 @@
 id: review-papers-relevance-and-citations
 title: Rate each paper's relevance to personal trading/research, surface cited papers worth chasing
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Claim, then work through all 24 papers one at a time, committing after each.
+next: 
 probe: bash probes/review-papers-relevance-and-citations.sh
 progress: <3>WSL (73249 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
 stall_flag: 
-outcome:
-artifacts:
+outcome: all 24 option-writing papers rated for personal trading relevance and reviewed for follow-up citations; full index compiled in REVIEW-INDEX.md
+artifacts: papers/option-writing/REVIEW-INDEX.md, papers/option-writing/*.md
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -94,4 +94,6 @@ what's already covered, say so explicitly rather than forcing a citation.
 
 ## Result
 
-<!-- pointer only: how many of the 24 got reviewed, REVIEW-INDEX.md is the real answer -->
+All 24 option-writing papers in `papers/option-writing/` have been reviewed and updated with `## Relevance to Personal Trading & Research` and `## Notable Citations to Follow Up` sections.
+
+The consolidated index is compiled in [`papers/option-writing/REVIEW-INDEX.md`](papers/option-writing/REVIEW-INDEX.md). Across all 24 papers, 19 are rated High relevance and 5 are rated Medium relevance, with a total of 72 follow-up candidate citations surfaced.
