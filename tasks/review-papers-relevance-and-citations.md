@@ -68,6 +68,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 ## Decision log
 
 - 2026-08-30: 1/24 done: andersen-benzoni-lund-2002-continuous-time-equity-return-models (Rated Medium; 3 citation candidates surfaced).
+- 2026-08-30: 2/24 done: augustin-cheng-vandenbergen-2021-volmageddon (Rated High; 3 citation candidates surfaced).
 
 ## Result
 

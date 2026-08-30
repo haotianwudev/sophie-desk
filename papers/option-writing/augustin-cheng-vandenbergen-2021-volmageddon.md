@@ -67,3 +67,17 @@ This paper directly informs strategy design and risk infrastructure in `sophie-o
 1. **Regime & Term Structure Filtering**: As demonstrated in `notebooks/09_vrp_study.ipynb` and feature generation (`notebooks/02_features.ipynb`), monitoring front-month VIX futures basis and term-structure slope (contango vs. backwardation) is crucial; entering short delta/volatility positions when the term structure inverts exposes the book to severe negative alpha and liquidity cascades.
 2. **Tenor Selection & Tail Hedging**: The dramatic outperformance of medium-term contracts (ZIV's 6% loss vs. XIV's 97% wipeout) validates exploring longer-dated option structures (e.g. 45–90 DTE vs 0–7 DTE) to avoid front-month localized gamma squeeze and feedback dislocations.
 3. **Capacity & Crowding Awareness**: Highlighting that systematic premium selling strategies must incorporate stress tests that account for market-wide positioning imbalances and sudden liquidity dry-ups during end-of-day rebalancing windows.
+
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Essential risk-management and regime-filtering study demonstrating how mechanical rebalancing and crowding in short-volatility products can trigger catastrophic feedback spikes independent of fundamental macro news. Directly informs VIX term-structure/basis filters (avoiding short premium during curve inversion) and highlights tail-risk asymmetries in short-dated options.
+
+## Notable Citations to Follow Up
+
+1. **Cheng, Mudit, and Ananth Madhavan (2009)** — *The Dynamics of Leveraged and Inverse Exchange-Traded Funds* (Journal of Investment Management, 7(4), 1-20).
+   - Derives the foundational mathematical equations governing daily leverage rebalancing flows and their resulting market price impact.
+2. **Bhansali, Vineer, and Lawrence Harris (2018)** — *Everybody's Doing It: Short Volatility Strategies and Shadow Financial Insurers* (Financial Analysts Journal, 74(2), 12-23).
+   - Analyzes how institutional and retail short-volatility crowding acts as shadow insurance, creating systemic fragility during market drawdowns.
+3. **Simon, David, and Jaime Campasano (2014)** — *The VIX Futures Basis: Evidence and Trading Strategies* (Journal of Derivatives, 21(2), 54-69).
+   - Evaluates systematic rule-based trading strategies that exploit roll yield and term structure contango/backwardation in volatility markets.
