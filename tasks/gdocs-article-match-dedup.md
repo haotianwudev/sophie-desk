@@ -2,7 +2,7 @@
 id: gdocs-article-match-dedup
 title: Match Drive research docs to Sophie article slugs, and report duplicate docs
 lane: content
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
