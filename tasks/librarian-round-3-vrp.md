@@ -2,15 +2,15 @@
 id: librarian-round-3-vrp
 title: Find NEW volatility-risk-premium papers without duplicating rounds 1-2
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
 next: Claim, check existing papers first, then search narrowly on VRP.
 probe: bash probes/librarian-round-3-vrp.sh
-progress:
-probe_status:
+progress: 13 notes total (baseline 13), 0 new yet
+probe_status: RUN
 outcome:
 artifacts:
 created: 2026-08-30
