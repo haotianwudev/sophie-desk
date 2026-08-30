@@ -20,6 +20,7 @@ REPOS = [
     "ai-stock-suggestion-server",
     "ai-stock-suggestion-client",
     "sophie-option-research",
+    "sophie-desk",
 ]
 
 # name -> (kind, role, tier)
@@ -30,6 +31,7 @@ CLASSIFY = {
     "sophie-develop-guide":          ("guide",    "architect",  "claude"),
     "sophie-option-research-guide":  ("hybrid",   "architect",  "claude"),
     "sophie-agent-dev":              ("guide",    "architect",  "claude"),
+    "sophie-desk":                    ("guide",    "architect",  "either"),
 
     "option-research-explain":       ("workflow", "quant",      "claude"),
     "investment-clock-analyze":      ("workflow", "quant",      "claude"),

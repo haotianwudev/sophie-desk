@@ -31,7 +31,8 @@ the full catalogue, classified by role.
 
 Two numbers from that catalogue worth acting on:
 
-- **2 of 24 skills are shared with agy.** The other 22 sit in `~/.claude/skills/`, where only
+- **3 of 25 skills are shared with agy** (this repo's own `sophie-desk` operating-conventions
+  skill among them, in `.agents/skills/`, not `~/.claude/skills/`). The rest sit where only
   Claude Code can see them. Every one moved into a repo's `.agents/skills/` is capability both
   agents get.
 - **5 skills are really tasks**, and they are among the largest files — `spx-option-backfill`
