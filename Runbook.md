@@ -148,8 +148,13 @@ Run one tick by hand any time — safe, idempotent, does nothing if nothing chan
 ```bash
 cd /f/workspace/sophie-desk
 python supervisor/run.py --once           # real: writes, commits, pushes
-python supervisor/run.py --once --dry-run # preview only, touches nothing
+python supervisor/run.py --once --dry-run # preview only, touches nothing -- always safe
 ```
+If a `--loop` is already running (check `supervisor/supervisor.pid`, or just ask — the
+foreground loop the user starts by hand in an admin window counts too), a real `--once`
+refuses by default rather than risk racing it. `--dry-run` is exempt. Only pass `--force` if
+you specifically need a real tick to run anyway, understanding it's no longer coordinated with
+whatever the loop is doing at that moment.
 
 Relaunch the persistent loop (safe to run even if a stale `supervisor.pid` exists — the lock
 checks the real Windows process table, not just the file):

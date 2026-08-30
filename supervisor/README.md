@@ -68,6 +68,14 @@ code explicitly checks for this, on purpose.
   the live filesystem, not git's index, so an uncommitted file in `tasks/`
   still gets picked up).
 
+**A real `--once` now refuses to run if a `--loop` is already alive** (checked against the
+real Windows process table, same mechanism `--loop` uses against a second `--loop`) — pass
+`--force` to run it anyway. This exists because it was missing: a manual `--once` and the
+user's own foreground `--loop` landed close enough together once that a task got
+double-processed — harmlessly that time (agy's own redundant claim commit just re-wrote the
+same state it already had), but it could as easily have double-dispatched. `--dry-run` never
+writes, so it's exempt from this check and always safe regardless of what else is running.
+
 ## Running it
 
 ```bash

@@ -77,3 +77,17 @@ In `sophie-option-research`, Carr and Wu (2009) provides the foundational theore
 1. **Index vs. Single-Stock Edge**: The finding that index VRP ($LRP \approx -0.59$) is vastly larger and more statistically robust than single-stock VRP proves that the primary premium in option writing comes from underwriting systematic, market-wide downside risk rather than idiosyncratic single-name volatility. This strongly validates focusing backtesting engines on `SPX`/`NDX` index products (`lab/strategy.py`).
 2. **VRP Feature Engineering**: The formula for risk-neutral variance of volatility ($SW - VS^2 \approx \text{VIX}^2 - \text{ATMV}^2$) provides a model-free feature for `notebooks/02_features.ipynb` and `notebooks/09_vrp_study.ipynb` to predict time-varying variance risk premia and optimize trade entry sizing.
 3. **Pure Premium Benchmarking**: Synthetic variance swap replication serves as the theoretical upper bound / pure benchmark for delta-hedged options trading against which discrete option writing and rolling strategies can be compared.
+
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Foundational empirical study proving that selling index volatility (SPX, OEX, DJX) earns substantial negative risk premia (variance sellers capture ~50% annualized excess returns) that cannot be explained by CAPM or Fama-French factors. Demonstrates that index option premium selling exploits priced market-wide covariance risk, whereas single-stock idiosyncratic variance is largely uncompensated.
+
+## Notable Citations to Follow Up
+
+1. **Carr, Peter, and Roger Lee (2003)** — *Robust Replication of Volatility Derivatives* (Working Paper, Bloomberg LP / Cornell University).
+   - Derives model-free replication and pricing bounds for volatility swaps using at-the-money implied volatility.
+2. **Bakshi, Gurdip, and Nikunj Kapadia (2003)** — *Delta-Hedged Gains and the Negative Market Volatility Risk Premium* (Review of Financial Studies, 16(2), 527-566).
+   - Demonstrates that delta-hedged call and put positions earn systematically negative returns, isolating the pure market volatility risk premium.
+3. **Blair, Benjamin J., Ser-Huang Poon, and Stephen J. Taylor (2001)** — *Forecasting S&P 100 Volatility: The Incremental Information Content of Implied Volatilities and High-Frequency Index Returns* (Journal of Econometrics, 105(1), 5-26).
+   - Tests whether implied volatility subsumes high-frequency intraday realized volatility in out-of-sample volatility forecasting.
