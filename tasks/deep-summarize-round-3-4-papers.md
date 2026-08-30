@@ -9,9 +9,9 @@ repo: sophie-option-research
 blocker:
 next: Work through the list below in order, one paper per commit.
 probe: bash probes/deep-summarize-round-3-4-papers.sh
-progress:
-probe_status:
-stall_flag:
+progress: 0/10 papers deep-summarized
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30
