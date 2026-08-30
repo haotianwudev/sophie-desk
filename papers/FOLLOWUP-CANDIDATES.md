@@ -23,6 +23,11 @@ folder or deliberately rejected. No longer option-writing-only — see Tags belo
    for machine lookup (fetch content, re-verify, etc. via `scripts/match_gdoc.py` /
    `gdocs/index.json`). Both are kept: the slug for a human tracing "which article cited this,"
    the doc_id for anything that needs to programmatically get back to the source doc directly.
+   **One underlying research subject can surface from more than one article** (the user
+   independently researched the same topic more than once, from different angles, across
+   separate Sophie articles) — when that happens it's still one candidate row, not several:
+   `Surfaced by` holds every contributing article as a comma-separated list of links, and
+   `Doc ID Source` holds every contributing doc_id the same way, in matching order.
 
 **Tags** classify the candidate's subject area — freeform, not a closed enum, extend as needed
 (this file now spans everything the user researches, not just `option-writing`/`vrp`; expect

@@ -79,12 +79,26 @@ this kind of entry). Do **not** touch `papers/option-writing/*.md` or create any
    - `Doc ID Source`: the doc_id.
    - `Status`: leave blank.
 3. **Dedup pass, at the end, on the newly-added rows only** (don't touch the 71 pre-existing
-   citation-following rows): group by normalized title (same approach as
-   `scripts/find_gdoc_duplicates.py` -- strip a trailing `(N)`, collapse whitespace, lowercase)
-   and collapse any true repeats to one row. Two rows covering a *related but genuinely
-   distinct* angle (e.g. two different Monte Carlo write-ups) are NOT duplicates -- only
-   collapse when they're clearly the same underlying content/title, not just the same topic
-   area.
+   citation-following rows). **The point of this pass**: the same underlying research subject
+   can legitimately surface from more than one article -- the user researched the same topic
+   independently, more than once, from different angles, in separate Gemini sessions tied to
+   separate Sophie articles (already confirmed happening broadly across this corpus -- see
+   `gdocs/duplicates.md` and the exact-title-match resolution work earlier today). That's still
+   **one candidate**, not several. When two or more newly-added rows are about the same
+   underlying research subject (start with normalized-title grouping like
+   `scripts/find_gdoc_duplicates.py` -- strip a trailing `(N)`, collapse whitespace, lowercase --
+   but also read the `Why it looks worth getting` summaries for cases where the titles differ
+   but the subject is clearly the same, e.g. three separate "Monte Carlo Simulation" write-ups),
+   **merge them into a single row** rather than dropping all but one:
+   - `Surfaced by`: every contributing article, comma-separated, each still its own link.
+   - `Doc ID Source`: every contributing doc_id, comma-separated, in the same order as the
+     articles above (so position N in one list corresponds to position N in the other).
+   - `Why it looks worth getting`: write one sentence that covers the shared subject, not just
+     the first row's original text.
+   Only leave two rows separate when they're genuinely different research subjects that happen
+   to share a broad topic area (e.g. "Monte Carlo for derivative pricing" vs. "Monte Carlo for
+   backtesting robustness" are different enough subjects to stay separate; three near-identical
+   "Monte Carlo Simulation in Quant Finance" overviews are not).
 4. Commit `scripts/classify_gdocs_candidates.py` and the updated
    `papers/FOLLOWUP-CANDIDATES.md` (this file is real and public, not gitignored -- unlike
    `gdocs/*.md`, review the diff before committing).
