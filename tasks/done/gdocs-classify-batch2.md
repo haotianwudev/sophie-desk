@@ -137,12 +137,27 @@ follow their docstrings, don't re-derive the approach from scratch.
      of this would need to preserve each row's raw line text byte-for-byte and only reorder
      whole lines (never reconstruct them from parsed cells), with a hard row-count-equality
      check before writing -- worth doing as its own careful follow-up, not bundled with dedup.
+- **2026-08-30** — User asked for the topic regrouping after all (deferred item above), before
+  the file gets any bigger. Redone properly this time: raw lines are only ever partitioned, never
+  reconstructed from parsed cells (the earlier bug's root cause); a hard multiset-equality
+  assertion runs before any write and aborts rather than risk data loss (it correctly caught and
+  aborted on a false-positive from the check's own scope bug on the first retry, before ever
+  touching the file); and an independent post-hoc script diffed the result against the last
+  commit (`git show HEAD:...`) and confirmed a perfect multiset match -- all 545 real rows
+  preserved exactly, only reordered. Result: 67 citation-following rows kept together under
+  their own heading, 478 gdocs-sourced rows split into 9 subject buckets by primary tag
+  (Volatility Risk Premium & Option Writing: 108, Machine Learning & Deep Learning: 118, Market
+  Microstructure: 67, Portfolio Construction & Asset Allocation: 46, AI Agents & Quant
+  Infrastructure: 41, Risk Management & Conformal Prediction: 36, Fixed Income & Macro: 28,
+  Credit & Counterparty Risk: 17, Mathematical Finance & Stochastic Methods: 17).
 
 ## Result
 
-- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **546 real candidate rows** (479
-  gdocs-sourced + 67 pure-citation-following, 4 more citation-following rows enriched with a
-  second gdocs source), verified twice for data integrity after the cleanup pass above.
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **545 real candidate rows** (478
+  gdocs-sourced + 67 pure-citation-following, 4 of the 67 also enriched with a second gdocs
+  source), verified three times for data integrity across the cleanup + regrouping passes.
+  Now organized into 10 sections (citation-following + 9 subject-tag buckets) instead of one
+  flat table.
 - Extractor script: `scripts/extract_gdoc_citations.py`, now with `gdocs/extracted_state.json`
   tracking to prevent re-deriving (and silently re-duplicating) already-processed docs.
 - Verification probe: `probes/gdocs-classify-batch.sh`
