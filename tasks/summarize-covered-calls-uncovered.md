@@ -2,19 +2,19 @@
 id: summarize-covered-calls-uncovered
 title: Deep-summarize "Covered Calls Uncovered" (Israelov & Nielsen, 2015)
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
 next: Read the actual PDF and write a real methodology/results summary.
 probe: bash probes/summarize-covered-calls-uncovered.sh
-progress:
-probe_status:
+progress: no Detailed Summary section yet
+probe_status: RUN
 outcome:
 artifacts:
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-29
 ---
 
 ## Goal
