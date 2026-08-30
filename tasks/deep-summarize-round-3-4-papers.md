@@ -64,6 +64,7 @@ that's a separate, future task.
 - 2026-08-30: 3/10 done: bekaert-hoerova-2014-vix-variance-premium
 - 2026-08-30: 4/10 done: bollerslev-tauchen-zhou-2009-expected-stock-returns-vrp
 - 2026-08-30: 5/10 done: dew-becker-giglio-le-rodriguez-2017-price-of-variance-risk
+- 2026-08-30: 6/10 done: feunou-jahan-parvar-okou-2018-downside-variance-risk-premium
 
 ## Result
 
