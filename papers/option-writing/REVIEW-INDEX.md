@@ -20,3 +20,4 @@
 | [`israelov-nielsen-2015-covered-calls-uncovered`](israelov-nielsen-2015-covered-calls-uncovered.md) | High | Deconstructs option overwriting; shows active delta management eliminates uncompensated equity reversal risk and boosts Sharpe. | 3 |
 | [`jurek-stafford-2015-cost-of-capital-alternative-investments`](jurek-stafford-2015-cost-of-capital-alternative-investments.md) | High | Proves hedge fund alpha is mechanically matched by OTM put writing; formalizes [Z, L] strike and leverage framework. | 3 |
 | [`santa-clara-saretto-2009-option-strategies-margin-calls`](santa-clara-saretto-2009-option-strategies-margin-calls.md) | High | Proves margin haircuts (7-43x) and forced liquidations turn unmanaged short option Sharpe ratios negative. | 3 |
+| [`vazquez-2014-option-pricing-tail-risks`](vazquez-2014-option-pricing-tail-risks.md) | High | Decomposes option drift into convexity, skew, and kurtosis premia; confirms skew/jump aversion drives OTM put edge. | 3 |

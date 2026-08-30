@@ -64,3 +64,16 @@ In `sophie-option-research`, Vazquez (2014) provides the foundational theoretica
 2. **GARCH & Volatility Feature Engineering**: Directly informs feature extraction in `src/lab/features.py` and `src/lab/market_data.py`, demonstrating how multi-timescale EMA filters and asymmetric return conditioning can be combined with implied moments (VIX / variance swap term structure) to generate accurate strike-specific pricing signals.
 3. **Regime-Aware Strategy Selection**: Because the convexity premium $\lambda_2$ collapses during crises while the skew premium $\lambda_3$ remains elevated, strategy engines in `src/lab/experiments.py` can dynamically transition from short-dated ATM structures to deep OTM vertical credit spreads when market stress alters the relative pricing of $\lambda_2$ vs. $\lambda_3$.
 
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Develops an intuitive, practitioner-aligned option pricing framework that attributes option drift to explicit tail-risk premia: convexity ($\lambda_2$), skew ($\lambda_3$), and kurtosis ($\lambda_4$). Demonstrates that the volatility smirk and option writing edge are predominantly driven by structural market aversion to left-tail jumps ($\lambda_3$) rather than physical return asymmetry, validating OTM put writing over flat straddles.
+
+## Notable Citations to Follow Up
+
+1. **Bergomi, Lorenzo, and Julien Guyon (2011)** — *The Smile in Stochastic Volatility Models* (SSRN Working Paper 1967470).
+   - Introduces the seminal vol-of-vol expansion linking the dynamics of the forward variance curve to the market implied volatility smile.
+2. **Gatheral, Jim, and Antoine Jacquier (2014)** — *Arbitrage-Free SVI Volatility Surfaces* (Quantitative Finance, 14(1), 59-71).
+   - Establishes mathematical conditions for creating arbitrage-free parametric implied volatility surfaces, widely used for clean smile interpolation.
+3. **Potters, Marc, Jean-Philippe Bouchaud, and Dragan Sestovic (2001)** — *Hedged Monte-Carlo: Low Variance Derivative Pricing with Objective Probabilities* (Physica A, 289(3-4), 517-525).
+   - Formulates derivative pricing and optimal risk management directly under historical fat-tailed physical distributions without requiring complete market assumptions.
