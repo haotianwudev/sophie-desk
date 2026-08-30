@@ -70,6 +70,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 1/24 done: andersen-benzoni-lund-2002-continuous-time-equity-return-models (Rated Medium; 3 citation candidates surfaced).
 - 2026-08-30: 2/24 done: augustin-cheng-vandenbergen-2021-volmageddon (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 3/24 done: bates-2008-market-for-crash-risk (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 4/24 done: bekaert-hoerova-2014-vix-variance-premium (Rated High; 3 citation candidates surfaced).
 
 ## Result
 
