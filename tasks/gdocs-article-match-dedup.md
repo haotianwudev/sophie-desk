@@ -9,9 +9,9 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-article-match-dedup.sh
-progress:
-probe_status:
-stall_flag:
+progress: missing: scripts/match_articles_gdocs.py scripts/find_gdoc_duplicates.py
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30
