@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-08-30T17:05:04+00:00Z",
-  "task_count": 3,
+  "generated_at": "2026-08-30T17:25:36+00:00Z",
+  "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [],
   "tasks": [
     {
       "id": "gdocs-content-link",
@@ -14,20 +13,8 @@
       "status": "queued",
       "assignee": "claude",
       "gate": "",
-      "stall_flag": "",
       "probe_status": "",
       "progress": ""
-    },
-    {
-      "id": "gdocs-index-sync",
-      "title": "Local index + title-matcher for D:\\GoogleDrive research docs",
-      "lane": "platform",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "scripts/sync_gdocs_index.py or scripts/match_gdoc.py missing"
     },
     {
       "id": "spx-option-backfill",
@@ -36,9 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 494/1360 \u00b7 log 4h ago"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (74517 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
