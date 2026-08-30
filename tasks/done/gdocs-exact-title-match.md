@@ -122,6 +122,12 @@ the prior task.
   fetch failed** -- no further resolution work pending. The 2 fetch failures were never
   investigated (network/auth issue on those two `googleDoc` URLs specifically, not a "no match"
   question) -- worth a look only if this gets picked up again later.
+- **2026-08-30** — Relabeled those 3 rows in `gdocs/article-exact-matches.md` from
+  `no match in index` to `no match (confirmed)`, since the former reads as "not found in our
+  local index" (implying a re-run might find it) when it's actually a manually verified dead
+  end. `scripts/exact_match_gdocs.py`'s own default tier name is unchanged -- a fresh run still
+  correctly emits `no match in index` for anything unconfirmed; only these 3 already-verified
+  rows were hand-relabeled in the report.
 
 ## Result
 
