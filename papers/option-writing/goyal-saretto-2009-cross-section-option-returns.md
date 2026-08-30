@@ -5,18 +5,20 @@ year: 2009
 link: "https://doi.org/10.1016/j.jfineco.2008.08.006"
 area: option-returns-anomaly
 relevance: Medium
-has_pdf: false
+has_pdf: true
 has_detailed_summary: true
 citations_surfaced: 3
 ---
 
 # Cross-Section of Option Returns and Volatility
 
-**STATUS: PDF NOT DOWNLOADED — paywalled / Cloudflare-blocked repository (Journal of Financial Economics / Purdue e-Pubs)**
-
 - **Authors:** Amit Goyal, Alessio Saretto
 - **Year:** 2009 (Journal of Financial Economics 94(2), 310-326; Purdue CIBER Working Paper 55, 2008)
 - **Link:** [https://doi.org/10.1016/j.jfineco.2008.08.006](https://doi.org/10.1016/j.jfineco.2008.08.006)
+- **PDF:** `goyal-saretto-2009-cross-section-option-returns.pdf` — the open Purdue e-Pubs working
+  paper (Purdue CIBER Working Papers, Paper 55), manually found and downloaded by the user; the
+  2009 JFE-published version stays paywalled, but this is the same paper (confirmed: identical
+  title, same two authors, matches this note's existing Detailed Summary exactly).
 
 ## Testable Hypothesis
 
