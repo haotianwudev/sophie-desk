@@ -55,6 +55,7 @@ papers — that's a separate task. Don't touch `sophie-option-research` itself.
 ## Decision log
 
 - 2026-08-30: 1/12 done: augustin-cheng-vandenbergen-2021-volmageddon
+- 2026-08-30: 2/12 done: carr-wu-2009-variance-risk-premia
 
 ## Result
 
