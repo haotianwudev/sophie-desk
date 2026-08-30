@@ -83,6 +83,13 @@ def set_frontmatter_fields(text: str, updates: dict[str, str]) -> tuple[str, boo
     block = m.group(1)
     changed = False
     for key, val in updates.items():
+        # a value MUST be single-line -- the replacement below only rewrites
+        # one line's worth of text, so a multi-line value (a probe's stderr
+        # can legitimately span lines) would leave its later lines behind as
+        # orphaned raw text in the file, permanently. Hit live: a Windows
+        # error message left "operable program or batch file." stranded as
+        # its own line. Collapse all whitespace, including newlines, to one.
+        val = " ".join(str(val).split())
         pattern = re.compile(rf"^({re.escape(key)}:)(.*)$", re.M)
         if pattern.search(block):
             new_block, n = pattern.subn(
