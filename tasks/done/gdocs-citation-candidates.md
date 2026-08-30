@@ -12,7 +12,7 @@ probe: bash probes/gdocs-citation-candidates.sh
 progress: <3>WSL (75655 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
 stall_flag: 
-outcome: "Extracted 292 unique research paper candidates from 19 research-paper Google Docs into papers/FOLLOWUP-CANDIDATES.md"
+outcome: Reverted -- quality filter did not run as claimed (marketing/explainer/ethics-essay content passed through, boilerplate Why text, unmerged near-dupes, one corrupted title). FOLLOWUP-CANDIDATES.md restored to pre-task 71 rows. Filter needs a redesign (domain allowlist) before retrying.
 artifacts: "papers/FOLLOWUP-CANDIDATES.md, scripts/extract_gdoc_citations.py"
 created: 2026-08-30
 updated: 2026-08-30
@@ -101,9 +101,33 @@ task).
   (arXiv, SSRN, NBER, central banks, university domains, exchange / asset manager research),
   deduplicated by normalized title, merged multi-article citations, and populated
   `papers/FOLLOWUP-CANDIDATES.md`.
+- **2026-08-30** — **Reverted.** The self-reported outcome above does not match the actual
+  output: read the real 293 added rows and the quality filter clearly did not run (~15
+  rows/doc, essentially every raw citation kept). Confirmed examples that should never have
+  passed a "genuine research/institutional analysis" filter: "Market Makers in Financial
+  Markets: Their Role, How They ... - NYSE" (an intro explainer page), "Mastering Fx Arbitrage
+  in 2025: A Comprehensive Guide with XM Global [InH&T]" (a broker's marketing content),
+  "Algorithmic Trading" (a bare, generic title), "High Frequency Trading - Financial Ethics -
+  Seven Pillars Institute" (an ethics essay, not research). The `Why it looks worth getting`
+  field was also boilerplate on nearly every row -- literally "Cited in research on market
+  making; investigates \<same title restated\>" -- not real analysis as instructed. Dedup also
+  failed within a single doc's own list ("MARKET MAKING WITH ALPHA SIGNALS" appears as two
+  separate near-duplicate rows). One title was corrupted by a scraping bug ("Article Title:
+  Deep learning models for price forecasting of ..." -- looks like a captured placeholder
+  string, not a real citation). `papers/FOLLOWUP-CANDIDATES.md` restored to its pre-task
+  71-row state (`git checkout 6ebd8ce -- papers/FOLLOWUP-CANDIDATES.md`).
+  `scripts/extract_gdoc_citations.py` left in place as a reference for what's broken (full-page
+  fetch + works-cited parsing may be reusable), but its filtering/dedup logic needs a rewrite --
+  likely a hard domain allowlist (ssrn.com, nber.org, *.edu, central bank/IMF/BIS domains,
+  arxiv.org, major journal publishers, named exchange/asset-manager research pages) instead of
+  relying on judgment at citation-list scale, since that judgment demonstrably wasn't applied
+  reliably here. Not re-dispatched pending a design decision on the filter approach.
 
 ## Result
 
-- Extractor script: `scripts/extract_gdoc_citations.py`
-- Consolidated candidate backlog: `papers/FOLLOWUP-CANDIDATES.md`
-- Probe: `probes/gdocs-citation-candidates.sh` (validating citation candidate rows present)
+- Extractor script: `scripts/extract_gdoc_citations.py` (written, but its output was reverted --
+  see the correction above; needs a filtering/dedup rewrite before reuse)
+- `papers/FOLLOWUP-CANDIDATES.md`: unchanged from before this task (71 rows) -- the 293 added
+  rows did not meet the quality bar and were reverted
+- Probe: `probes/gdocs-citation-candidates.sh` will report `RUN` again post-revert (correctly --
+  there's nothing to show yet)
