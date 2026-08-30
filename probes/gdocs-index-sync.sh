@@ -17,7 +17,7 @@ if [ ! -f "$IDX" ]; then
   exit 0
 fi
 
-indexed=$(python -c "import json; print(len(json.load(open('$IDX'))))" 2>/dev/null || echo 0)
+indexed=$(python -c "import json; print(len(json.load(open('$IDX', encoding='utf-8'))))" 2>/dev/null || echo 0)
 
 if [ "$indexed" -eq 0 ]; then
   echo "RUN index file present but empty"

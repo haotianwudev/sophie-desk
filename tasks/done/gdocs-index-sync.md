@@ -2,7 +2,7 @@
 id: gdocs-index-sync
 title: Local index + title-matcher for D:\GoogleDrive research docs
 lane: platform
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -12,8 +12,8 @@ probe: bash probes/gdocs-index-sync.sh
 progress: scripts/sync_gdocs_index.py or scripts/match_gdoc.py missing
 probe_status: RUN
 stall_flag: 
-outcome:
-artifacts:
+outcome: scripts/sync_gdocs_index.py and scripts/match_gdoc.py implemented; gdocs/index.json created and gitignored; probe verified OK
+artifacts: scripts/sync_gdocs_index.py, scripts/match_gdoc.py
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -82,7 +82,17 @@ these are personal doc titles and this repo is public).
   MCP connector, which only a Claude Code session with that connector attached actually has —
   agy has no proven access to it, so that half is a separate `claude`-assigned task instead of
   being bundled in here.
+- **2026-08-30** — Implemented `scripts/sync_gdocs_index.py` to scan `D:\GoogleDrive`, filtering out `.tmp.drivedownload` and directories containing `personal` case-insensitively. Generates `gdocs/index.json` sorted by doc title.
+- **2026-08-30** — Implemented `scripts/match_gdoc.py` ranking titles against queries using `difflib.SequenceMatcher`. Verified error exit when index is missing and verified top-5 match outputs.
+- **2026-08-30** — Fixed UTF-8 decoding in `probes/gdocs-index-sync.sh` for non-ASCII characters in doc titles. Verified probe returns `OK 335 docs indexed (live top-level count 335)`. Verified `gdocs/index.json` remains gitignored.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+Implemented Google Drive research document indexer and title matcher:
+- Indexing script: `scripts/sync_gdocs_index.py`
+- Matching script: `scripts/match_gdoc.py`
+- Probe: `probes/gdocs-index-sync.sh` (passing `OK 335 docs indexed (live top-level count 335)`)
+- Output index: `gdocs/index.json` (gitignored)
+
+Ready for downstream paper-linking task (`tasks/gdocs-content-link.md`).
+
