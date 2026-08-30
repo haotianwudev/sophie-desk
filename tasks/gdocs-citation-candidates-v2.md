@@ -9,9 +9,9 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-citation-candidates.sh
-progress:
-probe_status:
-stall_flag:
+progress: script exists but no citation candidate rows added yet
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30

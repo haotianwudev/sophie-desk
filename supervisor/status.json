@@ -1,20 +1,24 @@
 {
-  "generated_at": "2026-08-30T21:25:51+00:00Z",
+  "generated_at": "2026-08-30T21:44:51+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
-  "stalled_probes": [],
+  "stalled_probes": [
+    "spx-option-backfill"
+  ],
+  "stalled_active": [],
   "tasks": [
     {
-      "id": "gdocs-citation-candidates",
-      "title": "Extract cited research papers from research-paper-grade Gemini docs",
+      "id": "gdocs-citation-candidates-v2",
+      "title": "Extract cited research papers from Gemini docs (v2 -- domain-anchored filter)",
       "lane": "research",
       "status": "active",
       "assignee": "agy",
       "gate": "",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (75655 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "stall_flag": "",
+      "probe_status": "RUN",
+      "progress": "script exists but no citation candidate rows added yet"
     },
     {
       "id": "spx-option-backfill",
@@ -23,8 +27,9 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (75658 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "stall_flag": "",
+      "probe_status": "STALL",
+      "progress": "SPXW 516/1360 \u00b7 log idle 8h \u00b7 4 python procs"
     }
   ]
 }
