@@ -115,6 +115,13 @@ the prior task.
   `date` field -- one case (`strategic-portfolio-management-option-writing`) matched the same
   calendar day as publish. Patched all 8 rows from `ambiguous` to `matched`. Final totals:
   **215 matched**, 0 ambiguous, 3 no match, 2 fetch failed (of 220) -- 97.7% resolved.
+- **2026-08-30** — User manually confirmed the remaining 3 "no match" articles
+  (`covering-world-global-evidence-covered-calls`,
+  `unified-theory-market-dynamics-order-flow-impact-volatility`, `supply-chain`) genuinely have
+  no corresponding Drive doc. Closing this out at **215/220 matched, 3 confirmed-no-match, 2
+  fetch failed** -- no further resolution work pending. The 2 fetch failures were never
+  investigated (network/auth issue on those two `googleDoc` URLs specifically, not a "no match"
+  question) -- worth a look only if this gets picked up again later.
 
 ## Result
 
