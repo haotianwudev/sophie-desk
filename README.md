@@ -7,6 +7,8 @@ Design rationale: https://claude.ai/code/artifact/089d0f72-450d-4547-8204-695384
 
 ```
 Desk.md            the dashboard — all Dataview queries, nothing hand-maintained
+Skills.md          the skill catalogue, classified by role — generated, clickable
+skills/            one card per skill
 tasks/             one file per in-flight task
 tasks/done/        archive — move here on completion
 papers/            research library, one note per paper
@@ -20,7 +22,17 @@ templates/task.md  the task template
 Not a place for how-to instructions. Those stay as **skills** in each repo's
 `.agents/skills/`. A skill answers *"how do I do X"* and is stable; a task answers
 *"where did I get to on X"* and ends. Five current skills are really tasks and belong here
-instead — that migration is the reason this repo exists.
+instead — that migration is the reason this repo exists. See **[Skills.md](Skills.md)** for
+the full catalogue, classified by role.
+
+Two numbers from that catalogue worth acting on:
+
+- **2 of 24 skills are shared with agy.** The other 22 sit in `~/.claude/skills/`, where only
+  Claude Code can see them. Every one moved into a repo's `.agents/skills/` is capability both
+  agents get.
+- **5 skills are really tasks**, and they are among the largest files — `spx-option-backfill`
+  at 597 lines, `sophie-spx-write-conditions` at 499. They grew that way because a task with no
+  lifecycle only ever accumulates.
 
 ---
 

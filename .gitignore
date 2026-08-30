@@ -7,3 +7,7 @@
 # supervisor scratch
 desk-status.json.tmp
 *.log
+
+# never publish these
+notes/private/
+papers/*.pdf
