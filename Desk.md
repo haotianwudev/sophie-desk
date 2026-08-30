@@ -1,7 +1,7 @@
 # The Desk
 
 New here? Read [sophie/work-model.md](sophie/work-model.md) first — the whole design, in plain
-English, one page.
+English, one page. Need to relaunch or restart something? [Runbook.md](Runbook.md).
 
 Live board over `tasks/`. Everything here is a query — nothing is hand-maintained.
 `progress` and `probe_status` are written by the supervisor after it runs each task's probe;

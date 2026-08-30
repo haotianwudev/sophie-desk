@@ -8,6 +8,7 @@ The same design in plain English, living in this repo: [sophie/work-model.md](so
 
 ```
 Desk.md            the dashboard — all Dataview queries, nothing hand-maintained
+Runbook.md         exact commands for recurring operations — relaunch, restart, connect
 Skills.md          the skill catalogue, classified by role — generated, clickable
 skills/            one card per skill
 sophie/            the work model itself, written up in plain English
