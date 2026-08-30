@@ -33,6 +33,7 @@ DEFAULT_ARTICLES_DIR = Path("F:/workspace/ai-stock-suggestion-client/src/data/ar
 DEFAULT_MATCHES_PATH = REPO_ROOT / "gdocs" / "article-exact-matches.md"
 DEFAULT_CANDIDATES_PATH = REPO_ROOT / "papers" / "FOLLOWUP-CANDIDATES.md"
 DEFAULT_STATE_PATH = REPO_ROOT / "gdocs" / "classified_state.json"
+DEFAULT_EXTRACTED_STATE_PATH = REPO_ROOT / "gdocs" / "extracted_state.json"
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -1375,6 +1376,17 @@ def main() -> None:
         action="store_true",
         help="Extract and filter without writing to FOLLOWUP-CANDIDATES.md",
     )
+    parser.add_argument(
+        "--extracted-state-file",
+        type=Path,
+        default=DEFAULT_EXTRACTED_STATE_PATH,
+        help=f"Path to extracted_state.json, tracks slugs already processed (default: {DEFAULT_EXTRACTED_STATE_PATH})",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-process slugs already recorded in extracted_state.json (normally skipped)",
+    )
 
     args = parser.parse_args()
     start_time = time.time()
@@ -1382,7 +1394,28 @@ def main() -> None:
     research_papers_state = load_classified_research_papers(args.state_file)
     print(f"Loaded {len(research_papers_state)} research-paper entries from state.")
 
-    target_slugs = set(research_papers_state.keys())
+    # Skip slugs already extracted in a prior run -- re-fetching and re-deriving
+    # the same doc's citations every batch was silently undoing manual fixes
+    # (a row deleted by hand as a duplicate would just get re-added as "new"
+    # next run, since this script has no memory of what was manually curated).
+    extracted_state: dict = {}
+    if args.extracted_state_file.exists():
+        try:
+            with open(args.extracted_state_file, "r", encoding="utf-8") as f:
+                extracted_state = json.load(f)
+        except Exception:
+            extracted_state = {}
+
+    if args.force:
+        target_slugs = set(research_papers_state.keys())
+    else:
+        already = set(extracted_state.keys())
+        target_slugs = set(research_papers_state.keys()) - already
+        skipped = len(research_papers_state) - len(target_slugs)
+        if skipped:
+            print(f"Skipping {skipped} slugs already extracted in a prior run "
+                  f"(use --force to re-process).")
+
     articles_meta = load_article_metadata(args.articles_dir, target_slugs)
     doc_ids = load_doc_ids(args.matches)
 
@@ -1491,6 +1524,14 @@ def main() -> None:
     else:
         new_added, merged = update_candidates_file(args.candidates_file, candidates_list)
         print(f"Successfully added {new_added} new candidate rows and merged {merged} rows in {args.candidates_file}")
+
+        # Mark these slugs as extracted so a future run doesn't re-fetch and
+        # re-derive them from scratch (which silently undoes manual fixes).
+        for slug in target_slugs:
+            extracted_state[slug] = {"extracted_at": time.strftime("%Y-%m-%d")}
+        args.extracted_state_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(args.extracted_state_file, "w", encoding="utf-8") as f:
+            json.dump(extracted_state, f, indent=2, ensure_ascii=False)
 
     print(f"Completed in {time.time() - start_time:.2f}s")
 
