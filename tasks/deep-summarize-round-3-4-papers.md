@@ -67,6 +67,7 @@ that's a separate, future task.
 - 2026-08-30: 6/10 done: feunou-jahan-parvar-okou-2018-downside-variance-risk-premium
 - 2026-08-30: 7/10 done: garleanu-pedersen-poteshman-2009-demand-based-option-pricing
 - 2026-08-30: 8/10 done: goyal-saretto-2009-cross-section-option-returns
+- 2026-08-30: 9/10 done: zhong-2026-non-spanning-identification-scheduled-event-risk
 
 ## Result
 
