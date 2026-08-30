@@ -81,6 +81,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 12/24 done: feunou-jahan-parvar-okou-2018-downside-variance-risk-premium (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 13/24 done: frazzini-pedersen-2012-embedded-leverage (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 14/24 done: garleanu-pedersen-poteshman-2009-demand-based-option-pricing (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 15/24 done: goyal-saretto-2009-cross-section-option-returns (Rated Medium; 3 citation candidates surfaced).
 
 ## Result
 
