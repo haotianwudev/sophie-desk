@@ -9,8 +9,8 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-exact-title-match.sh
-progress: scripts/exact_match_gdocs.py missing
-probe_status: RUN
+progress: <3>WSL (74938 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+probe_status: ERROR
 stall_flag: 
 outcome:
 artifacts:
