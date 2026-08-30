@@ -2,7 +2,7 @@
 id: gdocs-exact-title-match
 title: Exact-match articles to Drive docs via the published page's real <title>
 lane: content
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
