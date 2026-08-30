@@ -10,7 +10,7 @@ desk-status.json.tmp
 
 # never publish these
 notes/private/
-papers/*.pdf
+papers/**/*.pdf
 
 # supervisor local state (status.json IS committed on purpose)
 supervisor/supervisor.pid
