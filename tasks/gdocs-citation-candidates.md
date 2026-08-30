@@ -2,7 +2,7 @@
 id: gdocs-citation-candidates
 title: Extract cited research papers from research-paper-grade Gemini docs
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
