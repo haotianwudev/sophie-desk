@@ -9,7 +9,7 @@ shared: false
 
 # sophie-add-to-topic
 
-Skill for sophie-add-to-topic
+Link an existing Sophie article into a topic hub's study guide, an option strategy's related-article list, or both — handles the four topic configs, book-summary routing, and the derived-vs-hand-maintained distinction between the two destinations.
 
 - **Kind** — does a thing — invoked repeatedly
 - **Role** — scribe

@@ -55,7 +55,7 @@ Articles, video, subtitles, social copy.
 | [intro-gen](skills/intro-gen.md) | workflow | agy | **no** | Generate an animated intro video using MoviePy + Pillow. Image fades in, title words pop in one by one with color cycling and… |
 | [intro-manim](skills/intro-manim.md) | workflow | agy | **no** | Generate a VideoScribe-style animated intro using Manim. Image/video drags from bottom-left to left side with emphasis, then 4… |
 | [investment-clock-prompt](skills/investment-clock-prompt.md) | workflow | agy | **no** | Generate a Gemini Deep Research prompt for the Investment Clock weekly analysis. Runs the prompt generator script and prints the… |
-| [sophie-add-to-topic](skills/sophie-add-to-topic.md) | workflow | agy | **no** | Skill for sophie-add-to-topic |
+| [sophie-add-to-topic](skills/sophie-add-to-topic.md) | workflow | agy | **no** | Link an existing Sophie article into a topic hub's study guide, an option strategy's related-article list, or both — handles the… |
 | [sophie-article](skills/sophie-article.md) | workflow | agy | **no** | Insert a new article or modify an existing one on the Sophie website using the shared ArticleFrame template. |
 | [sophie-brainstorm](skills/sophie-brainstorm.md) | workflow | agy | **no** | Brainstorm new article, video, or content ideas for Sophie Daddy's finance channel, based on existing article history and… |
 | [sophie-youtube-video](skills/sophie-youtube-video.md) | workflow | agy | **no** | Find the latest video on the Sophie YouTube channel, match it to its companion article, and wire it into that article's… |
