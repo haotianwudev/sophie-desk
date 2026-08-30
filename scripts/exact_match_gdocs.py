@@ -110,12 +110,25 @@ def normalize_string(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
+def strip_paren_suffix(s: str) -> str:
+    """Strip a trailing ' (N)' suffix (e.g. ' (1)', ' (2)').
+
+    Google Drive Desktop's local .gdoc stub filename can lag the doc's live
+    Drive title after a rename -- confirmed live: a doc whose current title is
+    "2025 Financial Market Analysis" has a local stub named
+    "2025 Financial Market Analysis (1).gdoc". This is not a duplicate; it's
+    one document with a stale local filename. Stripping the suffix from both
+    sides catches that case."""
+    return re.sub(r"\s*\(\d+\)\s*$", "", s).strip()
+
+
 def find_matching_doc(extracted_title: str, gdocs: list[dict]) -> tuple[str, str]:
     """Find matching doc in index.json.
 
     Returns:
         (match_tier, doc_id)
-        match_tier is one of: 'exact', 'case-insensitive', 'no match in index'
+        match_tier is one of: 'exact', 'case-insensitive',
+        'suffix-tolerant', 'ambiguous (N candidates)', 'no match in index'
     """
     cleaned_extracted = extracted_title.strip()
     norm_extracted = normalize_string(cleaned_extracted)
@@ -137,6 +150,23 @@ def find_matching_doc(extracted_title: str, gdocs: list[dict]) -> tuple[str, str
         ci_matches.sort(key=lambda d: d.get("mtime", 0), reverse=True)
         return "case-insensitive", ci_matches[0].get("doc_id", "")
 
+    # 3. Suffix-tolerant: strip a trailing " (N)" from the index title (the
+    # extracted title is the live Drive title, already "clean") and compare
+    # case-insensitively. Multiple distinct docs can genuinely share a base
+    # title (confirmed in gdocs/duplicates.md, e.g. recurring weekly research)
+    # -- when stripping yields more than one candidate, don't guess which one
+    # the article actually points to; flag it instead.
+    norm_stripped_extracted = normalize_string(strip_paren_suffix(cleaned_extracted))
+    suffix_matches = [
+        d
+        for d in gdocs
+        if normalize_string(strip_paren_suffix(d.get("title", ""))) == norm_stripped_extracted
+    ]
+    if len(suffix_matches) == 1:
+        return "suffix-tolerant", suffix_matches[0].get("doc_id", "")
+    if len(suffix_matches) > 1:
+        return f"ambiguous ({len(suffix_matches)} candidates)", ""
+
     return "no match in index", ""
 
 
@@ -152,19 +182,27 @@ def write_report(results: list[dict], out_path: Path) -> None:
     tier_order = {
         "exact": 1,
         "case-insensitive": 2,
-        "no match in index": 3,
-        "fetch failed": 4,
+        "suffix-tolerant": 3,
+        "no match in index": 5,
+        "fetch failed": 6,
     }
+
+    def tier_key(tier: str) -> int:
+        if tier.startswith("ambiguous"):
+            return 4
+        return tier_order.get(tier, 99)
 
     # Sort by tier priority first, then slug
     sorted_results = sorted(
         results,
-        key=lambda r: (tier_order.get(r["match_tier"], 99), r.get("slug", "")),
+        key=lambda r: (tier_key(r["match_tier"]), r.get("slug", "")),
     )
 
     counts = {
         "exact": sum(1 for r in results if r["match_tier"] == "exact"),
         "case-insensitive": sum(1 for r in results if r["match_tier"] == "case-insensitive"),
+        "suffix-tolerant": sum(1 for r in results if r["match_tier"] == "suffix-tolerant"),
+        "ambiguous": sum(1 for r in results if r["match_tier"].startswith("ambiguous")),
         "no match in index": sum(1 for r in results if r["match_tier"] == "no match in index"),
         "fetch failed": sum(1 for r in results if r["match_tier"] == "fetch failed"),
     }
@@ -176,6 +214,8 @@ def write_report(results: list[dict], out_path: Path) -> None:
         "",
         f"- **Exact matches**: {counts['exact']}",
         f"- **Case-insensitive matches**: {counts['case-insensitive']}",
+        f"- **Suffix-tolerant matches** (stale local `(N)` filename, live title clean): {counts['suffix-tolerant']}",
+        f"- **Ambiguous** (multiple docs share a base title): {counts['ambiguous']}",
         f"- **No match in index**: {counts['no match in index']}",
         f"- **Fetch failed**: {counts['fetch failed']}",
         "",

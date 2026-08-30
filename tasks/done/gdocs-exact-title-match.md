@@ -12,7 +12,7 @@ probe: bash probes/gdocs-exact-title-match.sh
 progress: 222 rows, 162 exact matches
 probe_status: OK
 stall_flag: 
-outcome: Generated gdocs/article-exact-matches.md evaluating 220 articles (162 exact matches, 56 no match in index, 2 fetch failed).
+outcome: Generated gdocs/article-exact-matches.md evaluating 220 articles. After a user-caught matching gap and fix (see Decision log): 173 confident matches (162 exact + 11 suffix-tolerant), 0 ambiguous, 45 no match in index, 2 fetch failed.
 artifacts: scripts/exact_match_gdocs.py gdocs/article-exact-matches.md
 created: 2026-08-30
 updated: 2026-08-30
@@ -75,9 +75,22 @@ the prior task.
   one-off manual verification.
 - **2026-08-30** — Implemented `scripts/exact_match_gdocs.py` to parse articles with `googleDoc` URLs from `ai-stock-suggestion-client/src/data/articles/*.ts`, fetch the published Google Doc HTML pages, extract the `<title>` tag text, and match against `gdocs/index.json` (exact match, then case-insensitive / whitespace-collapsed fallback). Evaluated all 220 articles: found 162 exact matches in Drive index, 56 with no exact title match in index, and 2 fetch failures (due to `/edit` URL auth requirements). Output written to `gdocs/article-exact-matches.md`.
 - **2026-08-30** — Verified probe `probes/gdocs-exact-title-match.sh`, confirming OK status (222 rows, 162 exact matches).
+- **2026-08-30** — User spot-checked one "no match" row by hand (`2025 Financial Market Analysis
+  (1)`) and caught a real gap: the local `.gdoc` stub filename can lag the doc's *live* Drive
+  title after a rename (confirmed via the Drive connector — the live title has no `(1)`, the
+  local stub still does). This is the same artifact `gdocs/duplicates.md` groups by, but for a
+  *single* document, not a real duplicate. Checked all 56 "no match" rows for this pattern: 11
+  resolved cleanly to exactly one candidate each (0 ambiguous). Added a third `suffix-tolerant`
+  match tier to `find_matching_doc()` (strips a trailing `\(\d+\)$` from the index title before
+  comparing) with an explicit `ambiguous (N candidates)` outcome if stripping ever yields more
+  than one candidate — never silently guess between them. Re-ran the full script for real.
 
 ## Result
 
-- Script: `scripts/exact_match_gdocs.py`
-- Generated Report (gitignored): `gdocs/article-exact-matches.md` (220 articles evaluated: 162 exact matches, 56 no match in index, 2 fetch failed)
+- Script: `scripts/exact_match_gdocs.py` (now with 3 match tiers: exact, case-insensitive,
+  suffix-tolerant, plus an explicit ambiguous outcome)
+- Generated Report (gitignored): `gdocs/article-exact-matches.md` — 220 articles evaluated:
+  **173 confident matches** (162 exact + 11 suffix-tolerant), 0 ambiguous, 45 genuine no match
+  in index, 2 fetch failed
 - Probe verification: `bash probes/gdocs-exact-title-match.sh` -> `OK 222 rows, 162 exact matches`
+  (probe checks the `exact` count specifically; still accurate post-fix, doesn't need updating)
