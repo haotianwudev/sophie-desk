@@ -79,3 +79,17 @@ In `sophie-option-research`, Della Corte et al. (2016) provides key empirical le
 1. **Cross-Asset Volatility Arbitrage**: Demonstrates that the volatility risk premium is not an isolated quirk of equity index options, but a universal market pricing phenomenon present across global currency pairs.
 2. **Asymmetric Hedging & Crisis Decoupling**: While short equity index options and currency carry trades suffer severe left-tail crashes during market crises, cross-sectional VRP ranking strategies produce massive positive returns during recessions (+11.54%/yr, Sharpe 1.14 during NBER downturns), offering a blueprint for constructing hedged volatility overlays in `notebooks/09_vrp_study.ipynb` and `lab/strategy.py`.
 3. **Multi-Horizon Capital Flow Filters**: Incorporating macro liquidity indicators (such as TED spreads and funding constraints) as regime switches helps identify when options pricing diverges from fundamental realized volatility due to intermediary capacity limits.
+
+## Relevance to Personal Trading & Research
+
+- **Rating:** Medium
+- **Rationale:** Valuable cross-asset demonstration that the volatility risk premium is a universal phenomenon whose cross-sectional sorting provides strong downside protection and crisis alpha (+11.5% in recessions). However, because `sophie-option-research` is dedicated to SPX/US equity options, its specific FX spot-predictability mechanisms and currency-option-space tools are informative conceptually rather than directly actionable for our equity index execution pipeline.
+
+## Notable Citations to Follow Up
+
+1. **Menkhoff, Lukas, Lucio Sarno, Maik Schmeling, and Andreas Schrimpf (2012)** — *Carry Trades and Global FX Volatility* (Journal of Finance, 67(2), 681-718).
+   - Establishes how global volatility innovations act as a priced risk factor across currency strategies, explaining why high-yielding assets crash during volatility spikes.
+2. **Lustig, Hanno, Nikolai Roussanov, and Adrien Verdelhan (2011)** — *Common Risk Factors in Currency Markets* (Review of Financial Studies, 24(11), 3731-3777).
+   - Seminal empirical work defining the cross-sectional factor structure of currency returns and quantifying global currency risk premia.
+3. **Buraschi, Andrea, Fabio Trojani, and Andrea Vedolin (2014)** — *When Uncertainty Blows in the Orchard: Comovement and Equilibrium Volatility Risk Premia* (Journal of Finance, 69(1), 101-137).
+   - Models how belief dispersion and economic uncertainty drive the comovement and cross-sectional pricing of volatility risk premia across derivative markets.
