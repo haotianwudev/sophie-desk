@@ -9,8 +9,8 @@ repo: sophie-pipeline
 blocker: Vendor/scope decision — accept a monthly-cycle corpus, or pay for a faster tier
 next: Decide scope. 45-DTE studies never touch the near-daily tail that is stalling.
 probe: bash probes/spx-option-backfill.sh
-progress: SPX 108/108 · SPXW 441 files of 1360 jobs
-probe_status: STALL
+progress: SPX 108/108 · SPXW 442/1360 · ~38 days to finish at current rate
+probe_status: RUN
 outcome:
 artifacts:
 created: 2026-08-23
@@ -30,9 +30,16 @@ Full incident history, root-cause analysis and the ThetaData gotchas remain in t
 ## Status — the honest read
 
 Downloading since 2026-08-26 under the self-healing wrapper (`data/autorun_download.sh`).
-SPX is complete. SPXW is the long tail and is where it has stopped making useful progress:
-the log is a repeating cycle of `503`s and 1800s read-timeouts on 2025 near-daily expirations
-— the signature already documented as a stuck no-data chunk.
+SPX is complete. SPXW is the long tail.
+
+**It is running, not stalled — and that is the worse answer.** Reading the log tail alone
+suggests a dead job: nothing but `503`s and 1800s read-timeouts on 2025 near-daily expirations.
+The probe says otherwise — the file count moved 441 → 442 during a single conversation and the
+log was written 2h ago. So the wrapper is healthy and grinding. At roughly one file per hour
+against 918 remaining jobs, that is **on the order of five to six weeks** to completion.
+
+This is precisely why probes exist. "Stalled" would have prompted a restart that fixes nothing;
+the real problem is a rate that no amount of patience improves.
 
 **This is not a new bug.** It is the known recurring pattern, and the known fix (write a
 header-only placeholder) must not be applied ahead of an actual per-job failure, and never to
