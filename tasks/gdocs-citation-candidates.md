@@ -9,8 +9,8 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-citation-candidates.sh
-progress: scripts/extract_gdoc_citations.py missing
-probe_status: RUN
+progress: <3>WSL (75655 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+probe_status: ERROR
 stall_flag: 
 outcome:
 artifacts:

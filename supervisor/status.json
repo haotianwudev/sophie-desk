@@ -1,13 +1,10 @@
 {
-  "generated_at": "2026-08-30T21:22:29+00:00Z",
+  "generated_at": "2026-08-30T21:25:51+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
-  "stalled_probes": [
-    "spx-option-backfill"
-  ],
-  "stalled_active": [],
+  "stalled_probes": [],
   "tasks": [
     {
       "id": "gdocs-citation-candidates",
@@ -16,9 +13,8 @@
       "status": "active",
       "assignee": "agy",
       "gate": "",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "scripts/extract_gdoc_citations.py missing"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (75655 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     },
     {
       "id": "spx-option-backfill",
@@ -27,9 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "STALL",
-      "progress": "SPXW 514/1360 \u00b7 log idle 8h \u00b7 4 python procs"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (75658 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
