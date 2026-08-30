@@ -103,6 +103,18 @@ the prior task.
   `scripts/exact_match_gdocs.py` itself is unchanged -- this was a manual, connector-dependent
   pass, not a re-runnable script step). New totals: **207 matched**, 8 ambiguous, 3 no match, 2
   fetch failed (of 220).
+- **2026-08-30** — User asked to resolve the 8 ambiguous cases too, by checking actual content
+  (not just dates). For each: fetched full content of every candidate doc via
+  `get_file_metadata` and the published page's opening sentence via `WebFetch`, then compared.
+  **All 8 turned out to be the same Gemini query re-run** (2 or 3 times), producing byte-
+  identical or near-identical content each time -- genuine content duplicates, not a real
+  "which one is correct" ambiguity, except one candidate in the 3-way
+  `decoding-analyst-consensus-target-prices-conflicts-epistemology` case, which was a
+  *different* document entirely (confirmed by opening-sentence mismatch) and correctly excluded.
+  Where content was identical, picked the candidate closest to (and not after) the article's own
+  `date` field -- one case (`strategic-portfolio-management-option-writing`) matched the same
+  calendar day as publish. Patched all 8 rows from `ambiguous` to `matched`. Final totals:
+  **215 matched**, 0 ambiguous, 3 no match, 2 fetch failed (of 220) -- 97.7% resolved.
 
 ## Result
 
@@ -110,10 +122,11 @@ the prior task.
   suffix-tolerant -- collapsed to a single `matched` label in the report; explicit `ambiguous`
   outcome, never silently guessed)
 - Generated Report (gitignored): `gdocs/article-exact-matches.md` — 220 articles evaluated,
-  final state after the manual Drive-search resolution pass: **207 matched**, 8 ambiguous
-  (multiple docs share that title), 3 genuinely no match, 2 fetch failed. Note: the last 34 of
-  the 207 were resolved by hand via the Drive connector (`search_files`), not by re-running the
-  script -- `gdocs/index.json` (the script's local data source) was intentionally left
-  unmodified, so re-running `exact_match_gdocs.py` will NOT reproduce this exact number; it'll
-  fall back to the pre-resolution 173 unless the local sync catches up on its own.
-- Probe verification: `bash probes/gdocs-exact-title-match.sh` -> `OK 222 rows, 207 matched`
+  final state after two manual Drive-connector resolution passes: **215 matched**, 0 ambiguous,
+  3 genuinely no match, 2 fetch failed (97.7%). Note: 42 of the 215 (34 by search, 8 by content
+  comparison) were resolved by hand via the Drive connector (`search_files` /
+  `get_file_metadata` / `WebFetch`), not by re-running the script -- `gdocs/index.json` (the
+  script's local data source) was intentionally left unmodified, so re-running
+  `exact_match_gdocs.py` will NOT reproduce this exact number; it'll fall back to the
+  pre-resolution 173 unless the local sync catches up on its own.
+- Probe verification: `bash probes/gdocs-exact-title-match.sh` -> `OK 222 rows, 215 matched`
