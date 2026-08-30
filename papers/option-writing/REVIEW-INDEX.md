@@ -7,3 +7,4 @@
 | [`bates-2008-market-for-crash-risk`](bates-2008-market-for-crash-risk.md) | High | Theoretical & empirical foundation for why put writers earn high Sharpe ratios insuring crash-averse investors. | 3 |
 | [`bekaert-hoerova-2014-vix-variance-premium`](bekaert-hoerova-2014-vix-variance-premium.md) | High | Decomposes VIX^2 into physical variance and VRP; shows VRP drives return predictability while physical variance signals stress. | 3 |
 | [`bollerslev-tauchen-zhou-2009-expected-stock-returns-vrp`](bollerslev-tauchen-zhou-2009-expected-stock-returns-vrp.md) | High | Cornerstone paper establishing model-free VRP as the strongest intermediate-horizon predictor of excess equity returns. | 3 |
+| [`bondarenko-2014-why-are-puts-expensive`](bondarenko-2014-why-are-puts-expensive.md) | High | Shows selling OTM index puts yields massive excess returns (>40% annualized) that cannot be rationalized by Peso problems. | 3 |

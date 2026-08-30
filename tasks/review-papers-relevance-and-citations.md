@@ -72,6 +72,7 @@ what's already covered, say so explicitly rather than forcing a citation.
 - 2026-08-30: 3/24 done: bates-2008-market-for-crash-risk (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 4/24 done: bekaert-hoerova-2014-vix-variance-premium (Rated High; 3 citation candidates surfaced).
 - 2026-08-30: 5/24 done: bollerslev-tauchen-zhou-2009-expected-stock-returns-vrp (Rated High; 3 citation candidates surfaced).
+- 2026-08-30: 6/24 done: bondarenko-2014-why-are-puts-expensive (Rated High; 3 citation candidates surfaced).
 
 ## Result
 
