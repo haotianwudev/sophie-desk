@@ -1,11 +1,23 @@
 {
-  "generated_at": "2026-08-30T12:25:13+00:00Z",
-  "task_count": 1,
+  "generated_at": "2026-08-30T12:38:54+00:00Z",
+  "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
+  "stalled_active": [],
   "tasks": [
+    {
+      "id": "review-papers-relevance-and-citations",
+      "title": "Rate each paper's relevance to personal trading/research, surface cited papers worth chasing",
+      "lane": "research",
+      "status": "active",
+      "assignee": "agy",
+      "gate": "",
+      "stall_flag": "",
+      "probe_status": "RUN",
+      "progress": "0/24 papers rated, REVIEW-INDEX.md 0 lines"
+    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
@@ -13,8 +25,9 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (73110 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "stall_flag": "",
+      "probe_status": "RUN",
+      "progress": "SPXW 479/1360 \u00b7 log 4h ago"
     }
   ]
 }

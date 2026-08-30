@@ -9,9 +9,9 @@ repo: sophie-option-research
 blocker:
 next: Claim, then work through all 24 papers one at a time, committing after each.
 probe: bash probes/review-papers-relevance-and-citations.sh
-progress:
-probe_status:
-stall_flag:
+progress: 0/24 papers rated, REVIEW-INDEX.md 0 lines
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30
