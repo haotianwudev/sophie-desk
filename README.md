@@ -3,12 +3,14 @@
 The control plane for the Sophie platform and the SPX option research — a plain Obsidian vault
 that is also a git repo. Task state lives here as markdown; code lives in the four work repos.
 
-Design rationale: https://claude.ai/code/artifact/089d0f72-450d-4547-8204-6953842e7f90
+Design rationale (the visual pitch): https://claude.ai/code/artifact/089d0f72-450d-4547-8204-6953842e7f90
+The same design in plain English, living in this repo: [sophie/work-model.md](sophie/work-model.md)
 
 ```
 Desk.md            the dashboard — all Dataview queries, nothing hand-maintained
 Skills.md          the skill catalogue, classified by role — generated, clickable
 skills/            one card per skill
+sophie/            the work model itself, written up in plain English
 tasks/             one file per in-flight task
 tasks/done/        archive — move here on completion
 papers/            research library, one note per paper
