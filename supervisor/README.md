@@ -69,6 +69,15 @@ Windows process table whether that pid is still alive, not just whether the file
 so the very next start correctly ignores the stale file and takes over. Confirmed by
 killing a running loop and immediately starting a fresh one against the same vault.
 
+**One caveat found the hard way, testing this from Git Bash on Windows**: bash's own `kill`
+and `timeout` don't reliably reach a Windows-native `python.exe` launched as a background job
+— the same class of gotcha `spx-option-backfill` already hit for a completely different
+script. A test loop survived two separate `kill`/`timeout` attempts and kept ticking,
+unnoticed, for about ten minutes before a routine `git log` turned up a commit nobody had
+made on purpose. Confirm a supervisor process is actually gone with `tasklist`/`Get-Process`,
+and kill it with `taskkill //F //PID <pid>` (or `Stop-Process -Id <pid> -Force`) — not bash
+`kill`.
+
 ## Installing it to start at logon
 
 ```powershell
