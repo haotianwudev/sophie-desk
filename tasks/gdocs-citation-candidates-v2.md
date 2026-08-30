@@ -2,7 +2,7 @@
 id: gdocs-citation-candidates-v2
 title: Extract cited research papers from Gemini docs (v2 -- domain-anchored filter)
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
