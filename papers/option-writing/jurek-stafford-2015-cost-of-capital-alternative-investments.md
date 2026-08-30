@@ -77,3 +77,16 @@ In `sophie-option-research`, Jurek and Stafford (2015) provides critical empiric
 2. **Parametric Strike & Leverage Framework ($[Z, L]$)**: The paper's formulation of moneyness in volatility units ($K = S(1 + Z \sigma \sqrt{\tau})$) and leverage scaling ($L$) provides a mathematically rigorous blueprint for strike grid definitions in `src/lab/strategy.py` and parameter sweep notebooks (`notebooks/04_param_sweep.ipynb`).
 3. **Risk Metrics & Benchmark Attribution**: Demonstrates that linear risk models (beta, linear alpha) severely underestimate downside tail risk. This motivates the implementation of non-linear risk metrics in `src/lab/metrics.py` and `src/lab/report.py`, including drawdown RMSE matching, shortfall distributions, and state-contingent cost of capital benchmarking against naive linear CAPM models.
 
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Crucial empirical proof that aggregate hedge fund returns and 'alpha' are mechanically matched by simple out-of-the-money put writing on the S&P 500. Formalizes a volatility-standardized $[Z, L]$ strike selection and leverage framework that directly informs systematic short put sizing and demonstrates that standard linear risk metrics dangerously understate downside tail risk.
+
+## Notable Citations to Follow Up
+
+1. **Mitchell, Mark, and Todd Pulvino (2001)** — *Characteristics of Risk in Risk Arbitrage* (Journal of Finance, 56(6), 2135-2175).
+   - Documents that merger arbitrage payoffs are non-linear and resemble short index put options, exhibiting market-neutral behavior in up-markets but significant market beta in crashes.
+2. **Agarwal, Vikas, and Narayan Y. Naik (2004)** — *Risks and Portfolio Decisions Involving Hedge Funds* (Review of Financial Studies, 17(1), 63-98).
+   - Characterizes the non-linear asymmetric payoff structures of alternative investment strategies using buy-and-hold and option-based factor models.
+3. **Lo, Andrew W. (2001)** — *Risk Management for Hedge Funds: Introduction and Overview* (Financial Analysts Journal, 57(6), 16-33).
+   - Proposes the seminal Capital Decimation Partners thought experiment to demonstrate how dynamic short put strategies can manufacture high Sharpe ratios while harboring fatal tail loss potential.
