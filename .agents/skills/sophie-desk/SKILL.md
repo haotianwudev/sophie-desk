@@ -186,6 +186,18 @@ If this pattern gets reused for other configs later (article/topic configs, say 
 `sophie-add-to-topic`), the index+matcher in `gdocs/` is already general-purpose; only the
 linking step (which frontmatter field, which file) is paper-specific.
 
+**First real run (2026-08-30) found zero links, and that's the correct result, not a failure.**
+`gdocs-content-link` matched all 24 papers against the 335-doc index; best scores topped out at
+0.65 and every one of the top candidates, once actually read, turned out to be the user's own
+independent Gemini research on a broad adjacent topic (its own 20-30+ item Works Cited list),
+not a write-up *of* any specific library paper. One paper (Feunou-Jahan-Parvar-Okou 2018,
+"Downside Variance Risk Premium") turned up as a single citation inside one such doc's
+bibliography — a real overlap, but many-to-many (doc cites paper), not what `gdoc_id` means
+(doc is about paper). Don't re-run this exact matching pass expecting a different outcome
+unless the Drive corpus has grown with genuinely paper-specific sessions since. If a
+citation-overlap relationship (as opposed to "this doc is about this paper") becomes worth
+tracking, it needs a different field/mechanism than `gdoc_id` — that hasn't been built.
+
 ## Worked pattern: deep-summarize one paper
 
 Confirmed working end-to-end multiple times (single-paper dispatch in ~75s; a 12-paper batch
