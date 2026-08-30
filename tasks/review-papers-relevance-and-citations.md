@@ -2,7 +2,7 @@
 id: review-papers-relevance-and-citations
 title: Rate each paper's relevance to personal trading/research, surface cited papers worth chasing
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
