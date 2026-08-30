@@ -873,12 +873,22 @@ def is_url_path_rejected(url: str) -> tuple[bool, str]:
         "/textbook%20solution%20manual/",
         "/insights/2023/02/quant-chart-taming-momentum-crashes",
         "/insights/posts/vix-index-attribution-of-notable-tail-events",
+        "/series/",
+        "/markets/us/options/market-statistics/",
+        "/markets/us/futures/market-statistics/",
+        "/tradable-products/vix/",
+        "/tradable_products/vix/",
+        "/news/news-details/",
+        "/investing/investment-products/stocks/day-trading",
+        "/research/gdpnow",
+        "/complete-issue.pdf",
+        "/martin-fund-management-capturing-outsized-commodity-moves",
     ]
     for rp in reject_paths:
         if rp in path:
             return True, f"reject_path:{rp}"
 
-    if "aqr.com" in netloc and (path == "/" or path == ""):
+    if ("aqr.com" in netloc or "twosigma.com" in netloc) and (path == "/" or path == ""):
         return True, "reject_homepage"
 
     return False, ""
@@ -898,6 +908,16 @@ def clean_paper_title(raw_text: str, url: str) -> str | None:
         return "The Implied Convexity of VIX Futures"
     if "correlation_impact_to_ccp_margin" in url:
         return "Study of Correlation Impact on Credit Default Swap Margin Using a GARCH-DCC-Copula Framework"
+    if "10.1287/mnsc.2021.01379" in url:
+        return "Tech-Enabled Financial Data Access, Retail Investors, and Market Quality"
+    if "2813-0324/7/1/39" in url:
+        return "Comparing Machine Learning Methods—SVR, XGBoost, LSTM, and Deep Neural Networks for Stock Price Prediction"
+    if "ArbitrageCompleteness.pdf" in url:
+        return "A Simple and Intuitive Coverage of The Fundamental Theorems of Asset Pricing"
+    if "2201.00350" in url:
+        return "FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance"
+    if "Neuberger_Berman_Simply_PutWriting.pdf" in url or "Simply_PutWriting.pdf" in url:
+        return "Simply Put: The Performance of Cash-Secured Put Writing"
 
     text = raw_text.strip()
     text = re.sub(r"^(?:\[\d+\]|\d+\.)\s*", "", text).strip()
@@ -1169,6 +1189,7 @@ def clean_paper_title(raw_text: str, url: str) -> str | None:
         "nber working paper series an empirical decomposition of risk and liquidity in nominal and inflation-indexed government bonds car",
         "multilayer perceptron modeling for social dysfunction prediction based on general health factors in an iranian women sample",
         "robo-advisors: a portfolio management perspective jonathan walter lam",
+        "two sigma", "gdpnow", "day trading", "vix options", "vix futures", "journal",
     ]
     for rt in reject_titles:
         if lower_t == rt or lower_t.startswith(rt):
