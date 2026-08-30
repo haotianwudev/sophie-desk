@@ -9,9 +9,9 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-exact-title-match.sh
-progress:
-probe_status:
-stall_flag:
+progress: scripts/exact_match_gdocs.py missing
+probe_status: RUN
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-30
