@@ -133,6 +133,8 @@ relevance: High | Medium | Low         # from its own "Relevance to Personal Tra
 has_pdf: true | false                  # false = recorded-but-not-downloaded (round 4 convention)
 has_detailed_summary: true | false     # true only if it has a real "## Detailed Summary" section
 citations_surfaced: <int>              # count under "Notable Citations to Follow Up"
+gdoc_id: "<drive doc id>"              # optional -- see "Linking papers to your own Google
+                                        # Drive research docs" below. Omit if there's no linked doc.
 ---
 ```
 
@@ -154,6 +156,35 @@ each entry it actually resolves. This exists because a per-paper "Notable Citati
 Up" section (see the review pattern below) is real, useful information, but 24+ of them
 scattered across individual notes isn't an actionable todo list — this file is the
 consolidated one.
+
+## Linking papers to your own Google Drive research docs
+
+The user runs a lot of ad-hoc Gemini Deep Research sessions and Drive-syncs the results to
+`D:\GoogleDrive` (~335 as of 2026-08-30, growing). Each shows up as a `.gdoc` file — **a
+172-byte JSON stub** (`{"doc_id": ..., "resource_key": ..., "email": ...}`), not the actual
+content; the filename minus extension is the doc's title. Fetching real content needs the
+Google Drive MCP connector (`mcp__claude_ai_Google_Drive__*`), which only a Claude Code
+session with that connector attached is confirmed to have — **agy has no proven access to it**,
+so this splits into two tasks that must not be merged:
+
+- **`tasks/gdocs-index-sync.md`** (assignee `agy`, no gate) — `scripts/sync_gdocs_index.py`
+  scans `D:\GoogleDrive` recursively for `.gdoc` stubs (skipping `.tmp.drivedownload` and any
+  `*personal*` directory) and writes `gdocs/index.json` (title, doc_id, resource_key, relpath,
+  mtime). `scripts/match_gdoc.py "<query>"` ranks index entries against a title by string
+  similarity, no network needed. Pure filesystem work — safe for unattended dispatch.
+- **`tasks/gdocs-content-link.md`** (assignee `claude`) — the half that actually reads content:
+  run the matcher against each paper's `title`, fetch a candidate's real content via the Drive
+  connector, **read it before linking** (a plausible title match can still be the wrong doc),
+  and only then add `gdoc_id: "<doc_id>"` to that paper's frontmatter. Cached content goes in
+  `gdocs/cache/<doc_id>.md`.
+
+**`gdocs/` is gitignored, deliberately** — it holds the user's personal research-session titles
+and cached content, and this repo is public. `gdoc_id` on a paper is fine to commit (an opaque
+ID reveals nothing on its own); the index and cache that resolve it to a title/content are not.
+
+If this pattern gets reused for other configs later (article/topic configs, say — see
+`sophie-add-to-topic`), the index+matcher in `gdocs/` is already general-purpose; only the
+linking step (which frontmatter field, which file) is paper-specific.
 
 ## Worked pattern: deep-summarize one paper
 

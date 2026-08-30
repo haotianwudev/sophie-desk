@@ -12,6 +12,10 @@ desk-status.json.tmp
 notes/private/
 papers/**/*.pdf
 
+# personal Google Drive doc index/cache -- titles + doc_ids + cached content
+# are personal research notes, not for a public repo. See gdocs-index-sync task.
+gdocs/
+
 # supervisor local state (status.json IS committed on purpose)
 supervisor/supervisor.pid
 supervisor/supervisor.log
