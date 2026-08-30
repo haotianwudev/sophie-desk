@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-08-30T02:30:55+00:00Z",
+  "task_count": 1,
+  "needs_you": [
+    "spx-option-backfill"
+  ],
+  "stalled_probes": [],
+  "tasks": [
+    {
+      "id": "spx-option-backfill",
+      "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
+      "lane": "platform",
+      "status": "blocked",
+      "assignee": "none",
+      "gate": "g3",
+      "probe_status": "RUN",
+      "progress": "SPXW 444/1360 \u00b7 log 0h ago"
+    }
+  ]
+}
