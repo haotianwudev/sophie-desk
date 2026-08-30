@@ -207,14 +207,18 @@ def release_singleton() -> None:
 
 # ---------- dispatch to agy ----------
 
-_AGY_CLI = r"C:\Users\lswht\AppData\Local\Programs\Antigravity IDE\bin\antigravity-ide.cmd"
+# The real terminal-only CLI -- NOT "Antigravity IDE" (that opens a GUI window; tried first,
+# corrected live: "you launched ide not terminal agent"). `agy.exe -p` is the actual headless
+# equivalent of Claude Code's own -p/--print flag: runs one prompt non-interactively, no window.
+_AGY_CLI = r"C:\Users\lswht\AppData\Local\agy\bin\agy.exe"
 
 
 def dispatch_to_agy(task_id: str) -> bool:
-    """Launch agy (Antigravity) with a prompt to read and work one task.
-    Fire-and-forget -- confirmed live that the CLI returns in ~2s (VS-Code-
-    style launcher behavior) rather than blocking for the whole agent turn,
-    so this never stalls the supervisor's own tick."""
+    """Launch agy (the terminal CLI) with a prompt to read and work one task.
+    -p/--print mode runs synchronously and can legitimately take minutes (its
+    own --print-timeout defaults to 5m) -- Popen here is what keeps this from
+    blocking the supervisor's own tick; it runs the whole task to completion
+    in the background, independent of this process."""
     prompt = (
         f"Read F:\\workspace\\sophie-desk\\.agents\\skills\\sophie-desk\\SKILL.md for how "
         f"tasks work in this repo. Then read and work the task at "
@@ -223,7 +227,10 @@ def dispatch_to_agy(task_id: str) -> bool:
         f"go, fill in Result and set status: done when finished, commit and push."
     )
     try:
-        subprocess.Popen([_AGY_CLI, "chat", "-n", "-m", "agent", prompt], cwd=VAULT)
+        subprocess.Popen(
+            [_AGY_CLI, "-p", prompt, "--add-dir", str(VAULT), "--dangerously-skip-permissions"],
+            cwd=VAULT,
+        )
         return True
     except Exception as e:  # noqa: BLE001
         log(f"ERROR failed to launch agy for {task_id}: {e}")
