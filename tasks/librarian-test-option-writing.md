@@ -9,12 +9,12 @@ repo: sophie-option-research
 blocker:
 next: Find and file 5-10 open-access option writing papers into papers/option-writing/
 probe: bash probes/librarian-test-option-writing.sh
-progress:
-probe_status:
+progress: 9 notes, 9 local PDFs
+probe_status: OK
 outcome:
 artifacts:
 created: 2026-08-30
-updated: 2026-08-30
+updated: 2026-08-29
 ---
 
 ## Goal
