@@ -2,7 +2,7 @@
 id: gdocs-research-paper-candidates
 title: Classify matched Drive docs as research-paper/news/general-info; candidate the papers
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -12,8 +12,8 @@ probe: bash probes/gdocs-research-paper-candidates.sh
 progress: scripts/classify_gdocs_candidates.py missing
 probe_status: RUN
 stall_flag: 
-outcome:
-artifacts:
+outcome: 30-doc trial batch classified (19 research-paper, 6 news, 5 general-info); 19 candidates added to backlog
+artifacts: scripts/classify_gdocs_candidates.py, papers/FOLLOWUP-CANDIDATES.md
 created: 2026-08-30
 updated: 2026-08-30
 ---
@@ -109,7 +109,9 @@ this kind of entry). Do **not** touch `papers/option-writing/*.md` or create any
   some with agy, see if agy can finish this work" -- this task is heavier per-item than the
   prior title-matching pass (real reading + judgment per doc, not string comparison), so
   validate quality/throughput before committing to the rest in a follow-up task.
+- **2026-08-30** — Evaluated first batch of 30 matched docs from gdocs/article-exact-matches.md. Extracted title tag, H1, heading outline, and body text preview. Classified 19 as research-paper, 6 as news, and 5 as general-info. Added 19 new candidate rows with concise core thesis, tags, live article links, and doc_id source to papers/FOLLOWUP-CANDIDATES.md. Dedup pass confirmed all 19 entries represent distinct research subjects.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+Completed 30-doc trial classification via `scripts/classify_gdocs_candidates.py`. 19 research-paper candidates appended to `papers/FOLLOWUP-CANDIDATES.md` with full schema populated (Tags, Surfaced by link, Doc ID Source).
+
