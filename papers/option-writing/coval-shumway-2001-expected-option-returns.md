@@ -68,3 +68,17 @@ In `sophie-option-research`, Coval and Shumway (2001) provides the classical emp
 1. **Core Premium Justification**: The -3.15%/week baseline loss on long zero-beta straddles is the exact inverse of the edge harvested by systematic short straddle, strangle, and put writing backtests (`notebooks/03_baseline_backtests.ipynb` and `notebooks/04_param_sweep.ipynb`).
 2. **OTM Put Richness**: The monotonic decay where OTM puts lose up to -14.5%/week explains why shorting 10–20 delta OTM puts (`lab/strategy.py`) consistently generates high raw yields, while also demonstrating that buyers are paying for catastrophic jump insurance.
 3. **Delta-Neutral vs Volatility Risk**: Demonstrates why simple equity delta-hedging does not eliminate option strategy variance: because market volatility carries its own negative price of risk, a delta-neutral book remains completely exposed to volatility factor shocks, reinforcing the need for regime filters developed in `notebooks/09_vrp_study.ipynb`.
+
+## Relevance to Personal Trading & Research
+
+- **Rating:** High
+- **Rationale:** Foundational empirical baseline proving that systematic option selling (short ATM/OTM straddles and short puts) captures massive positive excess returns because option buyers pay a steep premium for volatility insurance (-3.15%/week on zero-beta straddles). Confirms that delta-neutral strategies remain exposed to priced volatility risk factors.
+
+## Notable Citations to Follow Up
+
+1. **Rubinstein, Mark (1984)** — *A Simple Formula for the Expected Rate of Return of an Option over a Finite Holding Period* (Journal of Finance, 39(5), 1503-1509).
+   - Derives analytical formulas for expected option holding-period returns under general diffusion processes.
+2. **Breeden, Douglas T. (1979)** — *An Intertemporal Asset Pricing Model with Stochastic Consumption and Investment Opportunities* (Journal of Financial Economics, 7(3), 265-296).
+   - Foundational CCAPM theory explaining why stochastic volatility and shifts in the investment opportunity set carry independent factor risk premia.
+3. **Cox, John C., and Stephen A. Ross (1976)** — *The Valuation of Options for Alternative Stochastic Processes* (Journal of Financial Economics, 3(1-2), 145-166).
+   - Evaluates option pricing under non-lognormal processes, jump diffusions, and CEV models.

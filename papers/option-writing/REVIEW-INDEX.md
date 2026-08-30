@@ -10,3 +10,4 @@
 | [`bondarenko-2014-why-are-puts-expensive`](bondarenko-2014-why-are-puts-expensive.md) | High | Shows selling OTM index puts yields massive excess returns (>40% annualized) that cannot be rationalized by Peso problems. | 3 |
 | [`carr-wu-2009-variance-risk-premia`](carr-wu-2009-variance-risk-premia.md) | High | Formulates synthetic variance swap replication; shows index VRP is pervasive (~50%/mo loss for buyers) and unexplainable by CAPM/FF. | 3 |
 | [`cheng-2019-vix-premium`](cheng-2019-vix-premium.md) | High | Uncovers low premium-response puzzle; proves timing/gating short-vol exposure doubles Sharpe and halves drawdown. | 3 |
+| [`coval-shumway-2001-expected-option-returns`](coval-shumway-2001-expected-option-returns.md) | High | Foundational proof of negative volatility premium; zero-beta straddles lose ~3.15%/wk rewarding systematic option writers. | 3 |
