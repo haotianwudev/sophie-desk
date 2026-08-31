@@ -90,10 +90,24 @@ or skip, no fuzzy/template fallback"). This changes what you need to do differen
      - `Exploring Different Dynamics of Recurrent Neural Network Methods for Stock Market Prediction - A Comparative Study` | Why: "Evaluates Long Short-Term Memory (LSTM) recurrent neural networks for multi-horizon financial asset price and volatility forecasting." | Surfaced by: `[Reinforcement Learning in Quantitative Trading: From Prediction to Optimal Action](https://www.sophie-ai-finance.com/articles/reinforcement-learning-quantitative-trading-optimal-action)`
      - `A Systematic Approach to Portfolio Optimization: A Comparative Study of Reinforcement Learning Agents, Market Signals, and Investment Horizons` | Why: "Benchmarks deep reinforcement learning agents (PPO, A2C, DDPG) against classical mean-variance and risk-parity portfolio optimization frameworks." | Surfaced by: `[Reinforcement Learning in Quantitative Trading: From Prediction to Optimal Action](https://www.sophie-ai-finance.com/articles/reinforcement-learning-quantitative-trading-optimal-action)`
   5. Probe verified: `bash probes/gdocs-classify-batch.sh` -> `OK 150/215 docs classified, 849 citation candidate rows`.
+- **2026-08-31** — Independently verified. **The Why-text fix from commit e19888e held**: a
+  robust check found zero new reused-Why instances from this batch's 72 new rows (169 affected
+  rows total, same absolute count as before this batch -- just a lower percentage now that the
+  denominator grew). No junk titles, no unmerged duplicates. Spot-checked the new `WHY_MAP`
+  entries directly: genuinely specific, named-paper descriptions (Andrew Lo, Halbert White,
+  Fulvio Corsi, NY Fed, CFA Institute), not disguised boilerplate -- first batch that needed
+  **no cleanup at all**. One harmless artifact noted, not fixed: two `WHY_MAP` keys differing
+  only by a trailing "1" ("...factor mimicking portfolios" / "...factor mimicking portfolios1")
+  share identical text -- likely an unstripped footnote digit; neither actually got triggered
+  in this batch's output, so no duplicate row resulted, left as-is. Re-ran the topic regrouping
+  to fold new rows into sections; independently diffed against the last commit twice (before
+  and after the regrouping write) -- perfect multiset match both times.
 
 ## Result
 
-- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` (849 cumulative candidate rows, updated under exact WHY_MAP match rule).
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **913 real candidate rows** (849
+  gdocs-sourced + 64 pure-citation-following), organized into topic sections. First batch since
+  the Why-text fix landed, and it worked as intended: no new quality regressions.
 - Extractor script: `scripts/extract_gdoc_citations.py` (updated with Batch 4 exact WHY_MAP entries, canonical title mappings, and domain/path filters).
 - Verification probe: `probes/gdocs-classify-batch.sh`
 
