@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-08-31T00:50:53+00:00Z",
+  "generated_at": "2026-08-31T00:56:05+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [],
   "tasks": [
     {
       "id": "gdocs-classify-batch6",
@@ -14,9 +13,8 @@
       "status": "active",
       "assignee": "agy",
       "gate": "",
-      "stall_flag": "",
-      "probe_status": "OK",
-      "progress": "190/215 docs classified, 1035 citation candidate rows"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (76642 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     },
     {
       "id": "spx-option-backfill",
@@ -25,9 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 527/1360 \u00b7 log 2h ago"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (76645 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }

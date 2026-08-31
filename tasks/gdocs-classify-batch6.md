@@ -9,8 +9,8 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-classify-batch.sh
-progress: 190/215 docs classified, 1035 citation candidate rows
-probe_status: OK
+progress: <3>WSL (76642 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+probe_status: ERROR
 stall_flag: 
 outcome:
 artifacts:
