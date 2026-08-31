@@ -59,8 +59,18 @@ templated text.
   - Filtered out 968 non-research / news / generic marketing / legal statute / course notes entries.
   - Added 187 new candidate rows and merged 21 existing rows in `papers/FOLLOWUP-CANDIDATES.md` (probe: 1036 total candidate rows).
   - Added canonical title mappings in `clean_paper_title()`, source suffix strips (`- PMC`, `- PhilArchive`, `- UNSW`, `- DiVA`, etc.), and domain/path rejects.
+- **2026-08-31** — Independently verified. Why-text fix continues to hold: reused-Why rows rose
+  only 169 -> 171 out of 187 new (~1%), vs. the pre-fix ~22% rate. No junk titles. One valuable
+  merge found: "A Machine Learning Approach to Regime Modeling" existed as a pre-fix row (old
+  templated Why, from batch 2/3) and got independently re-discovered here with a genuinely
+  specific description -- merged into one row using the good text and both source articles,
+  fixing one of the old generic rows for free. Regrouped and diffed against the last commit
+  before and after -- only the intentional merge changed anything.
 
 ## Result
 
-[FOLLOWUP-CANDIDATES.md](file:///F:/workspace/sophie-desk/papers/FOLLOWUP-CANDIDATES.md), [extract_gdoc_citations.py](file:///F:/workspace/sophie-desk/scripts/extract_gdoc_citations.py)
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **1099 real candidate rows** (1035
+  gdocs-sourced + 64 pure-citation-following), organized into topic sections.
+- Extractor script: `scripts/extract_gdoc_citations.py`
+- [FOLLOWUP-CANDIDATES.md](file:///F:/workspace/sophie-desk/papers/FOLLOWUP-CANDIDATES.md), [extract_gdoc_citations.py](file:///F:/workspace/sophie-desk/scripts/extract_gdoc_citations.py)
 
