@@ -71,9 +71,31 @@ after verification, not by this task.
      - `Comparing Machine Learning Methods—SVR, XGBoost, LSTM, and Deep Neural Networks for Stock Price Prediction` | Why: "Benchmarks support vector regression, gradient boosted trees, and deep neural networks for multi-step stock price forecasting." | Surfaced by: `[LSTM in Systematic Trading](https://www.sophie-ai-finance.com/articles/lstm-systematic-trading-deep-dive-architecture-application-performance)`
      - `FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance` | Why: "Surveys deep reinforcement learning algorithms applied to dynamic portfolio optimization, algorithmic execution, and market making." | Surfaced by: `[LSTM in Systematic Trading](https://www.sophie-ai-finance.com/articles/lstm-systematic-trading-deep-dive-architecture-application-performance)`
   5. Probe verified: `bash probes/gdocs-classify-batch.sh` -> `OK 110/215 docs classified, 779 citation candidate rows`.
+- **2026-08-30** — Independently verified (my own cell-index-based check script had a bug this
+  time -- reported "0 pure citation-following rows" when there were actually 64; redone with a
+  substring-based check, robust against column-position drift). Found and fixed 2 real issues:
+  an exact within-doc duplicate with a garbled escaped-pipe title ("Do Hedge Funds Strategically
+  Misreport... \| Management Science..."), and a genuine cross-article duplicate ("Equity
+  Volatility Term Premia" cited by two different Sophie articles), merged with combined sources.
+  Re-ran the topic regrouping script to fold the new rows into their sections -- had to fix a bug
+  in it first (didn't exclude the *other* 9 subsections' repeated headers when re-running on an
+  already-grouped file). Independently diffed against the last commit: only the 2 intentional
+  merges changed, everything else preserved exactly.
+  **Confirmed the batch-2 Why-text issue is still present, not fixed**: this task's own 5 example
+  rows above include one with clearly templated text ("Investigates the theoretical mechanics,
+  empirical dynamics, and quantitative implementations of \<title\> in \<topic\>") -- the exact
+  echo-the-title-back pattern the v2 citation task was supposed to have eliminated. A full
+  robust scan puts this at **~22% of all 779 gdocs-sourced rows now** (up from ~7% after batch
+  2), continuing to climb. Root cause unchanged from the batch-2 finding: citations without a
+  specific `WHY_MAP` entry fall through to a generic fallback. Not fixed in this pass -- flagged
+  to the user as a trend worth a real decision before more batches compound it further.
 
 ## Result
 
-- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **779 real candidate rows** (cumulative total across batches 1–3 and original citation backlog).
-- Extractor script: `scripts/extract_gdoc_citations.py` (updated with batch 3 domain filters and canonical title mappings).
-- Verification probe: `probes/gdocs-classify-batch.sh` (`OK 110/215 docs classified, 779 citation candidate rows`).
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **841 real candidate rows** (cumulative,
+  after the 2 merges above; organized into topic sections, not a flat table).
+- Extractor script: `scripts/extract_gdoc_citations.py` (updated with batch 3 domain filters and
+  canonical title mappings).
+- Verification probe: `probes/gdocs-classify-batch.sh`
+- **Known gap, worsening**: ~22% of gdocs-sourced rows have generic/templated `Why` text rather
+  than an individually verified one (see finding above). Titles and sourcing remain correct.
