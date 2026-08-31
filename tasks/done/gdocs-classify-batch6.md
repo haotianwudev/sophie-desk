@@ -66,8 +66,17 @@ rate under this rule (down from ~22% pre-fix) -- keep doing exactly what worked 
     4. *Factor Timing* — Ilmanen, Israel, Lee, Moskowitz, and Thapar (AQR / NBER) empirical study demonstrating that dynamic factor timing offers modest economic benefits and is easily overwhelmed by turnover costs.
     5. *Factor Timing with Portfolio Characteristics* — EFMA study evaluating dynamic factor timing strategies using macroeconomic state variables, valuation spreads, and momentum characteristics.
 
+- **2026-08-31** — Independently verified. Reused-Why rate stayed flat (171 rows affected, same
+  as post-batch-5, zero new instances from this batch's 86 new rows) -- the fix holds across all
+  6 batches now. One more pre/post-fix merge found (same pattern as batch 5): "Machine Learning
+  for Market Microstructure and High Frequency Trading" existed pre-fix with a wrongly matched
+  Why (a "UK Government Foresight" description on a Kearns & Nevmyvaka paper) and got correctly
+  re-curated in this batch -- merged, keeping the correct text and both sources.
+
 ## Result
 
-- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — 1122 citation candidate rows (100% of 215/215 matched docs classified and extracted).
+- Candidate backlog: `papers/FOLLOWUP-CANDIDATES.md` — **1184 real candidate rows** (1121
+  gdocs-sourced + 63 pure-citation-following), organized into topic sections. **215/215 matched
+  docs classified — full corpus complete.**
 - Extractor script: `scripts/extract_gdoc_citations.py`
 - [FOLLOWUP-CANDIDATES.md](file:///F:/workspace/sophie-desk/papers/FOLLOWUP-CANDIDATES.md), [extract_gdoc_citations.py](file:///F:/workspace/sophie-desk/scripts/extract_gdoc_citations.py)
