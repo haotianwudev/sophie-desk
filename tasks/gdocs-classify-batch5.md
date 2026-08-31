@@ -2,7 +2,7 @@
 id: gdocs-classify-batch5
 title: Classify+extract batch 5 of remaining matched gdocs (docs 151-190 of 215)
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
