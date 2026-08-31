@@ -2,7 +2,7 @@
 id: gdocs-classify-batch6
 title: Classify+extract batch 6 (final) of remaining matched gdocs (docs 191-215 of 215)
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-desk
