@@ -1,11 +1,23 @@
 {
-  "generated_at": "2026-08-31T00:26:03+00:00Z",
-  "task_count": 1,
+  "generated_at": "2026-08-31T00:39:15+00:00Z",
+  "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
+  "stalled_active": [],
   "tasks": [
+    {
+      "id": "gdocs-classify-batch5",
+      "title": "Classify+extract batch 5 of remaining matched gdocs (docs 151-190 of 215)",
+      "lane": "research",
+      "status": "active",
+      "assignee": "agy",
+      "gate": "",
+      "stall_flag": "",
+      "probe_status": "OK",
+      "progress": "150/215 docs classified, 849 citation candidate rows"
+    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
@@ -13,8 +25,9 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (76502 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "stall_flag": "",
+      "probe_status": "RUN",
+      "progress": "SPXW 526/1360 \u00b7 log 2h ago"
     }
   ]
 }

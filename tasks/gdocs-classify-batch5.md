@@ -9,13 +9,13 @@ repo: sophie-desk
 blocker:
 next:
 probe: bash probes/gdocs-classify-batch.sh
-progress:
-probe_status:
-stall_flag:
+progress: 150/215 docs classified, 849 citation candidate rows
+probe_status: OK
+stall_flag: 
 outcome:
 artifacts:
 created: 2026-08-31
-updated: 2026-08-31
+updated: 2026-08-30
 ---
 
 ## Goal
