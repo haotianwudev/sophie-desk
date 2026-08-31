@@ -1177,6 +1177,105 @@ WHY_MAP = {
     "smartfinrag interactive modularized financial rag live demo system": "Develops an interactive modularized RAG architecture featuring adaptive chunking and dynamic query expansion for financial question answering.",
     "llm output drift cross provider validation mitigation for financial workflows": "Quantifies stochastic output drift across LLM provider updates and proposes deterministic consensus validation for compliance workflows.",
     "the future and fintech knowledge graphs and its applications in finance": "Surveys entity extraction, relational link prediction, and enterprise knowledge graph architectures in financial risk management.",
+    # --- Batch 6 Curated Research Papers ---
+    "a comparison of the kelly criterion and a mean variance model to portfolio selection with kospi 200": "Empirically benchmarks Kelly capital growth optimization against Markowitz mean-variance portfolio construction in Korean equity index markets.",
+    "a new interpretation of information rate": "John L. Kelly Jr.'s foundational 1956 paper introducing the Kelly criterion to maximize the asymptotic growth rate of capital in information-theoretic betting and communication channels.",
+    "a subordinated stochastic process model with finite variance for speculative prices": "Peter K. Clark's seminal Econometrica paper introducing the Mixture of Distributions Hypothesis (MDH) linking price volatility to stochastic latent information flow.",
+    "aggregate confusion the divergence of esg ratings": "Berg, Kölbel, and Rigobon's seminal MIT Sloan study decomposing ESG rating divergence into measurement, scope, and weight discrepancies across major rating agencies.",
+    "an empirical analysis of counterparty risk in cds prices": "Empirically isolates counterparty credit risk and joint default probabilities embedded in single-name credit default swap spreads.",
+    "artificial intelligence vs efficient markets a critical reassessment of predictive model in the big data era": "MDPI empirical study analyzing the limits of predictability and out-of-sample alpha decay in deep learning models across market regimes.",
+    "bloomberggpt a large language model for finance": "Bloomberg quantitative research paper introducing BloombergGPT, a 50-billion parameter decoder-only language model trained on domain-specific financial data and general corpora.",
+    "combinatorial information market design": "Robin Hanson's seminal paper introducing Logarithmic Market Scoring Rules (LMSR) for automated market making and combinatorial prediction markets.",
+    "computing the ssr": "Quantitative study developing robust numerical estimation algorithms for the Skew Stickiness Ratio (SSR) from discrete option surface observations.",
+    "conditional extreme risk black swan hedging and asset prices": "University of Hawaii study modeling tail-risk pricing, black swan hedging mechanics, and extreme value theory distributions in equity asset pricing.",
+    "convergence studies on monte carlo methods for pricing mortgage backed securities": "MDPI study evaluating quasi-Monte Carlo Sobol sequences and Brownian bridge path generation for accelerated mortgage-backed security pricing.",
+    "credit default swaps": "Federal Reserve Board FEDS study analyzing market liquidity, price discovery, and systemic interconnectedness across sovereign and single-name corporate CDS markets.",
+    "credit risk modeling and analysis using copula method and changepoint approach to survival data": "Columbia University doctoral dissertation developing dynamic copula models and structural changepoint survival analysis for multi-name credit portfolio default modeling.",
+    "deep limit order book forecasting a microstructural guide": "Comprehensive academic review analyzing spatial-temporal feature engineering, DeepLOB convolutional neural networks, and microstructural order book dynamics.",
+    "divergence and aggregation of esg ratings a survey": "Comprehensive academic survey detailing mathematical aggregation methodologies, rating divergence drivers, and portfolio implications of divergent ESG ratings.",
+    "esg and financial performance aggregated evidence from more than 2000 empirical studies": "Friede, Busch, and Bassen's comprehensive meta-analysis of over 2,000 empirical studies demonstrating a positive relation between corporate ESG criteria and financial performance.",
+    "esg ratings a compass without direction": "Harvard Law study evaluating the lack of standardization and high correlation breakdown across commercial ESG rating methodologies.",
+    "essays on market microstructure": "Purdue University doctoral dissertation examining informed trading, high-frequency quoting dynamics, and institutional order execution.",
+    "estimating u s cross border securities flows ten years of the tic slt": "Federal Reserve study analyzing a decade of Treasury International Capital (TIC) data to measure foreign investor portfolio shifts across US equities, Treasuries, and corporate bonds.",
+    "evaluating trading strategy": "Campbell Harvey and Yan Liu's seminal study deriving multiple testing hurdle rates and haircut Sharpe ratios to adjust for data-mining and backtest overfitting.",
+    "explaining credit default swap spreads with equity volatility and jump risks of individual firms": "Cremers, Driessen, and Maenhout (BIS Working Paper 181) seminal empirical study demonstrating that single-stock option-implied volatility and jump risk explain corporate CDS spreads.",
+    "factor timing": "Ilmanen, Israel, Lee, Moskowitz, and Thapar (AQR / NBER) empirical study demonstrating that dynamic factor timing offers modest economic benefits and is easily overwhelmed by turnover costs.",
+    "factor timing with portfolio characteristics": "EFMA study evaluating dynamic factor timing strategies using macroeconomic state variables, valuation spreads, and momentum characteristics.",
+    "financial news analysis using llms": "Benchmarks foundation LLMs against domain-tuned architectures for nuanced financial entity extraction and contextual sentiment scoring.",
+    "finding the value at risk for credit default swaps": "DiVA portal study applying copula-based Monte Carlo simulations and historical VaR models to measure market and credit risks in CDS portfolios.",
+    "findpo financial sentiment analysis for algorithmic trading through preference optimization of llms": "Develops Direct Preference Optimization (DPO) frameworks for financial LLMs to align sentiment signals with trading execution and downside risk aversion.",
+    "fine tuning gemma 7b for enhanced sentiment analysis of financial news headlines": "Benchmarks parameter-efficient fine-tuning (PEFT/LoRA) of open-weights LLMs for domain-specific financial news headline sentiment classification.",
+    "fingpt open source financial large language model": "Introduces FinGPT, an open-source financial large language model framework utilizing low-rank adaptation (LoRA) for real-time sentiment analysis and alpha generation.",
+    "finllama llm based financial sentiment analysis for algorithmic trading": "Applies instruction-tuned LLaMA architectures to extract high-precision directional sentiment signals from financial news feeds for algorithmic trading.",
+    "funding liquidity shocks in a quasi experiment evidence from the cds big bang": "American Economic Association study exploiting the 2009 CDS Big Bang to measure how derivative standardization impacted corporate bond funding liquidity and CDS-bond basis arbitrage.",
+    "gamma and vega hedging using deep distributional reinforcement learning": "Frontiers in AI study developing deep distributional reinforcement learning algorithms for multi-period gamma and vega hedging of non-linear option portfolios under transaction friction.",
+    "harvesting volatility risk premium": "Imperial College London quantitative thesis analyzing the empirical magnitude, time-series predictability, and delta-hedged harvesting of the equity index variance risk premium.",
+    "hft and ghost liquidity": "ESMA quantitative research study analyzing high-frequency quote cancellation rates and fleeting phantom liquidity in electronic limit order books.",
+    "historical performance of put writing strategy": "Oleg Bondarenko's seminal Cboe study evaluating the long-term risk-return profile, Sharpe ratios, and drawdown dynamics of systematic SPX cash-secured put writing.",
+    "how misunderstanding factor model set unreasonable expectations for smart beta": "Journal of Portfolio Management study examining how benchmark mismatch and factor cyclicality lead to misaligned expectations in systematic factor strategies.",
+    "how misunderstanding factor models set unreasonable expectations for smart beta": "Journal of Portfolio Management study examining how benchmark mismatch and factor cyclicality lead to misaligned expectations in systematic factor strategies.",
+    "how to properly compute credit default swap returns": "Formulates a mathematically rigorous framework for computing daily Mark-to-Market and cash-flow returns on unfunded single-name credit default swap contracts.",
+    "implied volatility volatility smile skew smirk and risk neutral density rnd": "Fordham University quantitative treatise detailing the mathematical extraction of risk-neutral probability density functions (RND) from option implied volatility smiles via Breeden-Litzenberger.",
+    "interpretable hypothesis driven trading a rigorous walk forward validation framework for market microstructure signals": "Presents an interpretable hypothesis-driven walk-forward validation architecture for statistical microstructure signals to eliminate backtest overfitting.",
+    "interpreting the volatility smile an examination of the information content of option prices": "Federal Reserve Board research paper analyzing the macroeconomic information content, jump risk expectations, and subjective risk aversion embedded in option implied volatility smiles.",
+    "investing is compression": "Applies algorithmic information theory and Kolmogorov complexity to demonstrate that quantitative investing is mathematically equivalent to lossy data compression.",
+    "is smart beta really so smart": "Burton Malkiel's critical empirical evaluation comparing fundamental, low-volatility, and equal-weighted smart beta indexes against cap-weighted market benchmarks.",
+    "jump risk stock returns and slope of implied volatility smile": "Empirically connects equity jump risk intensities to the steepness and term structure of index option implied volatility skews.",
+    "kelly criterion from a simple random walk to lévy processes": "USC Dornsife study extending the continuous-time Kelly portfolio selection framework from Brownian motions to jump-diffusion and heavy-tailed Lévy processes.",
+    "kelly s criterion for option investment": "Georgia Tech quantitative monograph deriving continuous and discrete Kelly optimal position sizing formulas for multi-leg options strategies.",
+    "large language model for financial and investment management applications": "Journal of Portfolio Management study evaluating LLM applications across factor discovery, earnings call analysis, and automated investment committee reporting.",
+    "leveraging large language model for sentiment analysis and investment strategy development in financial markets": "MDPI study evaluating prompt engineering and retrieval-augmented LLM sentiment extraction for systematic multi-asset strategy construction.",
+    "likelihood based volatility estimators in the presence of market microstructure noise": "Dacheng Xiu's seminal study deriving quasi-maximum likelihood estimators for continuous-time volatility estimation in the presence of high-frequency bid-ask bounce and microstructure noise.",
+    "lit limit order book transformer": "Frontiers in AI study introducing LiT, a Transformer architecture designed to capture long-range spatial and temporal dependencies across multi-level limit order books.",
+    "long term capital growth the good and bad properties of the kelly and fractional kelly capital growth criteria": "MacLean and Ziemba's authoritative treatise evaluating the asymptotic optimality, finite-horizon drawdown severity, and fractional shrinkage properties of the Kelly criterion.",
+    "machine learning for market microstructure and high frequency trading": "Michael Kearns and Yuriy Nevmyvaka's seminal quantitative survey evaluating reinforcement learning and supervised models for optimal execution and high-frequency trade routing.",
+    "market impact a systematic study of the high frequency options market": "Bouchaud et al.'s empirical study analyzing square-root market impact laws, order book liquidity consumption, and high-frequency execution dynamics in options markets.",
+    "modelling the instability of mortgage backed prepayments": "Federal Reserve Bank of New York study analyzing burnout effects, turnover rates, and non-linear parameter instability in mortgage prepayment functions.",
+    "modified kelly criteria": "Simon Fraser University study proposing shrinkage and Bayesian modified Kelly formulas to stabilize portfolio growth under parameter uncertainty.",
+    "monte carlo methods for security pricing": "Phelim Boyle, Mark Broadie, and Paul Glasserman's seminal Columbia University treatise on Monte Carlo simulation techniques and variance reduction for pricing path-dependent derivatives.",
+    "mortgage backed securities": "Federal Reserve Bank of New York Staff Report detailing the market architecture, agency guarantees, TBA forward market mechanics, and prepayment risks in RMBS.",
+    "news sentiment and investment risk management innovative evidence from large language model": "Macquarie University study investigating how LLM-extracted news sentiment improves portfolio risk forecasting and dynamic Value-at-Risk estimates.",
+    "on detecting spoofing strategy in high frequency trading": "Applies machine learning classifiers to limit order book order arrival patterns to detect illegal spoofing and quote manipulation.",
+    "option portfolio selection with generalized entropic portfolio optimization": "Formulates generalized entropic portfolio optimization algorithms to size multi-strike option portfolios under non-Gaussian return distributions.",
+    "option smile volatility and implied probabilities implications of concavity in iv curves": "Quantifies the non-parametric risk-neutral probability densities implied by concave option smile geometries and investigates butterfly arbitrage bounds.",
+    "option volatility arbitrage opportunities": "LSU graduate dissertation modeling long-dated LEAP volatility term structure anomalies, calendar spread pricing, and implied vs realized volatility arbitrage.",
+    "performance of smart beta etfs in the u s market 2009 2019": "Singapore Management University empirical study analyzing the tracking error, factor tilts, and net-of-fee alpha of US smart beta ETFs from 2009 to 2019.",
+    "portfolio optimization for binary options based on relative entropy": "Applies relative entropy minimization and information theory to solve optimal multi-asset binary options portfolio sizing.",
+    "positive versus negative esg portfolio screening and investors preferences": "Empirically benchmarks positive best-in-class versus negative exclusionary ESG portfolio screening across risk-adjusted return and tracking error distributions.",
+    "practical implementation of the kelly criterion optimal growth rate number of trades and rebalancing frequency for equity portfolios": "Frontiers in Applied Mathematics study evaluating the practical implementation of Kelly growth optimal sizing, trade frequency, and dynamic rebalancing under transaction costs.",
+    "prediction markets": "Justin Wolfers and Eric Zitzewitz's seminal survey analyzing information aggregation, contract design, and market efficiency across prediction markets.",
+    "prepayment modeling in mortgage backed securities": "DiVA research study formulating stochastic interest rate models (Hull-White) coupled with empirical refinancing incentive functions for RMBS option-adjusted spread valuation.",
+    "rise of the machines application of machine learning to mortgage prepayment modeling": "Journal of Fixed Income study applying XGBoost and neural network survival models to forecast path-dependent non-linear mortgage prepayment curves.",
+    "risk constrained kelly gambling": "Stephen Boyd et al. (Stanford University) study formulating convex optimization frameworks for risk-constrained Kelly capital allocation with Value-at-Risk and variance constraints.",
+    "safe haven cds premium": "American Economic Association study analyzing cross-border safe-haven capital flows and sovereign credit default swap premia during global financial stress.",
+    "securitized product investment risk management perspectives": "Bank of Japan quantitative study analyzing tranche subordination, correlation breakdown risk, and loss-given-default modeling in structured credit products.",
+    "sentiment and volatility in financial markets a review of bert and garch applications during geopolitical crises": "Surveys hybrid FinBERT and GARCH volatility forecasting architectures during systemic market dislocations and geopolitical stress regimes.",
+    "sentiment trading with large language model": "Develops an end-to-end quantitative trading framework leveraging LLM sentiment reasoning to generate cross-sectional equity alpha signals.",
+    "simply put the performance of cash secured put writing": "Neuberger Berman and Cboe whitepaper analyzing the structural variance risk premium harvested via systematic cash-secured SPX put writing.",
+    "sizing the risk kelly vix and hybrid approaches in put writing on index options": "Develops hybrid Kelly-VIX position sizing algorithms to dynamically scale leverage and collateral reserves in systematic index put-writing strategies.",
+    "smart beta made smart synthetic risk factors for institutional and retail investors": "Presents a synthetic factor construction methodology to isolate pure factor risk premia from uncompensated idiosyncratic noise in smart beta portfolios.",
+    "smart beta versus smart alpha": "Jacobs and Levy's quantitative study deconstructing smart beta indexing strategies into explicit factor exposures and evaluating capacity constraints.",
+    "smile dynamics iv": "Lorenzo Bergomi's seminal quantitative treatise on volatility smile dynamics, multi-factor variance curve models, and the Skew Stickiness Ratio.",
+    "stochastic volatility and the volatility smile": "DiVA research monograph deriving the calibration mechanics and smile kinematics of Heston, SABR, and local volatility models.",
+    "systematic risk and the price structure of individual equity options": "Rotman School of Management study decomposing single-stock option implied volatilities into systematic market risk and idiosyncratic firm volatility components.",
+    "tackling estimation risk in kelly investing using options": "Develops a robust optimization framework using option collars and put overlays to protect Kelly growth portfolios against severe parameter estimation risk.",
+    "the black scholes formula and volatility smile": "Examines theoretical model violations of constant volatility in the Black-Scholes framework and surveys parametric smile models.",
+    "the central bank balance sheet trilemma": "Federal Reserve research note analyzing the structural policy trade-offs between reserve supply, liquidity safety nets, and central bank balance sheet footprint.",
+    "the complex nature of financial market microstructure the case of a stock market crash": "Investigates liquidity collapse, order book asymmetry, and cascade feedback loops during extreme market flash crashes.",
+    "the contribution of foreign holdings of u s treasury securities to the u s long term interest rate": "Dallas Fed working paper quantifying the downward term premium pressure exerted by global reserve manager foreign Treasury holdings on US benchmark yields.",
+    "the cross border trail of the treasury basis trade": "Federal Reserve Board note mapping foreign institutional leverage, repo financing, and cross-border arbitrage capital flows in the US Treasury cash-futures basis trade.",
+    "the derivative payoff bias": "American Economic Association study documenting retail investor cognitive biases and systematic overpayment for lottery-like asymmetric derivative payoffs.",
+    "the kelly criterion exploiting favorable bets and the stock market": "David Aldous's mathematical treatise analyzing the asymptotic growth properties, drawdown distributions, and risk of ruin under the Kelly criterion.",
+    "the plaza accord 30 years later": "Jeffrey Frankel's Harvard Kennedy School treatise evaluating the macroeconomic effectiveness, currency intervention dynamics, and lasting global imbalances of the 1985 Plaza Accord.",
+    "toward esg alpha analyzing esg exposures through a factor lens": "Financial Analysts Journal study demonstrating that ESG ratings primarily load on conventional equity factors (size, quality, momentum) rather than generating standalone alpha.",
+    "understanding retail investors dynamic trading behavior in the u s options market": "Cboe Global Markets quantitative research study analyzing retail option order flow, intraday trading patterns, and retail sentiment dynamics across US options exchanges.",
+    "using the kelly criterion for investing": "William T. Ziemba's comprehensive chapter on applying full and fractional Kelly betting algorithms across financial asset classes and speculative markets.",
+    "vanna volga and smile consistent implied volatility surface of equity index options": "Extends the vanna-volga method to construct arbitrage-free, smile-consistent implied volatility surfaces across equity index option strikes.",
+    "vega risk and the smile": "Columbia University quantitative study analyzing unhedged vega risk, volatility-of-volatility exposures, and dynamic smile hedging across strike manifolds.",
+    "versatune an efficient data composition framework for training multi capability llms": "EMNLP research paper introducing VersaTune, a multi-stage data selection framework for optimizing fine-tuning data mixtures across diverse domain capabilities.",
+    "what can volatility smiles tell us about the too big to fail problem": "Journal of Financial and Quantitative Analysis study using banking sector option volatility smiles to extract market-implied systemic default and bailout probabilities.",
+    "will the market fix the market a theory of stock exchange competition and innovation": "Eric Budish et al.'s seminal study analyzing high-frequency trading latency arbitrage, frequent batch auctions, and stock exchange competition.",
+
 }
 
 
@@ -1418,6 +1517,81 @@ def is_url_path_rejected(url: str) -> tuple[bool, str]:
         "/furiproject/",
         "/ahl",
         "/wagnerlawgroup.com/",
+        # Batch 6 reject paths
+        "/0d1260b891a96241316d883d4f5bfaec_MIT15_450F10_lec02.pdf",
+        "/12-1070-eia9-impact-circuit-breakers-on-market-outcomes.pdf",
+        "/20200507.pdf",
+        "/4700-07-Notes-GBM.pdf",
+        "/4701Sum07/lec0813.pdf",
+        "/5632/black_scholes.pdf",
+        "/7-career-paths-in-quantitative-finance/",
+        "/Analysis_of_Securitized_Asset_Liquidity.pdf",
+        "/CboeGlobalIndices_PUT-Index.pdf",
+        "/Cboe_BuyWrite_Indices_Methodology.pdf",
+        "/Class416/Lecture07.pdf",
+        "/ESMA36-287652198-2699_Final_Report_on_Greenwashing.pdf",
+        "/Good_Bad_Kelly.pdf",
+        "/Govert_Verkes_InfCom.pdf",
+        "/IRC_Lecture13_2019.pdf",
+        "/IRC_Lecture3_2019.pdf",
+        "/Kelly_Criterion_Final_Presentation.pdf",
+        "/Margin_Requirement_Examples.pdf",
+        "/PMC10813872/",
+        "/PMC3337209/",
+        "/Puente-Slides.pdf",
+        "/Risk_Topic_1.pdf",
+        "/Sections20_1_2_3.pdf",
+        "/Slides2_Class3.pdf",
+        "/Updated-Kelly-Criterion-Poster-2023.pdf",
+        "/Valuing-weather-and-climate",
+        "/XSP_Options_Fact_Sheet.pdf",
+        "/a-primer-on-prediction-markets/",
+        "/ai-and-big-data-in-investments-Part-III-final.pdf",
+        "/bank-japans-seductive-widow-maker-trade",
+        "/basel_framework/chapter/MAR/21.htm",
+        "/benchmark-indices-series-income-generation-and-smoother-returns-with-cboes-bxm-bxmd-put-and-cmbo-indices/",
+        "/capabilities/equities/smart-beta",
+        "/docu-2018-02-brochure-fi-challenges-7-things-au.pdf",
+        "/dont-get-stuck-paying-the-dividend-on-your-short-trade/",
+        "/election-results-show-potential-of-prediction-markets",
+        "/fineng1_2008.pdf",
+        "/forecast_2024.pdf",
+        "/global-economy-shakes-off-tariff-shock-amid-tech-driven-boom",
+        "/glossary/quantitative-investing/smart-beta-or-alternative-beta",
+        "/gray/it.pdf",
+        "/guardrails-market-volatility",
+        "/h10/summary/",
+        "/henry-schwartzs-zero-day-spx-iron-condor-strategy-a-deep-dive/",
+        "/how-to-right-size-hedges-via-beta-weighting-with-xsp-options/",
+        "/impact-vs-esg",
+        "/insights/is-smart-beta-really-so-smart",
+        "/institutional-footprints",
+        "/investors-need-to-understand-the-risks-of-smart-beta",
+        "/is-esg-investing-more-hype-than-help-for-investment-portfolios",
+        "/ln4.pdf",
+        "/margin-accounts",
+        "/mcbdc_bridge.htm",
+        "/portfolio-margin-intraday-trading",
+        "/pr/kelly.html",
+        "/reverse-convertibles-complex-investments",
+        "/revisions-to-the-federal-reserve-dollar-indexes-20190115.html",
+        "/seminars/eng/2006/stress/pdf/ms.pdf",
+        "/smart-beta-between-active-passive-realms",
+        "/spx-fact-sheet.pdf",
+        "/state-anti-esg-movement-evolves-to-target-investor-access",
+        "/study-machine-learning-can-predict-market-behavior",
+        "/the-payment-system-puts-a-floor-on-the-feds-balance-sheet",
+        "/tradable_products/index-options-benefits-tax-treatment/",
+        "/trade-up-to-market-close-with-xsp",
+        "/understanding-smart-beta-strategies-to-boost-investment-portfolio-performance",
+        "/uyeda-statement-abs-concept-release-092625",
+        "/what-are-etf-expense-ratios-and-why-do-they-matter",
+        "/what-is-esg-investing",
+        "/what-is-the-best-approach-to-factor-investing",
+        "/what-volatility-risk-premium",
+        "/why-trade-xsp-vs-spy-a-breakdown-of-the-benefits/",
+        "/xsp-options/",
+        "/~gray/",
     ]
     for rp in reject_paths:
         if rp in path:
@@ -1431,6 +1605,211 @@ def is_url_path_rejected(url: str) -> tuple[bool, str]:
 
 def clean_paper_title(raw_text: str, url: str) -> str | None:
     # URL-specific canonical titles for known truncations
+    # Batch 6 canonical titles
+    if "0430.pdf" in url:
+        return "The Contribution of Foreign Holdings of U.S. Treasury Securities to the U.S. Long-Term Interest Rate"
+    if "0718-1876/20/2/77" in url:
+        return "Leveraging Large Language Models for Sentiment Analysis and Investment Strategy Development in Financial Markets"
+    if "07_Zhu.pdf" in url:
+        return "An Empirical Analysis of Counterparty Risk in CDS Prices"
+    if "0895330042162377" in url:
+        return "Prediction Markets"
+    if "10.1080/1351847X.2025.2585967" in url:
+        return "Positive versus Negative ESG Portfolio Screening and Investors' Preferences"
+    if "10.3389/frai.2023.1129370" in url:
+        return "Gamma and Vega Hedging Using Deep Distributional Reinforcement Learning"
+    if "10.7916/D8K361X4" in url:
+        return "Credit Risk Modeling and Analysis Using Copula Method and Changepoint Approach to Survival Data"
+    if "11EFB91E95DAB3F4FBE243CD390B5F44" in url:
+        return "What Can Volatility Smiles Tell Us About the Too Big to Fail Problem?"
+    if "1616485/full" in url:
+        return "LiT: Limit Order Book Transformer"
+    if "172496-K-Huang-Vanna-Volga" in url:
+        return "Vanna-Volga and Smile-Consistent Implied Volatility Surface of Equity Index Options"
+    if "1902.05418" in url:
+        return "Market Impact: A Systematic Study of the High Frequency Options Market"
+    if "1914083" in url:
+        return "A Subordinated Stochastic Process Model with Finite Variance for Speculative Prices"
+    if "2009.14818" in url:
+        return "On Detecting Spoofing Strategies in High Frequency Trading"
+    if "2022023pap.pdf" in url:
+        return "Credit Default Swaps"
+    if "2025.emnlp-main.337" in url:
+        return "VersaTune: An Efficient Data Composition Framework for Training Multi-Capability LLMs"
+    if "2079-9292/14/9/1721" in url:
+        return "Artificial Intelligence vs. Efficient Markets: A Critical Reassessment of Predictive Models in the Big Data Era"
+    if "222553496" in url:
+        return "Jump Risk, Stock Returns, and Slope of Implied Volatility Smile"
+    if "2227-7072/3/2/136" in url:
+        return "Convergence Studies on Monte Carlo Methods for Pricing Mortgage-Backed Securities"
+    if "227623956" in url:
+        return "Long-Term Capital Growth: The Good and Bad Properties of the Kelly and Fractional Kelly Capital Growth Criteria"
+    if "2303.17564" in url:
+        return "BloombergGPT: A Large Language Model for Finance"
+    if "2306.06031" in url:
+        return "FinGPT: Open-Source Financial Large Language Models"
+    if "2307.15718" in url:
+        return "Option Smile Volatility and Implied Probabilities: Implications of Concavity in IV Curves"
+    if "2403.09267" in url:
+        return "Deep Limit Order Book Forecasting: A Microstructural Guide"
+    if "2406.16131" in url:
+        return "Computing the SSR"
+    if "2412.19245" in url:
+        return "Sentiment Trading with Large Language Models"
+    if "2507.18417" in url:
+        return "FinDPO: Financial Sentiment Analysis for Algorithmic Trading through Preference Optimization of LLMs"
+    if "2508.16598" in url:
+        return "Sizing the Risk: Kelly, VIX, and Hybrid Approaches in Put-Writing on Index Options"
+    if "2508.18868" in url:
+        return "Tackling Estimation Risk in Kelly Investing Using Options"
+    if "2510.16503" in url:
+        return "Sentiment and Volatility in Financial Markets: A Review of BERT and GARCH Applications during Geopolitical Crises"
+    if "2512.12924" in url:
+        return "Interpretable Hypothesis-Driven Trading: A Rigorous Walk-Forward Validation Framework for Market Microstructure Signals"
+    if "2604.10758" in url:
+        return "Investing is Compression"
+    if "28583036/1/files/52947500.pdf" in url:
+        return "Aggregate Confusion: The Divergence of ESG Ratings"
+    if "31/3/6" in url:
+        return "Rise of the Machines: Application of Machine Learning to Mortgage Prepayment Modeling"
+    if "320928650" in url:
+        return "A Comparison of the Kelly Criterion and a Mean-Variance Model to Portfolio Selection with KOSPI 200"
+    if "36437508.pdf" in url:
+        return "Essays on Market Microstructure"
+    if "369655284" in url:
+        return "BloombergGPT: A Large Language Model for Finance"
+    if "381579661" in url:
+        return "Fine-Tuning Gemma-7B for Enhanced Sentiment Analysis of Financial News Headlines"
+    if "393983519" in url:
+        return "FinDPO: Financial Sentiment Analysis for Algorithmic Trading through Preference Optimization of LLMs"
+    if "396435503" in url:
+        return "Financial News Analysis Using LLMs"
+    if "400193903.pdf" in url:
+        return "News Sentiment and Investment Risk Management: Innovative Evidence from Large Language Models"
+    if "51/3/10" in url:
+        return "How Misunderstanding Factor Models Set Unreasonable Expectations for Smart Beta"
+    if "577050/full" in url:
+        return "Practical Implementation of the Kelly Criterion: Optimal Growth Rate, Number of Trades, and Rebalancing Frequency for Equity Portfolios"
+    if "5GbbG2Az" in url:
+        return "Funding Liquidity Shocks in a Quasi-Experiment: Evidence from the CDS Big Bang"
+    if "9804.pdf" in url:
+        return "Modelling the Instability of Mortgage-Backed Prepayments"
+    if "Budish_paperStock-Exchange-Competition" in url:
+        return "Will the Market Fix the Market? A Theory of Stock Exchange Competition and Innovation"
+    if "Chap1_KellyZiemba.pdf" in url:
+        return "Using the Kelly Criterion for Investing"
+    if "Conditional%20Extreme%20Risk" in url:
+        return "Conditional Extreme Risk, Black Swan Hedging, and Asset Prices"
+    if "EFMA%202022_stage-3032" in url:
+        return "Factor Timing with Portfolio Characteristics"
+    if "FinLlama" in url:
+        return "FinLlama: LLM-Based Financial Sentiment Analysis for Algorithmic Trading"
+    if "Is%20Smart%20Beta%20Really%20Smart.pdf" in url:
+        return "Is Smart Beta Really So Smart?"
+    if "KearnsNevmyvakaHFTRiskBooks.pdf" in url:
+        return "Machine Learning for Market Microstructure and High Frequency Trading"
+    if "Kelly-Fin-SIFIN-Final.pdf" in url:
+        return "Kelly Criterion: From a Simple Random Walk to Lévy Processes"
+    if "N7rsBN2N" in url:
+        return "The Derivative Payoff Bias"
+    if "NYU-RAM_ESG-Paper_2021" in url:
+        return "ESG and Financial Performance: Aggregated Evidence from More than 2000 Empirical Studies"
+    if "Neuberger_Berman_Simply_PutWriting.pdf" in url:
+        return "Simply Put: The Performance of Cash-Secured Put Writing"
+    if "PMC12315853" in url:
+        return "Deep Limit Order Book Forecasting: A Microstructural Guide"
+    if "PMC12398680" in url:
+        return "Divergence and Aggregation of ESG Ratings: A Survey"
+    if "PMC7517297" in url:
+        return "Portfolio Optimization for Binary Options Based on Relative Entropy"
+    if "PMC7517377" in url:
+        return "Option Portfolio Selection with Generalized Entropic Portfolio Optimization"
+    if "PMC8724601" in url:
+        return "The Complex Nature of Financial Market Microstructure: The Case of a Stock Market Crash"
+    if "PutWriteCBOE19_v14" in url:
+        return "Historical Performance of Put-Writing Strategies"
+    if "SBFC2025_7D2_P252.pdf" in url:
+        return "How to Properly Compute Credit Default Swap Returns"
+    if "Shibo_Lu_01210524.pdf" in url:
+        return "Harvesting Volatility Risk Premium"
+    if "Simply_PutWriting.pdf" in url:
+        return "Simply Put: The Performance of Cash-Secured Put Writing"
+    if "Smart-Beta-vs-Smart-Alpha.pdf" in url:
+        return "Smart Beta versus Smart Alpha"
+    if "Sysrisk.pdf" in url:
+        return "Systematic Risk and the Price Structure of Individual Equity Options"
+    if "Toward_ESG_Alpha" in url:
+        return "Toward ESG Alpha: Analyzing ESG Exposures through a Factor Lens"
+    if "Understanding-Retail-Investors-Dynamic-Trading-Behavior" in url:
+        return "Understanding Retail Investors' Dynamic Trading Behavior in the U.S. Options Market"
+    if "Vega%20risk%20and%20the%20smileJoR.pdf" in url:
+        return "Vega Risk and the Smile"
+    if "aldous/Real_World/kelly.html" in url:
+        return "The Kelly Criterion: Exploiting Favorable Bets and the Stock Market"
+    if "article=5581&context=gradschool_theses" in url:
+        return "Option Volatility & Arbitrage Opportunities"
+    if "article=8073&context=lkcsb_research" in url:
+        return "Performance of Smart Beta ETFs in the U.S. Market: 2009–2019"
+    if "boyd/papers/pdf/kelly.pdf" in url:
+        return "Risk-Constrained Kelly Gambling"
+    if "corpgov.law.harvard.edu/2022/08/24/esg-ratings-a-compass-without-direction" in url:
+        return "ESG Ratings: A Compass Without Direction"
+    if "dachxiu.chicagobooth.edu/download/ch14.pdf" in url:
+        return "Likelihood-Based Volatility Estimators in the Presence of Market Microstructure Noise"
+    if "derivatives/bergomi.pdf" in url:
+        return "Smile Dynamics IV"
+    if "diva2:1869932" in url:
+        return "Prepayment Modeling in Mortgage Backed Securities"
+    if "diva2:302710" in url:
+        return "Stochastic Volatility and the Volatility Smile"
+    if "diva2:532660" in url:
+        return "Finding the Value at Risk for Credit Default Swaps"
+    if "esma_wp_4_2020_hft_and_ghost_liquidity" in url:
+        return "HFT and Ghost Liquidity"
+    if "estimating-u-s-cross-border-securities-flows" in url:
+        return "Estimating U.S. Cross-Border Securities Flows: Ten Years of the TIC SLT"
+    if "etd/188" in url:
+        return "The Black-Scholes Formula and Volatility Smile"
+    if "faculty.fordham.edu/rchen/iv.pdf" in url:
+        return "Implied Volatility, Volatility Smile/Skew/Smirk, and Risk-Neutral Density (RND)"
+    if "interpreting-the-volatility-smile" in url:
+        return "Interpreting the Volatility Smile: An Examination of the Information Content of Option Prices"
+    if "jpm24b.pdf" in url:
+        return "Large Language Models for Financial and Investment Management: Applications"
+    if "kellyOptionTalk1.pdf" in url:
+        return "Kelly's Criterion for Option Investment"
+    if "kelly_56.pdf" in url:
+        return "A New Interpretation of Information Rate"
+    if "mktscore.pdf" in url:
+        return "Combinatorial Information Market Design"
+    if "monte_carlo_methods_security_pricing.pdf" in url:
+        return "Monte Carlo Methods for Security Pricing"
+    if "option-smile-volatility-and-implied-probabilities" in url:
+        return "Option Smile Volatility and Implied Probabilities: Implications of Concavity in IV Curves"
+    if "pdfid=21484" in url:
+        return "Safe-Haven CDS Premia"
+    if "plaza-accord-30-years-later-0" in url:
+        return "The Plaza Accord, 30 Years Later"
+    if "ron0803a.pdf" in url:
+        return "Securitized-Product Investment: Risk Management Perspectives"
+    if "s70420-8669105-235461.pdf" in url:
+        return "Smart Beta Made Smart: Synthetic Risk Factors for Institutional and Retail Investors"
+    if "sr1001.pdf" in url:
+        return "Mortgage-Backed Securities"
+    if "the-central-bank-balance-sheet-trilemma" in url:
+        return "The Central Bank Balance-Sheet Trilemma"
+    if "the-cross-border-trail-of-the-treasury-basis-trade" in url:
+        return "The Cross-Border Trail of the Treasury Basis Trade"
+    if "tswartz/papers/kelly.pdf" in url:
+        return "Modified Kelly Criteria"
+    if "w19973.pdf" in url:
+        return "Evaluating Trading Strategies"
+    if "w26708.pdf" in url:
+        return "Factor Timing"
+    if "where-large-language-models-and-finance-meet" in url:
+        return "BloombergGPT: A Large Language Model for Finance"
+    if "work181.pdf" in url:
+        return "Explaining Credit Default Swap Spreads with Equity Volatility and Jump Risks of Individual Firms"
     if "OsakaSVI2012.pdf" in url:
         return "Arbitrage-Free SVI Volatility Surfaces"
     if "timevalue.pdf" in url:
@@ -1810,6 +2189,54 @@ def clean_paper_title(raw_text: str, url: str) -> str | None:
         r"\s*-\s*PhilArchive$",
         r"\s*-\s*The\s*Harvard\s*Law\s*School\s*Forum.*$",
         r"\s*Emory\s*University$",
+        # Batch 6 source suffixes
+        r"\s*-\s*American\s*Economic\s*Association.*$",
+        r"\s*-\s*CFA\s*Institute.*$",
+        r"\s*-\s*CFA\s*Institute\s*Blogs.*$",
+        r"\s*-\s*Climate\s*Law\s*Blog.*$",
+        r"\s*-\s*Columbia\s*University.*$",
+        r"\s*-\s*Computer\s*and\s*Information\s*Science.*$",
+        r"\s*-\s*Dacheng\s*Xiu.*$",
+        r"\s*-\s*DiVA.*$",
+        r"\s*-\s*DiVA\s*portal.*$",
+        r"\s*-\s*Documents\s*&\s*Reports.*$",
+        r"\s*-\s*ETF\s*Market\s*Canada.*$",
+        r"\s*-\s*European\s*Union.*$",
+        r"\s*-\s*Fordham\s*University\s*Faculty.*$",
+        r"\s*-\s*Frontiers.*$",
+        r"\s*-\s*HKUST\s*Math\s*Department.*$",
+        r"\s*-\s*Hillsdale\s*Investment\s*Management.*$",
+        r"\s*-\s*Jacobs\s*Levy\s*Center.*$",
+        r"\s*-\s*LSU\s*Scholarly\s*Repository.*$",
+        r"\s*-\s*Macquarie\s*University.*$",
+        r"\s*-\s*Mason\s*Experimental\s*Geometry\s*Lab.*$",
+        r"\s*-\s*NYU\s*Stern.*$",
+        r"\s*-\s*OSU\s*Math.*$",
+        r"\s*-\s*PMC\s*-\s*NIH.*$",
+        r"\s*-\s*Phenix\s*Capital.*$",
+        r"\s*-\s*PubMed\s*Central.*$",
+        r"\s*-\s*Purdue\s*University\s*Graduate\s*School.*$",
+        r"\s*-\s*Robeco\.com.*$",
+        r"\s*-\s*Robeco\s*USA.*$",
+        r"\s*-\s*Shanghai\s*Advanced\s*Institute\s*of\s*Finance.*$",
+        r"\s*-\s*Simon\s*Fraser\s*University.*$",
+        r"\s*-\s*Stanford\s*University.*$",
+        r"\s*-\s*State\s*Street\s*Global\s*Advisors.*$",
+        r"\s*-\s*State\s*Street\s*Investment\s*Management.*$",
+        r"\s*-\s*Stevens\s*Institute.*$",
+        r"\s*-\s*USC\s*Dornsife.*$",
+        r"\s*-\s*University\s*of\s*Hawaii.*$",
+        r"\s*-\s*University\s*of\s*Notre\s*Dame.*$",
+        r"\s*-\s*Web\s*page\s*for\s*Ron\s*Shonkwiler.*$",
+        r"\s*-\s*stat\.berkeley\.edu.*$",
+        r"\s*-\s*uu\s*\.diva.*$",
+        r"\s*\|\s*CFA\s*Institute.*$",
+        r"\s*\|\s*Cboe.*$",
+        r"\s*\|\s*Harvard\s*Kennedy\s*School.*$",
+        r"\s*\|\s*Jacobs\s*Levy\s*Center.*$",
+        r"\s*\|\s*Journal\s*of\s*Financial\s*and\s*Quantitative\s*Analysis.*$",
+        r"\s*\|\s*Robeco\s*Global.*$",
+        r"\s*\|\s*Yale\s*Insights.*$",
     ]
     for pattern in source_suffixes:
         title = re.sub(pattern, "", title, flags=re.I).strip()
