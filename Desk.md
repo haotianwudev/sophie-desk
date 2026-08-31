@@ -3,6 +3,7 @@
 New here? Read [sophie/work-model.md](sophie/work-model.md) first — the whole design, in plain
 English, one page. Need to relaunch or restart something? [Runbook.md](Runbook.md). Looking
 for the research paper library specifically, not tasks? [papers/Papers.md](papers/Papers.md).
+Got an idea but no budget to formalize it right now? [Todo.md](Todo.md).
 
 Live board over `tasks/`. Everything here is a query — nothing is hand-maintained.
 `progress` and `probe_status` are written by the supervisor after it runs each task's probe;

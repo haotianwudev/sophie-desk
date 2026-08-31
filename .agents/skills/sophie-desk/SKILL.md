@@ -46,6 +46,19 @@ yourself wanting to write a number into `progress`, that's the signal to re-run 
 instead (`bash probes/<name>.sh`, or `python supervisor/run.py --once` to refresh every task
 at once), not to estimate.
 
+## Capturing an idea you don't want to formalize yet
+
+Not every idea deserves a `tasks/<id>.md` file the moment it occurs to you — writing one means
+picking a lane, an assignee, deciding on a gate, maybe a probe, and that's real thinking you may
+not want to spend right now (e.g. you're low on budget/tokens for this session but don't want to
+lose the idea). For that, `Todo.md` at the repo root is a plain, flat checklist — one line per
+idea, no frontmatter, not part of the Dataview board, not touched by the supervisor.
+
+Add a line to `Todo.md` and commit it — that's the whole ritual. When you're ready to actually
+work it, promote it into a real task per "Creating a task" below, then delete the line from
+`Todo.md`. Never let the same idea live in both places at once; whichever file it's in is the
+one source of truth for it at that moment.
+
 ## Creating a task
 
 Copy `templates/task.md` into `tasks/<id>.md`. Fill in `id`, `title`, `lane`
@@ -156,6 +169,26 @@ each entry it actually resolves. This exists because a per-paper "Notable Citati
 Up" section (see the review pattern below) is real, useful information, but 24+ of them
 scattered across individual notes isn't an actionable todo list — this file is the
 consolidated one.
+
+**Split into per-topic pages under `papers/candidates/` once it passed ~1000 rows** (2026-08-31,
+after the gdocs citation-extraction batches — see "Linking papers to your own Google Drive
+research docs" below). `FOLLOWUP-CANDIDATES.md` itself is now a short index: the schema/sourcing
+documentation plus a list of links to `candidates/<topic>.md` with row counts, and the shared
+"Passed on" section. **The VRP/option-writing page (`candidates/vrp-option-writing.md`)
+consolidates the original citation-following backlog with the matching Gemini-doc-sourced
+bucket** — they were always the same subject, just two different source mechanisms, so don't
+re-split them apart. When adding a new candidate by hand, add it to the matching topic page
+directly, not to the index file (the index has no table of its own anymore).
+
+**If you're writing a script that appends/merges rows into this backlog** (like
+`scripts/extract_gdoc_citations.py`), point it at the specific topic page, not
+`FOLLOWUP-CANDIDATES.md` — and if you ever need to re-split or re-merge pages by hand, do it the
+way this split was done: partition raw row *lines* by a tracked "current section" as you scan
+top-to-bottom, never reconstruct a row's text from parsed cells, and verify a hard multiset match
+(every row from the prior state appears exactly once in the new state) before trusting the
+result — a naive regex-based rewrite silently dropped rows here once already (titles containing
+literal `|` characters broke a cell-splitting regex), caught immediately by exactly this kind of
+check rather than shipped.
 
 ## Linking papers to your own Google Drive research docs
 

@@ -46,6 +46,19 @@ yourself wanting to write a number into `progress`, that's the signal to re-run 
 instead (`bash probes/<name>.sh`, or `python supervisor/run.py --once` to refresh every task
 at once), not to estimate.
 
+## Capturing an idea you don't want to formalize yet
+
+Not every idea deserves a `tasks/<id>.md` file the moment it occurs to you — writing one means
+picking a lane, an assignee, deciding on a gate, maybe a probe, and that's real thinking you may
+not want to spend right now (e.g. you're low on budget/tokens for this session but don't want to
+lose the idea). For that, `Todo.md` at the repo root is a plain, flat checklist — one line per
+idea, no frontmatter, not part of the Dataview board, not touched by the supervisor.
+
+Add a line to `Todo.md` and commit it — that's the whole ritual. When you're ready to actually
+work it, promote it into a real task per "Creating a task" below, then delete the line from
+`Todo.md`. Never let the same idea live in both places at once; whichever file it's in is the
+one source of truth for it at that moment.
+
 ## Creating a task
 
 Copy `templates/task.md` into `tasks/<id>.md`. Fill in `id`, `title`, `lane`
