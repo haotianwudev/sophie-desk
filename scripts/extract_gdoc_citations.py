@@ -1227,27 +1227,25 @@ def format_markdown_cell(s: str) -> str:
     return s.replace("|", "\\|").replace("\n", " ").strip()
 
 
-def build_why_sentence(norm_t: str, title: str, tags: str) -> str:
-    """Generate a specific, non-boilerplate sentence explaining why the paper is worth getting."""
-    # 1. Exact match in WHY_MAP
-    if norm_t in WHY_MAP:
-        return WHY_MAP[norm_t]
+def build_why_sentence(norm_t: str, title: str, tags: str) -> str | None:
+    """Return the curated, specific Why sentence for this citation, or None.
 
-    # 2. Substring match in WHY_MAP
-    for k, v in WHY_MAP.items():
-        if k in norm_t or norm_t in k:
-            return v
-
-    # 3. Token overlap match
-    for k, v in WHY_MAP.items():
-        k_words = set(k.split())
-        t_words = set(norm_t.split())
-        overlap = len(k_words & t_words)
-        if overlap >= 4 and overlap / min(len(k_words), len(t_words)) >= 0.7:
-            return v
-
-    primary_tag = tags.split(",")[0].strip().replace("-", " ") if tags else "quantitative finance"
-    return f"Investigates the theoretical mechanics, empirical dynamics, and quantitative implementations of {title} in {primary_tag}."
+    Returning None means "not individually reviewed" -- the caller must skip
+    the citation entirely rather than invent one. This used to also try a
+    substring match and a >=70%-token-overlap fuzzy match against WHY_MAP,
+    then fall back to a templated sentence ("Investigates the theoretical
+    mechanics... of {title} in {tag}") when nothing matched. Both were
+    removed: the fuzzy matching could (and did, confirmed live) assign one
+    paper's specific description to a different paper with a similar title
+    -- e.g. "Understanding the Correlation Risk Premium" and "Understanding
+    the Volatility Risk Premium" got identical, and for one of them wrong,
+    Why text this way. The template fallback produced a fabricated-looking
+    but content-free sentence that inflated to ~22% of all gdocs-sourced
+    rows by batch 3, since it silently qualifies as "specific enough" if you
+    only skim it. Neither failure mode is acceptable for a research backlog
+    -- an exact match or nothing.
+    """
+    return WHY_MAP.get(norm_t)
 
 
 def update_candidates_file(
@@ -1501,6 +1499,14 @@ def main() -> None:
         article_link = f"[{c['article_title']}](https://www.sophie-ai-finance.com/articles/{c['slug']})"
         doc_id = c["doc_id"]
         why_text = build_why_sentence(norm_t, title, c.get("tags", ""))
+        if why_text is None:
+            # No curated WHY_MAP entry -- skip rather than fabricate. Add a
+            # real, specific entry to WHY_MAP above (or write one for this
+            # citation as you review it) instead of letting this citation
+            # silently drop; it's only silent here to keep the loop simple,
+            # not a signal that skipping is the desired end state.
+            filtered_out_count += 1
+            continue
 
         if norm_t not in candidates_map:
             candidates_map[norm_t] = {
