@@ -2,7 +2,7 @@
 id: gdocs-classify-batch5
 title: Classify+extract batch 5 of remaining matched gdocs (docs 151-190 of 215)
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-desk
@@ -12,8 +12,8 @@ probe: bash probes/gdocs-classify-batch.sh
 progress: 150/215 docs classified, 849 citation candidate rows
 probe_status: OK
 stall_flag: 
-outcome:
-artifacts:
+outcome: Classified docs 151-190 of 215 (24 research-paper, 5 news, 11 general-info). Extracted 1197 raw citations, added 187 new candidate rows and merged 21 rows into FOLLOWUP-CANDIDATES.md with exact WHY_MAP entries.
+artifacts: papers/FOLLOWUP-CANDIDATES.md, scripts/extract_gdoc_citations.py
 created: 2026-08-31
 updated: 2026-08-30
 ---
@@ -51,8 +51,16 @@ templated text.
 
 ## Decision log
 
-- **2026-08-31** — Batch 5 of the remaining 65 unclassified matched docs.
+- **2026-08-31** — Batch 5 of remaining matched docs:
+  - Fetched and classified docs 151–190 of 215 into `gdocs/classified_state.json`: 24 research papers, 5 news docs, 11 general-info docs.
+  - Classified state progress: 190/215 docs total (25 remaining for Batch 6).
+  - Extracted 1197 raw citations across the 24 newly classified research papers.
+  - 314 citations passed domain pre-filter; 208 unique candidates passed full quality filter and deduplication with exact `WHY_MAP` entries.
+  - Filtered out 968 non-research / news / generic marketing / legal statute / course notes entries.
+  - Added 187 new candidate rows and merged 21 existing rows in `papers/FOLLOWUP-CANDIDATES.md` (probe: 1036 total candidate rows).
+  - Added canonical title mappings in `clean_paper_title()`, source suffix strips (`- PMC`, `- PhilArchive`, `- UNSW`, `- DiVA`, etc.), and domain/path rejects.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+[FOLLOWUP-CANDIDATES.md](file:///F:/workspace/sophie-desk/papers/FOLLOWUP-CANDIDATES.md), [extract_gdoc_citations.py](file:///F:/workspace/sophie-desk/scripts/extract_gdoc_citations.py)
+

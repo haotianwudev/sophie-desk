@@ -894,6 +894,289 @@ WHY_MAP = {
     "where have all the ipos gone the hard life of the small ipo": "Analyzes the long-term decline and high mortality rate of small-cap initial public offerings under increased regulatory and structural market pressures.",
     "why do companies delist voluntarily from the stock market": "Examines the financial, governance, and cost-benefit rationales behind corporate decisions to voluntarily terminate public stock exchange listings.",
     "zero beta capm": "Fischer Black's foundational paper deriving the equilibrium capital asset pricing model under borrowing restrictions.",
+
+    # === Batch 5 Curated Research Papers ===
+    # 1. Option-Implied Distributions, Breeden-Litzenberger & Volatility Smiles
+    "how useful are implied distributions evidence from stock index option": "BIS empirical study evaluating the forecasting accuracy and subjective risk aversion adjustments of option-implied risk-neutral probability density functions.",
+    "risk neutral densities a review": "Jackwerth's authoritative academic survey detailing parametric, spline, and kernel methodologies for extracting risk-neutral probability density functions from option prices.",
+    "implied risk neutral distribution a comparison of estimation methods": "Warwick working paper benchmarking mixture of lognormals, kernel regression, and smoothed implied volatility smile methods for extracting risk-neutral distributions.",
+    "some results on extracting and understanding the risk neutral returns distribution for the u s stock market": "Stephen Figlewski's study utilizing Generalized Extreme Value distributions to model the heavy tails and empirical skew of option-implied risk-neutral density functions.",
+    "options and the gamma knife": "Ziemba and MacLean's study analyzing extreme negative gamma risk, capital preservation, and tail-loss amplification in short-dated options strategies.",
+    "a simple and reliable way to compute option based risk neutral distributions": "New York Fed study developing a robust cubic spline interpolation methodology on implied volatility smiles to stably extract risk-neutral densities.",
+    "extracting risk neutral probability distributions from option prices using trading volume as a filter": "IHS study using trade volume filtering and microstructure noise reduction to improve the calibration accuracy of risk-neutral density estimators.",
+    "non structural approach to implied moments extraction": "Applies model-free non-structural numerical integration across option strikes to extract implied skewness and kurtosis moments directly from option price strips.",
+    "methodology for estimating market probability density functions": "Federal Reserve Bank of Minneapolis methodology for estimating market-implied probability density functions across asset classes.",
+    "extracting risk neutral probability densities by fitting implied volatility smiles": "ECB working paper calibrating smoothed implied volatility smile functions to extract risk-neutral densities from interest rate futures options.",
+    "option implied probability distributions and currency excess returns": "New York Fed study demonstrating that higher-order risk-neutral moments extracted from currency options predict foreign exchange excess returns.",
+    "understanding fx risk premium": "Swiss National Bank research paper analyzing variance risk premia, skewness, and jump risks in foreign exchange derivative markets.",
+    "the role of risk neutral moments in forecasting future realised volatility an international perspective": "Demonstrates that higher-order risk-neutral moments (skewness, kurtosis) provide incremental predictive power for forecasting realized volatility across global equity indices.",
+    "option implied risk neutral distributions and risk aversion": "CFA Institute Research Foundation monograph detailing how subjective risk aversion functions transform risk-neutral distributions into real-world physical probability forecasts.",
+    "the information content of implied volatility from currency options": "BIS study evaluating the empirical forecasting power of currency option implied volatility for realized exchange rate movements.",
+    "deriving option implied probability densities for foreign exchange markets": "Bank of England research paper outlining spline interpolation methodologies on option smile quotes to extract risk-neutral distributions.",
+    "stochastic calculus for arbitrage free pricing with stochastic volatility": "Derives the Feynman-Kac connection and martingale pricing representation for continuous-time stochastic volatility models.",
+
+    # 2. XGBoost, Tree Ensembles & Machine Learning Trading
+    "option pricing using ensemble learning": "Evaluates ensemble gradient boosting and random forest architectures for non-parametric option pricing and implied volatility surface fitting.",
+    "machine learning robustness a primer": "Surveys distributional shifts, adversarial robustness, and out-of-distribution generalization in financial machine learning models.",
+    "analysis of the application of xgboost in exchange traded funds": "Applies XGBoost decision trees to model cross-sectional ETF return dynamics and constituent factor exposures.",
+    "a machine learning based stock prediction system using xgboost and random forests": "Benchmarks gradient boosted decision trees against recurrent neural networks for equity price trend forecasting.",
+    "evaluating machine learning classification for financial trading an empirical approach": "Empirically evaluates classification performance metrics, AUC-PR, and backtest profitability of machine learning classifiers in financial trading.",
+    "comparing xgboost and lstm model for prediction of stock price direction": "Compares XGBoost gradient boosting against LSTM recurrent networks for predicting directional price movement in individual equities.",
+    "comparative analysis of xgboost algorithm and linear regression in predicting the trend of investor overreaction": "Analyzes non-linear investor overreaction and behavioral mean-reversion using XGBoost decision tree architectures.",
+    "haelt a hybrid attentive ensemble learning transformer framework for high frequency stock price forecasting": "Proposes a hybrid framework combining Transformer self-attention with gradient boosted ensemble learning for high-frequency limit order book forecasting.",
+    "financial distress early warning from a systemic risk perspective based on the adaptive weighted xgboost bagging model": "Develops an adaptive weighted XGBoost-Bagging ensemble model for corporate financial distress early warning and default probability estimation.",
+    "advancing financial analytics integrating xgboost lstm and random forest algorithms for precision forecasting of corporate financial distress": "Integrates XGBoost, Random Forests, and LSTM architectures to forecast corporate credit distress and bankruptcy likelihood.",
+    "xgboost based multi factor stock selection model for rotational trading": "Develops an XGBoost multi-factor ranking model for sector and equity rotational trading strategies.",
+    "a refined methodological approach long term stock market forecasting with xgboost": "Investigates feature engineering and hyperparameter optimization for multi-horizon equity return forecasting using XGBoost.",
+    "stock price prediction using a hybrid lstm gnn model": "Combines Graph Neural Networks with LSTM sequence models to capture cross-stock supply chain and industry correlation graphs in equity price prediction.",
+    "lstm vs transformers in banking forecasting": "Empirically benchmarks LSTM recurrent models against self-attention Transformers for multi-horizon banking time-series forecasting.",
+    "financial time series analysis with transformer model": "Evaluates Transformer sequence architectures for financial time series denoising, volatility modeling, and trend forecasting.",
+    "a method for evaluating the interpretability of machine learning model in predicting bond default risk based on lime and shap": "Applies SHAP values and LIME feature attribution to explain non-linear machine learning predictions of corporate bond default risk.",
+    "less discriminatory alternative and interpretable xgboost framework for binary classification": "Develops an interpretable tree-regularized XGBoost framework ensuring fair and explainable credit risk classification.",
+    "comprehensive analysis of random forest and xgboost performance with smote adasyn and gnus under varying imbalance levels": "Evaluates synthetic oversampling techniques (SMOTE, ADASYN) with tree ensembles for classification under severe class imbalance.",
+    "a robust machine learning approach for credit risk analysis of large loan level datasets": "BIS study evaluating XGBoost and deep neural networks on granular loan-level portfolios for macroprudential stress testing.",
+    "a kernel based perspective for why transformers fail to generalize on time series forecasting and beyond": "Provides theoretical kernel analysis explaining why standard Transformer self-attention fails on non-stationary, low signal-to-noise financial time series.",
+    "transformers versus lstms for electronic trading": "Benchmarks Transformer attention mechanisms against LSTMs for high-frequency limit order book trend forecasting and execution.",
+    "mm itransformer a multimodal approach to economic time series forecasting with textual data": "Develops MM-iTransformer to integrate multi-modal textual sentiment embeddings with inverted Transformer variate-attention for macroeconomic time series forecasting.",
+    "crypto price prediction using lstm and xgboost": "Evaluates hybrid LSTM and XGBoost models for predicting high-volatility cryptocurrency price trends.",
+    "support for stock trend prediction using transformers and sentiment analysis": "Integrates financial news sentiment embeddings with Transformer sequence encoders for directional stock trend prediction.",
+    "plutus a well pre trained large unified transformer can unveil financial time series regularities": "Pre-trains a large foundation Transformer model on multi-market financial time series to capture universal price dynamics and cross-asset transferability.",
+    "stockformer a swing trading strategy based on stl decomposition and self attention networks": "Combines STL time-series decomposition with self-attention networks to extract swing trading signals across market frequencies.",
+    "does self attention need separate weights in transformers": "Investigates weight-sharing mechanisms in Transformer self-attention layers to improve parameter efficiency and reduce overfitting in time series modeling.",
+    "a financial time series prediction model based on multiplex attention and linear transformer structure": "Develops multiplex attention mechanisms with linear time complexity for scalable financial time series forecasting.",
+    "trading on uncertainty futurequant transformer s distribution based strategy for futures markets": "Formulates FutureQuant Transformer to output full predictive probability distributions for probabilistic risk management in futures trading.",
+    "an end to end llm enhanced trading system": "Architects an end-to-end quantitative trading system utilizing LLM reasoning agents for alpha signal generation and execution control.",
+
+    # 3. Transformers in Systematic Trading & Foundation Models
+    "transformer based model for stock price prediction a comprehensive review": "Comprehensive academic survey detailing Transformer self-attention architectures and temporal feature extractors for stock price prediction.",
+    "temporal fusion transformers for interpretable multi horizon time series forecasting": "Bryan Lim et al.'s seminal paper introducing Temporal Fusion Transformers (TFT) combining self-attention with gating mechanisms for multi-horizon time series forecasting.",
+    "informer beyond efficient transformer for long sequence time series forecasting": "Seminal paper introducing the ProbSparse attention mechanism in Informer to reduce time complexity for long sequence time-series forecasting.",
+    "a time series is worth 64 words long term forecasting with transformers": "Introduces PatchTST, demonstrating that patching time-series subseries into tokens significantly enhances Transformer forecasting accuracy while reducing compute.",
+    "crossformer transformer utilizing cross dimension dependency for multivariate time series forecasting": "Develops Crossformer to explicitly capture cross-time and cross-variable dependencies in multivariate financial time series.",
+    "itransformer inverted transformers are effective for time series forecasting": "Introduces the inverted Transformer architecture (iTransformer) applying attention across variates rather than time steps for multivariate forecasting.",
+    "autoformer decomposition transformers with auto correlation for long term series forecasting": "Introduces Autoformer with auto-correlation mechanisms and series decomposition blocks for long-term time series forecasting.",
+    "time llm time series forecasting by reprogramming large language model": "Proposes reprogramming pre-trained text LLMs with patch reprogramming and domain prompts for zero-shot and few-shot time series forecasting.",
+    "are transformers effective for time series forecasting": "Seminal paper demonstrating that simple single-layer linear models (DLinear) often outperform complex Transformer architectures on standard time series benchmarks.",
+    "transformers in time series a survey": "Comprehensive survey reviewing architectural adaptations, positional encodings, and attention modifications for time series Transformers.",
+    "deep transformer model for time series forecasting": "Surveys deep multi-layer Transformer sequence-to-sequence architectures for multi-horizon forecasting.",
+    "tlob a novel transformer model with dual attention for stock price trend prediction with limit order book data": "Develops a dual-attention Transformer model to capture spatial level-depth correlations and temporal order arrival dynamics in limit order books.",
+    "deep learning in long short stock portfolio allocation an empirical study": "Empirically benchmarks deep neural network architectures for long-short cross-sectional equity portfolio construction and risk-adjusted alpha.",
+    "stockformer a price volume factor stock selection model based on wavelet transform and multi task self attention networks": "Combines wavelet decomposition with multi-task self-attention networks to extract multi-frequency price-volume alpha signals.",
+    "economic predictions with big data the illusion of sparsity": "Giannone, Lenza, and Primiceri's seminal paper showing that economic and financial prediction models favor dense shrinkage over sparse feature selection.",
+    "a sparsity based model of bounded rationality": "Xavier Gabaix's foundational framework modeling how economic agents optimize decision-making under attention constraints by building sparse mental models.",
+
+    # 4. Formulaic Alphas, Genetic Programming & Alpha Decay
+    "alpha mining and enhancing via warm start genetic programming for quantitative investment": "Proposes warm-start genetic programming to accelerate formulaic alpha factor discovery and mitigate premature convergence.",
+    "quantfactor reinforce mining steady formulaic alpha factors with variance bounded reinforce": "Applies variance-bounded policy gradient reinforcement learning to discover robust, low-decay formulaic alpha factors.",
+    "autoalpha an efficient hierarchical evolutionary algorithm for mining alpha factors in quantitative investment": "Introduces AutoAlpha, a hierarchical evolutionary algorithm for mining formulaic alpha factors in quantitative investment.",
+    "synergistic formulaic alpha generation for quantitative trading based on reinforcement learning": "Formulates synergistic multi-agent reinforcement learning to generate mutually orthogonal formulaic alpha signals.",
+    "combining factors in multifactor portfolios": "Analyzes portfolio construction tradeoffs between integrated multi-factor scoring versus mixing standalone factor sleeves.",
+    "understanding alpha decay": "Quantifies the mathematical relationship between signal turnover, crowding, implementation costs, and the half-life of quantitative alpha.",
+
+    # 5. Futures Market Anomalies, Delivery Options & Basis Trading
+    "when benchmarks fail the causes and consequences of negative oil prices": "Wharton study analyzing the structural failure of physical storage capacity and negative price settlement in WTI crude oil futures in April 2020.",
+    "on the negative pricing of wti crude oil futures": "Empirically investigates order book microstructure, retail ETF roll dynamics, and negative pricing mechanics in WTI futures.",
+    "debunking the roll yield myth in futures markets": "Exposes the economic fallacy of viewing roll yield as a standalone return generator rather than an artifact of spot price mean reversion and storage costs.",
+    "deconstructing futures returns the role of roll yield": "CME whitepaper decomposing commodity and financial futures returns into spot price changes, roll yield carry, and collateral yield.",
+    "embedded theoretical quality option pricing in treasury bond futures": "Models the theoretical quality option embedded in Treasury bond futures arising from conversion factor deviations.",
+    "the pricing of treasury bond futures the quality variation option": "Michael Hemler's seminal study deriving analytical bounds and pricing formulas for the cheapest-to-deliver quality variation option in Treasury bond futures.",
+    "treasury futures delivery options basis spreads and delivery tails": "Deconstructs the cheapest-to-deliver switch option, delivery timing option, and basis trading dynamics in US Treasury futures.",
+    "financial stability risks from basis trades in the us treasury and euro area government bond markets": "ECB study analyzing hedge fund sovereign bond basis trade leverage, repo financing dependencies, and systemic market liquidity risks.",
+
+    # 6. Autocallable Notes & Structured Products
+    "hedging and pricing structured products featuring multiple underlying assets": "Develops deep learning and multi-asset local volatility models for pricing and hedging multi-underlying autocallable structured products.",
+    "domain knowledge preservation in financial machine learning": "Investigates incorporating no-arbitrage boundary conditions and financial domain constraints into machine learning pricing architectures.",
+    "improving risk management and analysis of structured notes through path dependence greeks and machine learning": "Applies machine learning approximations to evaluate path-dependent barrier Greeks and autocallable redemption probabilities.",
+    "are issuer margins fairly stated evidence from the issuer estimated value for retail structured products": "Empirically quantifies hidden embedded issuer fees and secondary market markdown discounts in retail structured products.",
+
+    # 7. Private Credit & Systemic Leverage
+    "bank lending to private credit size characteristics and financial stability implications": "Federal Reserve study analyzing bank exposure to private credit funds through subscription lines, NAV loans, and collateralized credit facilities.",
+    "could the growth of private credit pose a risk to financial system stability": "Federal Reserve Bank of Boston study evaluating private debt illiquidity, fund leverage, and systemic interconnectedness with the banking sector.",
+    "private credit characteristics and risks": "Federal Reserve analysis detailing direct lending borrower characteristics, debt service coverage ratios, and covenant-lite loan terms.",
+    "private credit risk management in evergreen funds": "CAIA research paper examining liquidity mismatches, gating mechanisms, and valuation smoothing in perpetual evergreen private credit funds.",
+    "private markets public risk financial stability implications of alternative funding sources": "ECB assessment analyzing the macroprudential implications and non-bank financial intermediation risks of private debt expansion.",
+    "the global drivers of private credit": "BIS study analyzing the macroeconomic drivers, regulatory capital arbitrage, and institutional asset allocation shifts fueling private debt growth.",
+    "markets systemic risk and the subprime mortgage crisis": "Schwarcz's legal and economic analysis examining structural complexity, moral hazard, and systemic liquidity contagion during the 2008 financial crisis.",
+    "household leverage before and after the great recession time series versus cross sectional evidence": "Examines the role of credit expansion, collateral constraints, and household debt overhang in macroeconomic recessions.",
+
+    # 8. SAA / TAA Performance Attribution
+    "performance measurement and attribution foundations and frameworks": "CFA Institute monograph detailing the mathematics of Brinson-Fachler asset allocation and security selection attribution models.",
+    "risk adjusted performance attribution and portfolio optimisations under tracking error constraints": "Develops risk-adjusted active performance attribution frameworks for benchmark-relative portfolios subject to tracking error limits.",
+    "performance attribution in private equity a case study of two north american pension funds": "CAIA research study formulating multi-period factor attribution models tailored to illiquid private equity fund investments.",
+
+    # 9. Portfolio Optimization, Robust Estimation & Execution Impact
+    "portfolio selection problem using cvar risk measures equipped with metaheuristic optimization": "Applies metaheuristic algorithms and Conditional Value-at-Risk (CVaR) minimization to solve non-convex portfolio selection problems.",
+    "portfolio optimization problems with cardinality constraints": "Analyzes mixed-integer quadratic programming algorithms for mean-variance portfolio optimization with cardinality and transaction cost constraints.",
+    "an empirical comparison between robust estimation and robust optimization for mean variance portfolios": "Compares robust covariance estimators (Ledoit-Wolf) against robust optimization uncertainty sets for mitigating portfolio estimation risk.",
+    "resampled efficient frontier integration for multi objective evolutionary algorithms": "Integrates Michaud's resampled efficient frontier framework into multi-objective evolutionary algorithms to reduce portfolio turnover.",
+    "testing strategies based on multiple signals": "Robert Novy-Marx's influential paper detailing multiple testing corrections and false discovery rates when evaluating multi-signal quantitative strategies.",
+    "trading volume alpha": "Empirically documents the cross-sectional return predictability of turnover and abnormal trading volume across equity markets.",
+    "three models of market impact": "Jim Gatheral's foundational paper analyzing temporary, permanent, and transient market impact models and proving no-dynamic-arbitrage conditions.",
+    "multi period portfolio optimization using model predictive control": "Applies model predictive control (MPC) to multi-period mean-variance and risk parity portfolio rebalancing under dynamic transaction costs.",
+    "industry grade deep reinforcement learning for portfolio optimization": "Develops an industrial-grade deep reinforcement learning framework incorporating execution slippage and turnover constraints for multi-asset allocation.",
+    "esg constraints in portfolio optimization": "Quantifies the efficient frontier tracking error and Sharpe ratio penalty imposed by ESG screening constraints on mean-variance portfolios.",
+    "a multi period optimization framework for portfolio selection using interval analysis": "Develops an interval-analysis optimization framework to handle bounded parameter uncertainty in multi-period portfolio selection.",
+    "multi objective portfolio optimization via gradient descent": "Formulates multi-objective gradient descent to trace continuous Pareto efficient frontiers balancing return, risk, and transaction costs.",
+
+    # 10. Sell-Side Research Biases & Market Epistemology
+    "mifid ii unbundling and sell side analyst research": "NYU Stern study examining how MiFID II research unbundling impacted sell-side analyst coverage, research quality, and market efficiency.",
+    "target price accuracy of sell side analysts evidence from india": "Evaluates the forecasting accuracy and optimism bias of sell-side equity analyst target prices across emerging markets.",
+    "analysts set price targets using trailing p e ratios": "Demonstrates that sell-side analyst price targets are overwhelmingly derived from heuristic trailing P/E multiples rather than DCF valuation models.",
+    "financial analyst characteristics and herding behavior in forecasting": "Analyzes how analyst experience, brokerage reputation, and career concerns drive herding behavior toward consensus earnings forecasts.",
+    "determinants of herding behavior among financial analysts": "Investigates macroeconomic uncertainty and institutional incentives as primary drivers of analyst consensus herding.",
+    "do sell side analysts say buy while whispering sell": "NBER study demonstrating that sell-side analysts privately convey negative sentiment to institutional clients while issuing public buy recommendations.",
+    "institutional investor attention and underreaction to news": "Zhi Da et al.'s study utilizing Bloomberg search volume to measure institutional investor attention and quantify underreaction to corporate news.",
+    "disruption in the market for information mifid ii and investor relations": "Examines how MiFID II unbundling reduced small-cap research coverage and increased corporate spending on direct investor relations.",
+
+    # 11. Technical Analysis Formalization & Deep RL Trading
+    "foundations of technical analysis computational algorithms statistical inference and empirical implementation": "Andrew Lo, Harry Mamaysky, and Jiang Wang's seminal study developing non-parametric kernel regressions to mathematically formalize and test technical chart patterns.",
+    "a comprehensive analysis of machine learning model for algorithmic trading of bitcoin": "Evaluates machine learning classifiers and feature importance metrics for high-volatility cryptocurrency algorithmic trading.",
+    "comparative analysis of machine learning techniques in financial risk assessment": "Compares tree-based ensembles, support vector machines, and neural networks for financial credit risk and default probability prediction.",
+    "stock market trading via actor critic reinforcement learning and adaptable data structure": "Develops actor-critic deep reinforcement learning agents with dynamic state representations for automated equity trading.",
+    "supervised learning approaches for sentiment analysis in stock market predictions": "Evaluates supervised NLP models and financial domain lexicons for extracting predictive market sentiment signals.",
+    "portfolio dynamic trading strategy using deep reinforcement learning": "Applies deep deterministic policy gradient (DDPG) agents to optimize continuous-action multi-asset portfolio weights.",
+    "reinforcement learning meets technical analysis combining moving average rules for optimal alpha": "Combines reinforcement learning state-action policies with classical moving average crossover rules to optimize trade timing and drawdown control.",
+    "machine learning methods to exploit the predictive power of open high low close ohlc data": "University College London study developing machine learning feature transformations on candlestick OHLC price dynamics.",
+    "fintsbridge a new evaluation suite for real world financial prediction with advanced time series model": "Introduces a standardized benchmark evaluation suite for testing state-of-the-art deep time-series models on real-world financial data.",
+    "machine learning for financial risk management a survey": "Comprehensive survey detailing machine learning applications in market risk, credit risk, operational risk, and systemic stress testing.",
+    "towards designing a generic and comprehensive deep reinforcement learning framework for financial trading": "Architects a modular deep reinforcement learning framework incorporating execution delay, transaction friction, and risk penalties.",
+    "an improved reinforcement learning model based on sentiment analysis": "Integrates financial news sentiment embeddings into deep Q-learning reward functions for equity trading.",
+    "a survey on machine learning model for financial time series forecasting": "Surveys statistical learning, RNNs, CNNs, and Transformer models for financial asset return and volatility forecasting.",
+
+    # 12. Corporate Insider Trading Signals & Transparency
+    "the legal implications of insider trading and market manipulation": "Examines corporate governance mechanisms, blackout periods, and compliance frameworks for mitigating illegal insider trading and market manipulation.",
+    "the unintended consequences of forcing insider trading transparency": "Duke Fuqua study analyzing how mandatory insider reporting transparency affects informed trading dynamics and corporate disclosure policies.",
+    "insider trading and investor sentiment": "Empirically tests how corporate insider buying and selling behavior interacts with market-wide retail sentiment regimes.",
+    "inferring bad news from insider sales": "Isolates informational bad news from liquidity-driven insider sales by conditioning on corporate earnings disclosure calendars.",
+    "are insiders trades informative": "Josef Lakonishok and Inmoo Lee's seminal NBER study demonstrating that aggregate insider purchases strongly predict future equity market returns, especially in small-cap stocks.",
+    "estimating the returns to insider trading": "Leslie Jeng, Andrew Metrick, and Richard Zeckhauser's seminal study quantifying abnormal returns to corporate insider purchase portfolios.",
+    "insider sentiment and market returns international evidence": "Documents international cross-country evidence on the predictive power of corporate insider net buying for aggregate stock market returns.",
+    "investor attention and insider trading": "Empirically demonstrates how corporate insiders strategically time stock sales during periods of elevated retail investor attention.",
+    "insider trading in connected firms during trading bans": "Analyzes shadow insider trading where informed executives trade in economically connected peer companies during firm blackout windows.",
+    "flaws in oversight and regulation of corporate insider trading": "University of Michigan study identifying structural enforcement gaps and opportunistic timing in Rule 10b5-1 executive trading plans.",
+
+    # 13. Volume Price Analysis, VWAP & Algorithmic Execution
+    "the impact of trading volume on portfolio momentum strategy": "Examines how trading volume interaction modifies the formation and holding period profitability of price momentum strategies.",
+    "the effect of trading volume on stock price dynamics": "Empirically investigates the lead-lag relationship and price impact between trading volume spikes and equity price reversals.",
+    "vwap execution as an optimal strategy": "Jim Gatheral's study formulating the optimal execution trajectory for Volume-Weighted Average Price (VWAP) tracking under dynamic order flow.",
+    "conviction and volume measuring the information content of hedge fund trading": "Harvard study demonstrating that concentrated, high-volume hedge fund institutional positioning conveys significant long-term alpha.",
+    "forecasting intraday volume in equity markets with machine learning": "Develops machine learning models to forecast U-shaped intraday volume profiles and volume arrival bursts for algorithmic execution.",
+    "a comparative study of machine learning algorithms for stock price prediction using insider trading data": "Benchmarks supervised learning models incorporating Form 4 insider trading volume features for equity return prediction.",
+    "hybrid machine learning model for long term stock market prediction": "Combines convolutional feature extractors with recurrent networks to forecast long-term equity trends from volume-price matrices.",
+    "a novel ensemble deep learning model for stock prediction based on technical indicators": "Develops an ensemble deep neural architecture integrating price-volume momentum oscillators for directional trend forecasting.",
+
+    # 14. Deep Hedging, Alternative Data & Systematic Quant Architectures
+    "empirical deep hedging": "Evaluates the real-world performance of deep neural network hedging policies calibrated to empirical option order flow and transaction costs.",
+    "a deep reinforcement learning approach to automated stock trading using xlstm networks": "Applies extended LSTM (xLSTM) architectures within deep reinforcement learning for automated equity portfolio execution.",
+    "deep hedging with reinforcement learning a practical framework for option risk management": "Develops a reinforcement learning framework for non-parametric dynamic option hedging under market frictions and discrete liquidity.",
+    "is the difference between deep hedging and delta hedging a statistical arbitrage": "HEC Montréal study proving that deep hedging strategies exploit empirical volatility smile mispricings relative to classical Black-Scholes delta hedging.",
+    "deep hedging under market frictions a comparison of drl model for options hedging with impact and transaction costs": "Benchmarks Actor-Critic, PPO, and DDPG reinforcement learning architectures for option hedging subject to permanent market impact and spread costs.",
+    "mining credit card data for stock returns": "Empirically tests the predictive power and alpha decay of alternative consumer credit card transaction data for estimating firm quarterly sales.",
+    "looking under the bonnet short term strategy": "Man AHL quantitative research paper detailing signal construction, turnover management, and execution latency in short-horizon systematic strategies.",
+    "advanced methods in portfolio optimization for trading strategy and smart beta": "Imperial College treatise evaluating shrinkage covariance estimation and risk parity allocations across smart beta factor strategies.",
+    "quantitative portfolio management review and outlook": "Comprehensive survey detailing the evolution of quantitative portfolio management from factor investing to deep learning and alternative data.",
+    "a machine learning approach to regime modeling": "Two Sigma research paper applying unsupervised clustering and hidden Markov models to identify macroeconomic and market volatility regimes.",
+    "artificial intelligence textual analysis and hedge fund performance": "Evaluates how quantitative hedge funds deploying NLP textual analysis and machine learning generate superior risk-adjusted alpha.",
+    "alpha gpt 2 0 human in the loop ai for quantitative investment": "Introduces Alpha-GPT 2.0, an interactive LLM system enabling human-in-the-loop quantitative alpha mining and factor backtesting.",
+    "an explainable deep learning approach for stock market trend prediction": "Develops an attention-based explainable deep learning architecture to interpret feature importance in equity trend prediction.",
+
+    # 15. Strategy Decay, Regime Shifts & The Peso Problem
+    "measuring strategy decay risk minimum regime performance and the durability of systematic investing": "Fabozzi and Alexander's study introducing minimum regime performance metrics to quantify alpha decay risk and systematic strategy durability across macro environments.",
+    "why static portfolios fail when risk regimes change": "CFA Institute study analyzing how fixed asset allocation weights suffer severe drawdown acceleration during macroeconomic regime transitions.",
+    "the peso problem in financial economics": "Martin Evans' treatise defining the peso problem where rational expectations of rare, severe disasters distort empirical asset return distributions.",
+    "challenges in macro finance modeling": "Federal Reserve research paper analyzing non-linear structural breaks and term premium dynamics in macro-finance equilibrium models.",
+    "hierarchical ai multi agent fundamental investing evidence from china s a share market": "Develops a hierarchical multi-agent LLM framework simulating analyst debates and fundamental valuation in China's A-share market.",
+
+    # 16. Financial RAG Architectures & LLMs
+    "rag for finance automating document analysis with llms": "CFA Institute report detailing production patterns, prompt engineering, and document chunking for financial retrieval-augmented generation.",
+    "retrieval augmented large language model for financial time series forecasting": "Develops RAG frameworks that retrieve historical similar macroeconomic and volatility market regimes to guide LLM time series forecasting.",
+    "retrieval augmented generation for fintech agentic design and evaluation": "Presents an agentic multi-stage RAG architecture incorporating automated self-evaluation guardrails for financial technology systems.",
+    "p1gpt a multi agent llm workflow module for multi modal financial information analysis": "Develops a multi-agent LLM system for parsing and cross-referencing multi-modal financial statements, tables, and earnings call audio.",
+    "assessing rag system capabilities on financial documents": "ACL FinNLP benchmark evaluating retrieval precision, numerical factual consistency, and hallucination rates of RAG systems on financial 10-K filings.",
+    "hierfinrag hierarchical multimodal rag for financial document understanding": "Proposes a hierarchical multimodal RAG framework that preserves tabular structure and document hierarchy in annual corporate reports.",
+    "smartfinrag interactive modularized financial rag system": "Develops an interactive modularized RAG architecture featuring adaptive chunking and dynamic query expansion for financial question answering.",
+    "evaluating retrieval augmented generation model for financial report question and answering": "Benchmarks dense semantic embeddings, hybrid BM25 retrieval, and re-ranking models on financial statement QA accuracy.",
+    "llm output drift cross provider validation and mitigation for financial workflows": "Quantifies stochastic output drift across LLM provider updates and proposes deterministic consensus validation for compliance workflows.",
+    "bayesian rag uncertainty aware retrieval for reliable financial question answering": "Formulates a Bayesian retrieval framework to quantify epistemic retrieval uncertainty and prevent hallucinated answers on financial disclosures.",
+    "raptor recursive abstractive processing for tree organized retrieval": "Introduces RAPTOR, a tree-organized retrieval method that recursively clusters and summarizes text chunks for multi-level hierarchical retrieval.",
+    "long context vs rag for llms an evaluation and revisits": "Empirically benchmarks native long-context window LLMs against retrieval-augmented generation across document retrieval and reasoning tasks.",
+    "knowledge graphs and their applications in finance": "Surveys entity extraction, relational link prediction, and enterprise knowledge graph architectures in financial risk management.",
+    "trade offs in financial ai explainability in a trilemma with accuracy and compliance": "Analyzes the structural trilemma between predictive accuracy, model explainability, and regulatory compliance in financial AI systems.",
+    "explainable ai in finance addressing the needs of diverse stakeholders": "CFA Institute monograph evaluating feature attribution methods (SHAP, IG) and compliance frameworks for AI systems in asset management.",
+    "targeting the core a simple and effective method to attack rag based agents via direct llm manipulation": "Investigates prompt injection vulnerabilities, vector database poisoning, and adversarial retrieval manipulation in agentic RAG architectures.",
+
+    # 17. Recommender Systems & Social Sentiment
+    "deep learning based recommender system a survey and new perspectives": "Comprehensive survey detailing deep collaborative filtering, autoencoders, and attention mechanisms in modern recommender systems.",
+    "quantitative stock selection model using graph learning and a spatial temporal encoder": "Develops spatial-temporal graph neural networks to model inter-firm supply chain relationships and cross-asset momentum spillovers.",
+    "stock market prediction using machine learning and deep learning architectures": "Benchmarks convolutional neural networks and recurrent models for predicting equity price direction from high-frequency technical indicators.",
+    "new quantitative approaches to asset selection and portfolio construction": "Columbia University dissertation developing non-linear machine learning factor models and robust portfolio optimization algorithms.",
+    "investment portfolio optimization based on modern portfolio theory and deep learning model": "Integrates deep learning return forecasts into classical Markowitz mean-variance and Black-Litterman portfolio optimization frameworks.",
+    "a portfolio recommendation system based on machine learning and big data analytics": "Develops a hybrid collaborative filtering and multi-factor scoring system for personalized asset allocation recommendations.",
+    "regulating ai in financial services legal frameworks and compliance challenges": "Analyzes international regulatory frameworks, algorithmic accountability, and compliance governance for AI models in financial services.",
+
+    # 18. Index Futures & Microstructure
+    "the impact of high frequency trading on markets": "CFA Institute survey analyzing market quality, bid-ask spread compression, and adverse selection risks associated with high-frequency market making.",
+    "equity market structure literature review high frequency trading": "SEC Division of Trading and Markets comprehensive empirical review evaluating the impact of high-frequency algorithmic trading on market liquidity and volatility.",
+    "the impact of high frequency trading on market liquidity a mathematical approach": "Mathematical microstructure model analyzing high-frequency quote placement dynamics, order book depth, and market resiliency.",
+    "the ambivalent role of high frequency trading in turbulent market periods": "Empirically investigates HFT liquidity provision versus rapid quote withdrawal during high-volatility market flash crashes.",
+    "hedging strategies in futures and forward markets": "University lecture treatise formalizing minimum-variance hedge ratios and cross-hedging effectiveness in equity index futures.",
+    "calculating equity index futures fair value": "CME whitepaper deriving the cost-of-carry fair value formula, dividend adjustments, and cash-and-carry basis arbitrage bounds for ES and NQ futures.",
+
+    # Additional Batch 5 exact norm keys
+    "stock market trading via actor critic reinforcement learning and adaptable data structure pmc": "Develops actor-critic deep reinforcement learning agents with dynamic state representations for automated equity trading.",
+    "stock market trading via actor critic reinforcement learning and adaptable data structure": "Develops actor-critic deep reinforcement learning agents with dynamic state representations for automated equity trading.",
+    "towards designing a generic and comprehensive deep reinforcement learning framework": "Architects a modular deep reinforcement learning framework incorporating execution delay, transaction friction, and risk penalties.",
+    "a comprehensive survey of recommender systems based on deep learning": "Comprehensive survey detailing deep learning, neural graph networks, and attention-based architectures in modern recommender systems.",
+    "stock market prediction using machine learning and deep learning architectures": "Benchmarks convolutional neural networks and recurrent models for predicting equity price direction from high-frequency technical indicators.",
+    "chapter 0 machine learning robustness a primer": "Surveys distributional shifts, adversarial robustness, and out-of-distribution generalization in financial machine learning models.",
+    "analysis of the application of xgboost in exchange traded funds": "Applies XGBoost decision trees to model cross-sectional ETF return dynamics and constituent factor exposures.",
+    "a machine learning based stock prediction system using xgboost and random forests": "Benchmarks gradient boosted decision trees against recurrent neural networks for equity price trend forecasting.",
+    "comparing xgboost and lstm model for prediction of microsoft corp s stock price direction": "Compares XGBoost gradient boosting against LSTM recurrent networks for predicting directional price movements in individual equities.",
+    "financial distress early warning for chinese enterprises from a systemic risk perspective based on the adaptive weighted xgboost bagging model": "Develops an adaptive weighted XGBoost-Bagging ensemble model for corporate financial distress early warning and default probability estimation.",
+    "a robust machine learning approach for credit risk analysis of large loan level datasets using deep learning and extreme gradien": "BIS study evaluating XGBoost and deep neural networks on granular loan-level portfolios for macroprudential stress testing.",
+    "interpretability analysis in transformers based on attention visualization": "Investigates multi-head attention weight visualization and layer-wise attribution to interpret financial Transformer representations.",
+    "predicting stock price by using attention based hybrid lstm model": "Integrates multi-head self-attention with LSTM recurrent networks to capture long-range temporal dependencies in equity prices.",
+    "finbharat stock prediction using transformer": "Applies Transformer sequence models to capture multi-horizon price patterns and volatility dynamics across Indian equities.",
+    "attention is all you need": "Vaswani et al.'s seminal paper introducing the multi-head self-attention Transformer architecture, replacing recurrent and convolutional sequence processing.",
+    "explainable transformers in financial forecasting philarchive": "Examines attention rollout and Integrated Gradients methods to explain Transformer predictions in financial time series forecasting.",
+    "explainable transformers in financial forecasting": "Examines attention rollout and Integrated Gradients methods to explain Transformer predictions in financial time series forecasting.",
+    "efficient transformers a survey": "Comprehensive survey detailing linear, sparse, and memory-efficient attention mechanisms in scalable Transformer architectures.",
+    "an ai enhanced forecasting framework integrating lstm and transformer based sentiment for stock price prediction": "Integrates news sentiment embeddings from Transformer encoders with LSTM price sequence models for stock trend prediction.",
+    "sparse high dimensional model in economics": "Surveys high-dimensional sparse regression, Lasso regularization, and post-selection inference in empirical economics and finance.",
+    "hedging with e mini s p 500 future": "CME whitepaper detailing cross-hedging mechanics, basis risk, and hedge ratio optimization using E-mini S&P 500 futures.",
+    "hedging strategy in futures and forward markets": "University lecture treatise formalizing minimum-variance hedge ratios and cross-hedging effectiveness in equity index futures.",
+    "determinants of herding behavior among financial analysts a study of french listed firms": "Empirically investigates macroeconomic uncertainty and career incentives as primary drivers of sell-side analyst consensus herding.",
+    "the legal implications of insider trading and market manipulation how corporate governance can mitigate legal risks and promote fairness": "Examines corporate governance mechanisms, blackout periods, and compliance frameworks for mitigating illegal insider trading and market manipulation.",
+    "inferring bad news from insider sales emory university": "Isolates informational bad news from liquidity-driven insider sales by conditioning on corporate earnings disclosure calendars.",
+    "inferring bad news from insider sales": "Isolates informational bad news from liquidity-driven insider sales by conditioning on corporate earnings disclosure calendars.",
+    "insider trading in connected firms during trading bans the harvard law school forum on corporate governance": "Analyzes shadow insider trading where informed executives trade in economically connected peer companies during firm blackout windows.",
+    "insider trading in connected firms during trading bans": "Analyzes shadow insider trading where informed executives trade in economically connected peer companies during firm blackout windows.",
+    "the impact of trading volume on portfolios effective time": "Examines how trading volume interaction modifies the formation and holding period profitability of price momentum strategies.",
+    "the effect of trading volume on stock price": "Empirically investigates the lead-lag relationship and price impact between trading volume spikes and equity price reversals.",
+    "hybrid machine learning model for long term stock market": "Combines convolutional feature extractors with recurrent networks to forecast long-term equity trends from volume-price matrices.",
+    "stock prediction using deep learning a comparison": "Benchmarks CNNs, RNNs, and hybrid deep architectures for directional stock price forecasting across market regimes.",
+    "a novel ensemble deep learning model for stock prediction based": "Develops an ensemble deep neural architecture integrating price-volume momentum oscillators for directional trend forecasting.",
+    "how useful are implied distributions evidence from stock index options": "BIS empirical study evaluating the forecasting accuracy and subjective risk aversion adjustments of option-implied risk-neutral probability density functions.",
+    "embedded theoretical quality option pricing in treasury bond futures starting from the definition deviation of conversion factor": "Models the theoretical quality option embedded in Treasury bond futures arising from conversion factor deviations.",
+    "private credit risk management in evergreen funds portfolio for the future caia": "CAIA research paper examining liquidity mismatches, gating mechanisms, and valuation smoothing in perpetual evergreen private credit funds.",
+    "financial production and the subprime mortgage crisis": "Schwarcz's legal and economic analysis examining structural complexity, moral hazard, and systemic liquidity contagion during the 2008 financial crisis.",
+    "the global drivers of private credit bis": "BIS study analyzing the macroeconomic drivers, regulatory capital arbitrage, and institutional asset allocation shifts fueling private debt growth.",
+    "stochastic calculus for arbitrage free pricing with stochastic volatility contents 1 probability spaces and random variables 1": "Derives the Feynman-Kac connection and martingale pricing representation for continuous-time stochastic volatility models.",
+    "optimal portfolio selection by cvar based sharpe ratio genetic algorithm approach": "Applies genetic algorithms to optimize CVaR-adjusted Sharpe ratios under non-normal asset return distributions.",
+    "black litterman exotic beta and varying efficient portfolios an integrated approach": "Integrates Black-Litterman subjective views with alternative risk premia and dynamic efficient frontiers.",
+    "enhancing risk parity by including views robeco com": "Robeco research paper formulating a Black-Litterman framework to integrate active tactical views into risk parity portfolios.",
+    "portfolio selection problem using cvar risk measures equipped with dea pso and ica algorithms": "Applies DEA, PSO, and ICA metaheuristics to solve portfolio selection problems minimizing Conditional Value-at-Risk.",
+    "on esg portfolio construction a multi objective optimization approach": "Develops multi-objective optimization algorithms to evaluate risk-return-sustainability tradeoffs in ESG portfolio construction.",
+    "an empirical comparison between robust estimation and robust optimization to mean variance portfolio": "Compares robust covariance estimators against robust optimization uncertainty sets for mitigating portfolio estimation risk.",
+    "resampled efficient frontier integration for moeas": "Integrates Michaud's resampled efficient frontier framework into multi-objective evolutionary algorithms to reduce portfolio turnover.",
+    "testing strategy based on multiple signals": "Robert Novy-Marx's influential paper detailing multiple testing corrections and false discovery rates when evaluating multi-signal quantitative strategies.",
+    "three model of market impact": "Jim Gatheral's foundational paper analyzing temporary, permanent, and transient market impact models and proving no-dynamic-arbitrage conditions.",
+    "multi period portfolio optimization using model predictive control with mean variance and risk parity frameworks": "Applies model predictive control (MPC) to multi-period mean-variance and risk parity portfolio rebalancing under dynamic transaction costs.",
+    "advancing investment frontiers industry grade deep reinforcement learning for portfolio optimization": "Develops an industrial-grade deep reinforcement learning framework incorporating execution slippage and turnover constraints for multi-asset allocation.",
+    "retrieval augmented generation rag for fintech agentic design and evaluation": "Presents an agentic multi-stage RAG architecture incorporating automated self-evaluation guardrails for financial technology systems.",
+    "smartfinrag interactive modularized financial rag live demo system": "Develops an interactive modularized RAG architecture featuring adaptive chunking and dynamic query expansion for financial question answering.",
+    "llm output drift cross provider validation mitigation for financial workflows": "Quantifies stochastic output drift across LLM provider updates and proposes deterministic consensus validation for compliance workflows.",
+    "the future and fintech knowledge graphs and its applications in finance": "Surveys entity extraction, relational link prediction, and enterprise knowledge graph architectures in financial risk management.",
 }
 
 
@@ -1101,6 +1384,40 @@ def is_url_path_rejected(url: str) -> tuple[bool, str]:
         "/complete-issue.pdf",
         "/martin-fund-management-capturing-outsized-commodity-moves",
         "/innovations.htm",
+        "/openmarkets/",
+        "/rules-regulations/",
+        "/resources-small-businesses/",
+        "/enforcement-litigation/",
+        "/newsroom/press-releases/",
+        "/news/press/",
+        "/topics/performance-attribution",
+        "/blog/2013/08/tactical-asset-allocation-erisa-plans",
+        "/our-expertise/insights/2017/sep/mifid-ii-research-unbundling",
+        "/tools-information/quikstrike/",
+        "/rulebook/",
+        "/ideas-made-to-matter/",
+        "/news/retail-investors-play-a-losing-game",
+        "/duke-fuqua-insights/unintended-consequences",
+        "/binaries/documents/center-for-ethical-organizational-cultures/",
+        "/context/busi_fac_pubs/",
+        "/thenetwork/2011/10/18/the-galleon-insider-trading-case",
+        "/businessthink.unsw.edu.au/articles/",
+        "/news/2025/05/pamplin-investor-attention-insider-trading",
+        "/news/new-study-insider-trading-discovers-flaws",
+        "/our-expertise/insights/2024/oct/private-credit",
+        "/press-release/2024/citi-and-apollo",
+        "/news-and-views/perspective/private-markets-outlook-2026",
+        "/leverage/day-2-presentations/Household-Leverage",
+        "/blogs/articles/2025/10/14/growth-of-nonbanks",
+        "/blogs/cfainstitute.org/investor/2025/06/05/private-credits-surge",
+        "/Ec2021_Lecture2r3.pdf",
+        "/181.1.03f/Lect14.pdf",
+        "/FoundationsFE/BlackScholes.pdf",
+        "/FE_Ch02%20Black-Scholes%20Model.pdf",
+        "/495lecture28.pdf",
+        "/furiproject/",
+        "/ahl",
+        "/wagnerlawgroup.com/",
     ]
     for rp in reject_paths:
         if rp in path:
@@ -1158,6 +1475,82 @@ def clean_paper_title(raw_text: str, url: str) -> str | None:
         return "FinRL: A Deep Reinforcement Learning Library for Automated Stock Trading in Quantitative Finance"
     if "Neuberger_Berman_Simply_PutWriting.pdf" in url or "Simply_PutWriting.pdf" in url:
         return "Simply Put: The Performance of Cash-Secured Put Writing"
+    if "2002.08245" in url:
+        return "AutoAlpha: An Efficient Hierarchical Evolutionary Algorithm for Mining Alpha Factors in Quantitative Investment"
+    if "2510.21147" in url:
+        return "Hierarchical AI Multi-Agent Fundamental Investing: Evidence from China's A-Share Market"
+    if "w7613.pdf" in url:
+        return "Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation"
+    if "2506.22055" in url:
+        return "Crypto Price Prediction Using LSTM and XGBoost"
+    if "2407.14736" in url:
+        return "Is the Difference Between Deep Hedging and Delta Hedging a Statistical Arbitrage?"
+    if "2604.08356" in url:
+        return "Measuring Strategy-Decay Risk: Minimum Regime Performance and the Durability of Systematic Investing"
+    if "2502.15813" in url:
+        return "Stock Price Prediction Using a Hybrid LSTM-GNN Model"
+    if "2401.06139" in url:
+        return "Stockformer: A Price-Volume Factor Stock Selection Model Based on Wavelet Transform and Multi-Task Self-Attention Networks"
+    if "sr677.pdf" in url or "681607" in url:
+        return "A Simple and Reliable Way to Compute Option-Based Risk-Neutral Distributions"
+    if "sr32.pdf" in url:
+        return "Option-Implied Probability Distributions and Currency Excess Returns"
+    if "ecbwp198.pdf" in url or "2002198.html" in url:
+        return "Extracting Risk Neutral Probability Densities by Fitting Implied Volatility Smiles"
+    if "bisp06e.pdf" in url:
+        return "How Useful Are Implied Distributions? Evidence from Stock-Index Options"
+    if "w6656.pdf" in url:
+        return "Are Insiders' Trades Informative?"
+    if "w30032.pdf" in url or "7645411" in url:
+        return "Do Sell-Side Analysts Say “Buy” While Whispering “Sell”?"
+    if "feds-notes/bank-lending-to-private-credit" in url:
+        return "Bank Lending to Private Credit: Size, Characteristics, and Financial Stability Implications"
+    if "feds-notes/private-credit-characteristics" in url:
+        return "Private Credit: Characteristics and Risks"
+    if "CPP-20250521.pdf" in url:
+        return "Could the Growth of Private Credit Pose a Risk to Financial System Stability?"
+    if "8412.pdf" in url:
+        return "The Pricing of Treasury Bond Futures: The Quality Variation Option"
+    if "fairvalue.html" in url:
+        return "Calculating Equity Index Futures Fair Value"
+    if "fut_hedging.pdf" in url:
+        return "Hedging Strategies in Futures and Forward Markets"
+    if "hft_lit_review_march_2014.pdf" in url:
+        return "Equity Market Structure Literature Review: High Frequency Trading"
+    if "NickRoussanov2_29_24-1.pdf" in url:
+        return "When Benchmarks Fail: The Causes and Consequences of Negative Oil Prices"
+    if "ip-v3-n1-8-debunking-the-roll-yield-myth" in url:
+        return "Debunking the Roll Yield Myth in Futures Markets"
+    if "deconstructing-futures-returns" in url:
+        return "Deconstructing Futures Returns: The Role of Roll Yield"
+    if "treasury-futures-basis-spreads.pdf" in url:
+        return "Treasury Futures Delivery Options, Basis Spreads, and Delivery Tails"
+    if "Chicago2016OptimalExecution.pdf" in url:
+        return "Three Models of Market Impact"
+    if "MSES.pdf" in url:
+        return "Testing Strategies Based on Multiple Signals"
+    if "AIA.pdf" in url:
+        return "Institutional Investor Attention and Underreaction to News"
+    if "Lang%20Pinto%20Sul" in url:
+        return "MiFID II Unbundling and Sell-Side Analyst Research"
+    if "PesoProblem_Palgrave.pdf" in url:
+        return "The Peso Problem in Financial Economics"
+    if "AndrewDMannPhDFinal.pdf" in url:
+        return "Machine Learning Methods to Exploit the Predictive Power of Open, High, Low, Close (OHLC) Data"
+    if "Rhinesmith-JobMarketPaper.pdf" in url:
+        return "Conviction and Volume: Measuring the Information Content of Hedge Fund Trading"
+    if "DELABORIEDELABATUT" in url:
+        return "Advanced Methods in Portfolio Optimization for Trading Strategies and Smart Beta"
+    if "2412.04415" in url:
+        return "Targeting the Core: A Simple and Effective Method to Attack RAG-Based Agents via Direct LLM Manipulation"
+    if "2076-3417/13/20/11378" in url:
+        return "A Comprehensive Survey of Recommender Systems Based on Deep Learning"
+    if "2673-9909/5/3/76" in url:
+        return "Stock Market Prediction Using Machine Learning and Deep Learning Architectures"
+    if "379891582" in url:
+        return "Analysis of the Application of XGBoost in Exchange-Traded Funds"
+    if "diva2:1985833" in url:
+        return "A Machine Learning-Based Stock Prediction System Using XGBoost and Random Forests"
 
     text = raw_text.strip()
     text = re.sub(r"^(?:\[\d+\]|\d+\.)\s*", "", text).strip()
@@ -1372,6 +1765,51 @@ def clean_paper_title(raw_text: str, url: str) -> str | None:
         r"\s*-\s*ULB\s*:\s*Dok.*$",
         r"\s*-\s*Shanghai\s*Advanced\s*Institute\s*of\s*Finance.*$",
         r"\s*-\s*Chartered\s*Alternative\s*Investment\s*Analyst\s*Association$",
+        r"\s*-\s*DiVA$",
+        r"\s*-\s*mtu-mujast$",
+        r"\s*-\s*Liberty$",
+        r"\s*-\s*OpenMarkets$",
+        r"\s*-\s*Wharton's\s*Finance\s*Department$",
+        r"\s*-\s*The\s*Cupola$",
+        r"\s*-\s*Scholars\s*at\s*Harvard$",
+        r"\s*-\s*Fulton\s*Forge\s*Student\s*Research\s*Expo$",
+        r"\s*-\s*Two\s*Sigma$",
+        r"\s*-\s*Law\.Cornell\.Edu$",
+        r"\s*-\s*UNSW$",
+        r"\s*-\s*Harbert\s*College\s*of\s*Business$",
+        r"\s*-\s*Scholars\s*Crossing$",
+        r"\s*-\s*Legal\s*Scholarship\s*Repository$",
+        r"\s*-\s*UC\s*Berkeley\s*Law$",
+        r"\s*-\s*VTechWorks$",
+        r"\s*\|\s*Michigan\s*Ross$",
+        r"\s*-\s*Duke\s*Law\s*Scholarship\s*Repository$",
+        r"\s*-\s*Oliver\s*Wyman$",
+        r"\s*-\s*Partners\s*Group$",
+        r"\s*-\s*The\s*Wagner\s*Law\s*Group$",
+        r"\s*-\s*University\s*of\s*Warwick$",
+        r"\s*-\s*LSE$",
+        r"\s*-\s*IRIHS$",
+        r"\s*-\s*FRASER$",
+        r"\s*-\s*SNB$",
+        r"\s*-\s*ACFR\s*-\s*AUT$",
+        r"\s*-\s*The\s*University\s*of\s*Texas\s*at\s*Dallas$",
+        r"\s*\|\s*Research\s*&\s*Policy\s*Center$",
+        r"\s*-\s*A&O\s*Shearman$",
+        r"\s*-\s*International\s*Transport\s*Forum$",
+        r"\s*-\s*Wharton\s*Faculty\s*Platform$",
+        r"\s*-\s*World\s*Scientific\s*Publishing$",
+        r"\s*-\s*Hester\s*Law\s*Group$",
+        r"\s*-\s*University\s*of\s*Notre\s*Dame$",
+        r"\s*-\s*Oxford\s*Academic$",
+        r"\s*-\s*UCL\s*Discovery\s*-\s*University\s*College\s*London$",
+        r"\s*-\s*Cornell\s*Law\s*School$",
+        r"\s*-\s*Bank\s*of\s*England$",
+        r"\s*-\s*Federal\s*Reserve\s*Bank\s*of\s*Minneapolis$",
+        r"\s*-\s*CFA\s*Institute.*$",
+        r"\s*-\s*PMC(?:\s*\(PDF\))?$",
+        r"\s*-\s*PhilArchive$",
+        r"\s*-\s*The\s*Harvard\s*Law\s*School\s*Forum.*$",
+        r"\s*Emory\s*University$",
     ]
     for pattern in source_suffixes:
         title = re.sub(pattern, "", title, flags=re.I).strip()
@@ -1448,6 +1886,53 @@ def clean_paper_title(raw_text: str, url: str) -> str | None:
         "robo-advisors: a portfolio management perspective jonathan walter lam",
         "two sigma", "gdpnow", "day trading", "vix options", "vix futures", "journal",
         "innovations",
+        "e-mini s&p 500 product overview", "e-mini s&p 500 futures overview",
+        "e-mini s&p select sector futures overview", "e-mini nasdaq-100 futures contract specs",
+        "nasdaq-100 futures and options", "e-mini s&p 500 options contract specs",
+        "e-mini nasdaq-100 futures overview", "block and btic liquidity providers",
+        "cme group fee list 2026", "january-2025-market-data-fee-list.pdf",
+        "e-mini s&p 500 futures margins", "26 u.s. code § 1256",
+        "26 u.s. code § 1259", "ownership form codes",
+        "insider trading arrangements and related disclosures",
+        "disclosure of hedging by employees, officers and directors",
+        "insider transactions and forms 3, 4, and 5", "edgar full text search",
+        "17 cfr § 240.10b5-1", "what factors constitute insider trading?",
+        "martha stewart", "sec charges", "the galleon insider trading case",
+        "inside this insider trading loophole", "new virginia tech study reveals",
+        "new study on insider trading discovers flaws", "private credit's surge has investors excited",
+        "private credit — impact on banks", "citi and apollo announce",
+        "private markets outlook 2026", "growth of nonbanks is revealing new financial stability risks",
+        "tactical asset allocation & erisa plans", "performance measurement & attribution",
+        "econ 2021 - financial economics i", "math 181 lecture 14",
+        "the black-scholes model", "ch 2. black-scholes model",
+        "640:495 mathematical finance", "quant trading vs traditional trading",
+        "man ahl", "why the market should watch special u.s. repo",
+        "how cme repofunds rate futures enhance bond basis trading",
+        "treasury analytics user guide", "chapter 14p hard red spring wheat futures",
+        "vomitoxin in spring", "mifid ii: assessing the impact of research unbundling",
+        "federal court approves global research analyst settlement",
+        "sec announces enforcement results for fiscal year 2024",
+        "retail investors lose big in options markets",
+        "retail investors play a losing game with complex options",
+        "ai: a landmark report to guide financial institutions",
+        "key challenges and regulatory considerations",
+        "explainable ai in finance | research & policy center",
+        "non-commodity agricultural price hedging",
+        "balancing efficiency and resilience in multimodal supply chains",
+        "hedging strategies in carbon emission price dynamics",
+        "understanding the impact of tiktok's recommendation algorithm",
+        "combining content-based and collaborative filtering for job recommendation",
+        "crypto price prediction using lstm+xgboost identify applicable funding agency",
+        "optimizing smart grid load forecasting",
+        "a scalable rf-xgboost framework for financial fraud mitigation",
+        "high-frequency trading: an innovative solution to address key issues",
+        "a study on backtest metrics for financial analysis",
+        "arxiv.org", "accessed december 27, 2025", "accessed november 27, 2025",
+        "tactical asset allocation: the flexibility advantage",
+        "what is strategic asset allocation?",
+        "building a tactical asset allocation overlay with derivatives",
+        "performance attribution",
+        "explainable ai in finance",
     ]
     for rt in reject_titles:
         if lower_t == rt or lower_t.startswith(rt):
