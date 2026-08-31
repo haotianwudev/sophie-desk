@@ -3,7 +3,7 @@ name: sophie-desk
 kind: guide
 role: architect
 tier: either
-lines: 313
+lines: 333
 shared: true
 ---
 
@@ -15,5 +15,5 @@ Operating conventions for the sophie-desk control plane (tasks, probes, the supe
 - **Role** — architect
 - **Runs as** — either
 - **Lives in** — `sophie-desk/.agents/skills`
-- **Size** — 313 lines
+- **Size** — 333 lines
 
