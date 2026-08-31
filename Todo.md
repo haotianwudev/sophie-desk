@@ -11,3 +11,9 @@ and delete the line here. Don't let an item sit here *and* as a real task — pi
 ---
 
 - [ ] (add items below this line, one per line, oldest first)
+- [ ] [2026-08-30] [platform] ETL: explore adding SPX futures (/ES) prices — gives insight into
+      where SPX is heading while the US cash market is closed (overnight/pre-market). Would need
+      a data source (ThetaData already has an integration in `spx-option-backfill`; check if it
+      or another vendor covers futures too) and a new table alongside `prices`/`vol_regime_data`.
+      Natural fit for the `vol-regime-etl` Cloud Run job if the read-after-write ordering allows
+      it — see the "Automatic daily execution" section of the sophie-develop-guide skill.
