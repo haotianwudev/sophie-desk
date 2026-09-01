@@ -9,7 +9,7 @@ repo: sophie-pipeline
 blocker: Vendor/scope decision — accept a monthly-cycle corpus, or pay for a faster tier
 next: Decide scope. 45-DTE studies never touch the near-daily tail that is stalling.
 probe: bash probes/spx-option-backfill.sh
-progress: <3>WSL (86066 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+progress: <3>WSL (86205 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
 outcome:
 artifacts:
