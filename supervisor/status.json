@@ -1,25 +1,20 @@
 {
-  "generated_at": "2026-09-05T11:56:52+00:00Z",
+  "generated_at": "2026-09-05T12:05:12+00:00Z",
   "task_count": 2,
   "needs_you": [
-    "librarian-round-6-vrp-core",
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [
-    "librarian-round-6-vrp-core"
-  ],
   "tasks": [
     {
       "id": "librarian-round-6-vrp-core",
       "title": "Librarian round 6 \u2014 8 more core VRP/option-writing papers, download + full note + deep summary",
       "lane": "research",
-      "status": "active",
+      "status": "queued",
       "assignee": "agy",
       "gate": "",
-      "stall_flag": "no commit in 22m while active",
-      "probe_status": "RUN",
-      "progress": "32 notes total (baseline 32), 0 new yet"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (13984 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     },
     {
       "id": "spx-option-backfill",
@@ -28,9 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 1040/1360 \u00b7 log 5h ago"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (13987 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
