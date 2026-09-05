@@ -2,16 +2,16 @@
 id: librarian-round-6-vrp-core
 title: Librarian round 6 — 8 more core VRP/option-writing papers, download + full note + deep summary
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Dispatch to agy (auto-dispatch eligible — no gate).
+next: Active — retrieving papers, downloading open-access copies, drafting deep summaries.
 probe: bash probes/librarian-round-6-vrp-core.sh
 progress: <3>WSL (13984 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
-stall_flag: no commit in 22m while active
+stall_flag:
 outcome:
 artifacts:
 created: 2026-09-04
@@ -112,6 +112,9 @@ a real note) or change the Status to `Fetched -- <new note filename>`.
 - 2026-09-05 — `librarian-round-5-vrp-core` finished (all 8 papers, 4 downloaded + 4
   recorded-unavailable, all with Detailed Summaries, library now at 32 notes). Moved this file
   into `tasks/` and queued it.
+- 2026-09-05 — Claimed task (status: active). Starting round 6 execution: finding and downloading
+  open-access PDFs, writing comprehensive markdown notes with Detailed Summaries for all 8 papers,
+  and resolving the candidates backlog.
 
 ## Result
 
