@@ -9,7 +9,7 @@ repo: sophie-option-research
 blocker:
 next: Active — retrieving papers, downloading open-access copies, drafting deep summaries.
 probe: bash probes/librarian-round-6-vrp-core.sh
-progress: <3>WSL (13984 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+progress: <3>WSL (14127 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
 stall_flag:
 outcome:
