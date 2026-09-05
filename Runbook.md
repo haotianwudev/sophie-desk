@@ -115,6 +115,28 @@ Connect from the phone: `ssh <username>@<tailscale-hostname-or-ip>`
 
 ---
 
+## Local paper index (query the papers/candidates backlog with SQL)
+
+**Source:** [papers/FOLLOWUP-CANDIDATES.md](papers/FOLLOWUP-CANDIDATES.md) · `sophie-pipeline/paper-index/`
+
+Rebuild any time `papers/` markdown changes — safe to re-run, fully replaces the DB each time:
+```bash
+cd /f/workspace/sophie-pipeline/paper-index
+python build_index.py
+```
+Query with Python (the CLI `sqlite3.exe` on this machine lacks the FTS5 extension, so full-text
+`MATCH` queries only work through Python or a GUI client):
+```bash
+python -c "
+import sqlite3
+conn = sqlite3.connect('papers.db')
+print(conn.execute(\"SELECT topic, count(*) FROM candidates GROUP BY topic\").fetchall())
+"
+```
+See `paper-index/README.md` for the full schema (`papers`/`papers_fts`, `candidates`/`candidates_fts`).
+
+---
+
 ## Frontend: local vs. prod GraphQL
 
 **Source skill:** `sophie-develop-guide`
