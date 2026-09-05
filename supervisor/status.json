@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T11:05:07+00:00Z",
+  "generated_at": "2026-09-05T11:35:10+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
@@ -7,14 +7,14 @@
   "stalled_probes": [],
   "tasks": [
     {
-      "id": "librarian-round-5-vrp-core",
-      "title": "Librarian round 5 \u2014 8 core VRP/option-writing papers, download + full note + deep summary",
+      "id": "librarian-round-6-vrp-core",
+      "title": "Librarian round 6 \u2014 8 more core VRP/option-writing papers, download + full note + deep summary",
       "lane": "research",
-      "status": "active",
+      "status": "queued",
       "assignee": "agy",
       "gate": "",
       "probe_status": "ERROR",
-      "progress": "<3>WSL (13699 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "progress": "<3>WSL (13842 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     },
     {
       "id": "spx-option-backfill",
@@ -24,7 +24,7 @@
       "assignee": "none",
       "gate": "g3",
       "probe_status": "ERROR",
-      "progress": "<3>WSL (13702 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "progress": "<3>WSL (13845 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
