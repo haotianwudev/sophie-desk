@@ -1,14 +1,10 @@
 {
-  "generated_at": "2026-09-05T10:57:44+00:00Z",
+  "generated_at": "2026-09-05T11:05:07+00:00Z",
   "task_count": 2,
   "needs_you": [
-    "librarian-round-5-vrp-core",
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [
-    "librarian-round-5-vrp-core"
-  ],
   "tasks": [
     {
       "id": "librarian-round-5-vrp-core",
@@ -17,9 +13,8 @@
       "status": "active",
       "assignee": "agy",
       "gate": "",
-      "stall_flag": "no commit in 23m while active",
-      "probe_status": "RUN",
-      "progress": "24 notes total (baseline 24), 0 new yet"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (13699 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     },
     {
       "id": "spx-option-backfill",
@@ -28,9 +23,8 @@
       "status": "blocked",
       "assignee": "none",
       "gate": "g3",
-      "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 1037/1360 \u00b7 log 4h ago"
+      "probe_status": "ERROR",
+      "progress": "<3>WSL (13702 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }

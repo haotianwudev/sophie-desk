@@ -9,8 +9,8 @@ repo: sophie-option-research
 blocker:
 next: Dispatch to agy (auto-dispatch eligible — no gate).
 probe: bash probes/librarian-round-5-vrp-core.sh
-progress: 24 notes total (baseline 24), 0 new yet
-probe_status: RUN
+progress: <3>WSL (13699 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
+probe_status: ERROR
 stall_flag: no commit in 23m while active
 outcome:
 artifacts:
