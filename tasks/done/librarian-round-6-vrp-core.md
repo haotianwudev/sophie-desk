@@ -2,18 +2,18 @@
 id: librarian-round-6-vrp-core
 title: Librarian round 6 — 8 more core VRP/option-writing papers, download + full note + deep summary
 lane: research
-status: active
+status: done
 assignee: agy
 gate:
 repo: sophie-option-research
 blocker:
-next: Active — retrieving papers, downloading open-access copies, drafting deep summaries.
+next:
 probe: bash probes/librarian-round-6-vrp-core.sh
 progress: <3>WSL (14840 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory
 probe_status: ERROR
 stall_flag:
-outcome:
-artifacts:
+outcome: 8 core VRP/option-writing papers filed (4 open-access PDFs + 4 recorded-unavailable), all with Detailed Summaries
+artifacts: papers/option-writing/ait-sahalia-karaman-mancini-2015-term-structure-variance-swaps.md, papers/option-writing/bali-hovakimian-2009-volatility-spreads-expected-stock-returns.md, papers/option-writing/buraschi-trojani-vedolin-2014-when-uncertainty-blows-in-the-orchard.md, papers/option-writing/cao-han-2013-option-returns-idiosyncratic-volatility.md, papers/option-writing/driessen-maenhout-vilkov-2009-price-of-correlation-risk.md, papers/option-writing/gabaix-2012-variable-rare-disasters.md, papers/option-writing/israelov-nielsen-2014-covered-call-strategies-myths.md, papers/option-writing/kozhan-neuberger-schneider-2013-skew-risk-premium.md
 created: 2026-09-04
 updated: 2026-09-05
 ---
@@ -115,7 +115,33 @@ a real note) or change the Status to `Fetched -- <new note filename>`.
 - 2026-09-05 — Claimed task (status: active). Starting round 6 execution: finding and downloading
   open-access PDFs, writing comprehensive markdown notes with Detailed Summaries for all 8 papers,
   and resolving the candidates backlog.
+- 2026-09-05 — Resumed execution from scratch (previous attempt timed out after downloading Gabaix (2012) PDF before any notes were written). Processing all 8 target papers systematically: downloading open-access PDFs, compiling deep summaries with empirical data and sophie-option-research links, and updating the candidates backlog.
+- 2026-09-05 — All 8 target papers processed and verified:
+  1. Aït-Sahalia, Karaman, Mancini (2015): PDF downloaded (1.26 MB), note created (`has_pdf: true`).
+  2. Bali & Hovakimian (2009): Paywalled (Management Science / INFORMS), note created (`has_pdf: false`).
+  3. Buraschi, Trojani, Vedolin (2014): Paywalled (Journal of Finance / Wiley), note created (`has_pdf: false`).
+  4. Cao & Han (2013): PDF downloaded (813 KB), note created (`has_pdf: true`).
+  5. Driessen, Maenhout, Vilkov (2009): Paywalled (Journal of Finance / Wiley), note created (`has_pdf: false`).
+  6. Gabaix (2012): PDF downloaded (433 KB), note created (`has_pdf: true`).
+  7. Kozhan, Neuberger, Schneider (2013): PDF downloaded (439 KB), note created (`has_pdf: true`).
+  8. Israelov & Nielsen (2014): Paywalled (Financial Analysts Journal / CFA Institute), note created (`has_pdf: false`).
+  All 8 rows in `papers/candidates/vrp-option-writing.md` updated to `Fetched -- <note-filename>`. Library in `papers/option-writing/` expanded from 32 to 40 notes (100% with Detailed Summaries, 32 local PDFs on disk). Moving task to `tasks/done/`.
 
 ## Result
 
-<!-- filled by /desk-log on completion -->
+- 8 new comprehensive markdown notes created in `papers/option-writing/` (all with full Detailed Summaries, hypotheses, and concrete linkages to `sophie-option-research`):
+  - `ait-sahalia-karaman-mancini-2015-term-structure-variance-swaps.md` (+ local PDF)
+  - `bali-hovakimian-2009-volatility-spreads-expected-stock-returns.md` (STATUS: PDF NOT DOWNLOADED — Management Science paywall)
+  - `buraschi-trojani-vedolin-2014-when-uncertainty-blows-in-the-orchard.md` (STATUS: PDF NOT DOWNLOADED — Journal of Finance paywall)
+  - `cao-han-2013-option-returns-idiosyncratic-volatility.md` (+ local PDF)
+  - `driessen-maenhout-vilkov-2009-price-of-correlation-risk.md` (STATUS: PDF NOT DOWNLOADED — Journal of Finance paywall)
+  - `gabaix-2012-variable-rare-disasters.md` (+ local PDF)
+  - `kozhan-neuberger-schneider-2013-skew-risk-premium.md` (+ local PDF)
+  - `israelov-nielsen-2014-covered-call-strategies-myths.md` (STATUS: PDF NOT DOWNLOADED — Financial Analysts Journal paywall)
+- 4 local open-access PDFs downloaded and stored in `papers/option-writing/` (gitignored per repo rule):
+  - `ait-sahalia-karaman-mancini-2015-term-structure-variance-swaps.pdf`
+  - `cao-han-2013-option-returns-idiosyncratic-volatility.pdf`
+  - `gabaix-2012-variable-rare-disasters.pdf`
+  - `kozhan-neuberger-schneider-2013-skew-risk-premium.pdf`
+- Candidate backlog in `papers/candidates/vrp-option-writing.md` updated with all 8 rows marked `Fetched -- <note-filename>`.
+- Total library size in `papers/option-writing/`: 40 notes (excluding `REVIEW-INDEX.md`), 32 local PDFs on disk, 8 recorded-unavailable paywalled notes, and 40 notes with `## Detailed Summary`.
