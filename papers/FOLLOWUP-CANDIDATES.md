@@ -56,11 +56,13 @@ Split into per-topic pages once the combined table passed ~1000 rows. Each page 
 
 Splitting into 10 per-topic pages (1184 rows total as of 2026-09-04) fixed the Dataview
 scaling problem but made cross-topic queries ("all High-tags across every topic", full-text
-search over `why`) awkward again. `sophie-pipeline/paper-index/` rebuilds a local SQLite copy
-of this backlog (plus `papers/option-writing/*.md` frontmatter) from these markdown files —
-run `python build_index.py` there, then query `candidates`/`candidates_fts` and
-`papers`/`papers_fts` with SQL. Markdown here stays the source of truth; the DB is disposable
-and gitignored, rebuild it whenever these files change.
+search over `why`) awkward again. `sophie-pipeline/paper-index/build_index.py` rebuilds a local
+SQLite copy of this backlog (plus `papers/option-writing/*.md` frontmatter) from these markdown
+files into `papers/.paper-index/papers.db` — a vault-relative path on purpose, so an Obsidian
+SQLite plugin (SQLite Explorer, e.g.) can browse/query it directly, not just Python. Query
+`candidates`/`candidates_fts` and `papers`/`papers_fts` with SQL; see
+`sophie-pipeline/paper-index/README.md` for the schema and plugin setup. Markdown here stays
+the source of truth; the DB is disposable and gitignored, rebuild it whenever these files change.
 
 ## Passed on
 
