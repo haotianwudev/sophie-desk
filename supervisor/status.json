@@ -1,21 +1,11 @@
 {
-  "generated_at": "2026-09-05T15:05:25+00:00Z",
-  "task_count": 2,
+  "generated_at": "2026-09-05T15:35:27+00:00Z",
+  "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
   ],
   "stalled_probes": [],
   "tasks": [
-    {
-      "id": "librarian-round-6-vrp-core",
-      "title": "Librarian round 6 \u2014 8 more core VRP/option-writing papers, download + full note + deep summary",
-      "lane": "research",
-      "status": "active",
-      "assignee": "agy",
-      "gate": "",
-      "probe_status": "ERROR",
-      "progress": "<3>WSL (14840 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
-    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
@@ -24,7 +14,7 @@
       "assignee": "none",
       "gate": "g3",
       "probe_status": "ERROR",
-      "progress": "<3>WSL (14843 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "progress": "<3>WSL (14983 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
