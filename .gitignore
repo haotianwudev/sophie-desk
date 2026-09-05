@@ -14,7 +14,7 @@ papers/**/*.pdf
 
 # local SQLite paper index, rebuilt from papers/ markdown by
 # sophie-pipeline/paper-index/build_index.py -- disposable, not source of truth
-papers/.paper-index/
+papers/paper-index/
 
 # personal Google Drive doc index/cache -- titles + doc_ids + cached content
 # are personal research notes, not for a public repo. See gdocs-index-sync task.

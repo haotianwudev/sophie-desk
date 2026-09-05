@@ -124,7 +124,7 @@ Rebuild any time `papers/` markdown changes — safe to re-run, fully replaces t
 cd /f/workspace/sophie-pipeline/paper-index
 python build_index.py
 ```
-Writes to `papers/.paper-index/papers.db` (inside this vault, gitignored) so Obsidian's own
+Writes to `papers/paper-index/papers.db` (inside this vault, gitignored) so Obsidian's own
 SQLite plugins can open it — see `paper-index/README.md`'s "Viewing it in Obsidian" section for
 plugin install steps (SQLite Explorer, recommended).
 
@@ -133,7 +133,7 @@ Query with Python (the CLI `sqlite3.exe` on this machine lacks the FTS5 extensio
 ```bash
 python -c "
 import sqlite3
-conn = sqlite3.connect(r'F:\workspace\sophie-desk\papers\.paper-index\papers.db')
+conn = sqlite3.connect(r'F:\workspace\sophie-desk\papers\paper-index\papers.db')
 print(conn.execute(\"SELECT topic, count(*) FROM candidates GROUP BY topic\").fetchall())
 "
 ```
