@@ -2,7 +2,7 @@
 id: librarian-round-5-vrp-core
 title: Librarian round 5 — 8 core VRP/option-writing papers, download + full note + deep summary
 lane: research
-status: queued
+status: active
 assignee: agy
 gate:
 repo: sophie-option-research
@@ -108,6 +108,9 @@ a real note) or change the Status to `Fetched -- <new note filename>`, per that 
   credit-copula, risk-parity, and vol-surface tangents), then picked for canonical/highly-cited
   status and no overlap with the 24 papers already in the library. Labeled the 8 source rows in
   the candidates file with `Selected -- librarian-round-5-vrp-core` before creating this task.
+- 2026-09-05 — Claimed task (status: active). Starting round 5 execution: finding and downloading
+  open-access PDFs, writing comprehensive markdown notes with Detailed Summaries for all 8 papers,
+  and resolving the candidates backlog.
 
 ## Result
 
