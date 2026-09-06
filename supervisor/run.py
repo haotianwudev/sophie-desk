@@ -7,9 +7,14 @@ Each tick it:
      of the file
   2. writes supervisor/status.json — a small, committed summary of what needs
      you right now, so it's visible from the phone without opening every task
-  3. if anything changed, rebuilds the local paper-index SQLite DB (Desk.md
-     renders off its `tasks` table now, not a live Dataview query -- see
-     rebuild_paper_index()) and commits + pushes
+  3. rebuilds the local paper-index SQLite DB, every tick unconditionally
+     (Papers.md and papers/db-schema/STATUS.md render off it now -- Desk.md
+     itself stays on live Dataview, tried on this DB and reverted the same
+     day since tasks change too often for a rebuild-based board to feel
+     live; see rebuild_paper_index(). A full rebuild is ~0.25s, cheap enough
+     to just always do it rather than track staleness per source tree),
+     then commits + pushes if a probe or dispatch-claim actually changed a
+     task
   4. logs a WARN line the moment a task newly enters "needs you" — no real
      notification channel is wired up yet, see the README for why
 
@@ -420,11 +425,14 @@ PAPER_INDEX_BUILD = VAULT.parent / "sophie-pipeline" / "paper-index" / "build_in
 
 
 def rebuild_paper_index() -> None:
-    """Desk.md renders off paper-index's `tasks` table now (2026-09-05), not a
-    live Dataview query -- so a tick that changed a task file needs to also
-    refresh the DB, or the board silently shows stale state until someone
-    remembers to rebuild by hand. Best-effort: a failure here shouldn't stop
-    the tick from committing/pushing what it already measured."""
+    """Papers.md and papers/db-schema/STATUS.md render off paper-index now
+    (2026-09-05), not live Dataview queries -- so every tick refreshes the DB
+    unconditionally, or those pages silently show stale state until someone
+    remembers to rebuild by hand. (Desk.md was tried on this DB too, same
+    day, and reverted back to Dataview -- tasks change too often for a
+    rebuild-based board to feel live; it's outside this function's concern.)
+    Best-effort: a failure here shouldn't stop the tick from committing/
+    pushing what it already measured."""
     if not PAPER_INDEX_BUILD.exists():
         log(f"WARN paper index not rebuilt -- {PAPER_INDEX_BUILD} not found")
         return
@@ -489,8 +497,15 @@ def run_once(dry_run: bool = False, force: bool = False) -> None:
     if dry_run:
         print(json.dumps(summary, indent=2))
         return
+    # Unconditional, not gated on `changed`: `changed` only reflects task
+    # frontmatter this tick touched, but papers/candidates/gdocs edits (made
+    # by a human, or a separate task, completely outside this tick) need
+    # picking up too -- and a full rebuild is ~0.25s, cheap enough to just
+    # always do it rather than track staleness per source tree. commit_and_push
+    # stays gated on `changed`, though: that's specifically about committing
+    # THIS tick's own task-frontmatter writes, unrelated to the DB rebuild.
+    rebuild_paper_index()
     if changed:
-        rebuild_paper_index()
         commit_and_push(f"{len(summary['needs_you'])} need you, {len(summary['stalled_probes'])} stalled")
 
 

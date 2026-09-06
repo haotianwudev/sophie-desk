@@ -24,13 +24,20 @@ Each tick (`supervisor/run.py`):
    itself to `tasks/done/`, committed, and pushed — all with nobody watching.
 4. Builds `supervisor/status.json` — task count, which ones need you
    (`status: blocked` or `status: gate`), which probes came back `STALL`.
-5. **If anything changed, rebuilds the local paper-index SQLite DB**
+5. **Rebuilds the local paper-index SQLite DB every tick, unconditionally**
    (`papers/paper-index/papers.db`) by invoking `build_index.py` from the
-   `sophie-pipeline` repo. Added 2026-09-05 when `Desk.md` moved off a live
-   Dataview query onto this DB's `tasks` table — without this step the board
-   would silently show stale state until someone remembered to rebuild by
-   hand. Best-effort: a rebuild failure is logged as a WARN, never blocks
-   the commit below.
+   `sophie-pipeline` repo. Added 2026-09-05 when `Papers.md` and
+   `papers/db-schema/STATUS.md` moved off live Dataview queries onto this DB
+   — without this step those pages would silently show stale state until
+   someone remembered to rebuild by hand. (`Desk.md` was tried on this DB
+   too, same day, and reverted back to Dataview — tasks change too often for
+   a rebuild-based board to feel live; it stays outside this step's concern.)
+   Unconditional (not gated on step 6 finding a task change) because a paper,
+   candidates-backlog, or `gdocs/` edit — made by a human, or a completely
+   separate task, outside this tick entirely — needs picking up too, and a
+   full rebuild only costs ~0.25s; tracking staleness per source tree wasn't
+   worth the complexity at that price. Best-effort: a rebuild failure is
+   logged as a WARN, never blocks the commit below.
 6. Commits and pushes, but only if a probe or a dispatch-claim actually
    changed something. A quiet tick with nothing new produces no commit.
 7. Logs a line the moment a task newly enters "needs you" — see the gap

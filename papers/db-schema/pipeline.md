@@ -5,9 +5,10 @@ Cloud Scheduler, meant to survive the workstation being asleep since it's fetche
 probed like a task).
 
 **Not implemented yet as of 2026-09-05** — `notes/pipeline/` doesn't exist on disk, so this
-table is always empty and `Desk.md`'s Pipeline section renders no rows. The table and its
-`sqlite-query` block are already wired up so this needs zero migration work once the
-supervisor actually starts writing that folder — just start writing `notes/pipeline/*.md`
+table is always empty. Not used by `Desk.md` (that section stays on a live Dataview
+`FROM "notes/pipeline"` query, same as the rest of that board), but wired up here for anything
+that wants to query pipeline health without opening Obsidian — needs zero further work once
+the supervisor actually starts writing that folder, just start writing `notes/pipeline/*.md`
 files with this frontmatter and rebuild.
 
 ## Columns

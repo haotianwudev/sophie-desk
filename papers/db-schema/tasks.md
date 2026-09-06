@@ -1,14 +1,16 @@
 # tasks
 
-One row per `tasks/*.md` and `tasks/done/*.md` file — the task board `Desk.md` renders. This
-is the table that let `Desk.md` drop Dataview (2026-09-05): every section on that page is now
-a `sqlite-query` block against this table instead of a live `FROM "tasks"` query.
+One row per `tasks/*.md` and `tasks/done/*.md` file. **`Desk.md` does not render off this
+table** — it was tried here (2026-09-05) and reverted the same day, back onto a live Dataview
+`FROM "tasks"` query, because tasks change too often for a rebuild-based board to feel live.
+This table instead feeds [STATUS.md](STATUS.md)'s "needs attention" section and is available
+for any ad-hoc query that doesn't need true liveness.
 
-**Not live** — unlike the old Dataview board, this only reflects reality after a rebuild. The
-supervisor rebuilds it automatically on every tick that changes something (see
+**Not live** — unlike `Desk.md`'s Dataview query, this only reflects reality after a rebuild.
+The supervisor rebuilds it unconditionally on every tick (see
 [Runbook.md](../../Runbook.md)'s supervisor section), so it's normally at most ~30 minutes
 stale while the loop is running. A manual edit outside the supervisor (claiming a task by
-hand, editing prose) needs an explicit `python build_index.py` before `Desk.md` reflects it.
+hand, editing prose) needs an explicit `python build_index.py` to show up here immediately.
 
 ## Columns
 
@@ -45,7 +47,7 @@ Mirrors `templates/task.md`'s frontmatter exactly, plus two computed fields.
 ## Example queries
 
 ```sql
--- Desk.md's "Needs you"
+-- equivalent of Desk.md's live "Needs you" Dataview query
 SELECT id, lane,
        CASE WHEN COALESCE(stall_flag,'') <> '' THEN 'stalled: ' || stall_flag
             WHEN COALESCE(gate,'') <> '' THEN 'gate ' || gate

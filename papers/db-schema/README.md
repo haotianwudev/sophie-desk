@@ -7,11 +7,13 @@ markdown any time it changes) — these notes document its *shape*, they aren't 
 **Want current row counts, freshness, and what needs attention right now instead of a schema
 reference? See [STATUS.md](STATUS.md).**
 
-**This is what `Desk.md`, `Papers.md`, and `Skills.md` render off, as of 2026-09-05** —
-Dataview is no longer required anywhere in this vault, replaced by `sqlite-query` blocks
-(needs the **SQLite Explorer** Obsidian plugin) reading this DB. The tradeoff: these boards
-are no longer *live*. The supervisor rebuilds the DB automatically on every tick that changes
-a task (see `Runbook.md`'s supervisor section); rebuild by hand after any other edit.
+**This is what `Papers.md` renders off, as of 2026-09-05** (needs the **SQLite Explorer**
+Obsidian plugin, via `sqlite-query` blocks). `Desk.md` was tried on this DB too and reverted
+back to Dataview the same day — tasks change too often for a rebuild-based board to feel live,
+so it kept Dataview's true liveness; Dataview is still required for that one board.
+The tradeoff for `Papers.md`: not *live*. The supervisor rebuilds the DB unconditionally on
+every tick (see `Runbook.md`'s supervisor section) — any edit to papers, candidates, gdocs, or
+tasks gets picked up; rebuild by hand only if the loop isn't currently running.
 
 **Source of truth stays the markdown.** Nothing here is hand-maintained data; it's a map of
 what querying the DB gets you. The actual build script and full column-level schema live in
@@ -37,7 +39,7 @@ python build_index.py
 | [candidates](candidates.md) | `papers/candidates/*.md` tables | one row per backlog candidate |
 | [gdocs_index](gdocs_index.md) | `gdocs/index.json` | raw Google Drive `.gdoc` stub scan |
 | [article_gdoc_matches](article_gdoc_matches.md) | `gdocs/article-exact-matches.md` | article slug → matched Drive doc |
-| [tasks](tasks.md) | `tasks/*.md`, `tasks/done/*.md` | one row per task — what `Desk.md` renders |
+| [tasks](tasks.md) | `tasks/*.md`, `tasks/done/*.md` | one row per task — feeds `STATUS.md`, not `Desk.md` (that stays on Dataview) |
 | [pipeline](pipeline.md) | `notes/pipeline/*.md` | pipeline health; empty until that folder exists |
 
 `gdocs_index` and `article_gdoc_matches` are only populated when `gdocs/` exists on the

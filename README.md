@@ -21,8 +21,11 @@ sophie/                 the work model itself, written up in plain English
 supervisor/             the probe loop -- run.py, its design doc, Task Scheduler registration
 tasks/                  one file per in-flight task
 tasks/done/             archive — move here on completion
-papers/                 research library -- Papers.md is the live board, FOLLOWUP-CANDIDATES.md
-                        the todo list, option-writing/ one classified note per paper
+papers/                 research library -- Papers.md the board (SQL-backed, see db-schema/),
+                        FOLLOWUP-CANDIDATES.md the todo list, option-writing/ one classified
+                        note per paper
+papers/db-schema/       reference for the local SQL index Papers.md renders off -- schema,
+                        current status, freshness
 notes/                  durable notes; notes/pipeline/ is supervisor-written
 probes/                 one script per task, prints OK | RUN | STALL + a measurement
 templates/task.md       the task template
@@ -55,6 +58,7 @@ Two numbers from that catalogue worth acting on:
 | Plugin | Why | Notes |
 |---|---|---|
 | **Dataview** | Renders `Desk.md`. Without it the board is just code blocks. | Community plugin. Enable JS queries off; the table queries here are plain DQL. |
+| **SQLite Explorer** | Renders `Papers.md` and `papers/db-schema/STATUS.md` — a local SQL index, not Dataview. | Community plugin ([repo](https://github.com/qf3l3k/obsidian-sqlite-explorer)). See `papers/db-schema/README.md`. |
 | **Obsidian Git** | Commit + pull on a timer, so the vault syncs to GitHub without thinking about it. | Set auto-pull on start, auto-commit every 10–15 min. |
 
 ### Obsidian plugins — optional
