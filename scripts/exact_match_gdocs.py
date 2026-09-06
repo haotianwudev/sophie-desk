@@ -4,8 +4,13 @@
 For articles with a `googleDoc` published URL:
 1. Fetches the public published Google Doc page.
 2. Extracts the exact <title> tag text (which reflects the source Drive title verbatim).
-3. Compares against titles in gdocs/index.json (exact match, then case-insensitive fallback).
-4. Outputs a markdown table report to gdocs/article-exact-matches.md.
+3. Compares against titles in gdocs_db's gdocs_index table (exact match, then
+   case-insensitive fallback).
+4. Full-refreshes gdocs_db's article_gdoc_matches table with the results.
+
+Writes directly to gdocs_db (see that module and papers/db-schema/DATABASES.md)
+-- gdocs/article-exact-matches.md is gone as of 2026-09-06, this is the
+source of truth now. Still prints a console summary.
 
 Usage:
     python scripts/exact_match_gdocs.py
@@ -15,18 +20,18 @@ from __future__ import annotations
 
 import argparse
 import html
-import json
 import re
+import sqlite3
 import sys
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
+import gdocs_db
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_ARTICLES_DIR = Path("F:/workspace/ai-stock-suggestion-client/src/data/articles")
-DEFAULT_INDEX_PATH = REPO_ROOT / "gdocs" / "index.json"
-DEFAULT_OUT_PATH = REPO_ROOT / "gdocs" / "article-exact-matches.md"
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -170,71 +175,32 @@ def find_matching_doc(extracted_title: str, gdocs: list[dict]) -> tuple[str, str
     return "no match in index", ""
 
 
-def escape_markdown(text: str) -> str:
-    """Escape pipe characters and newlines for markdown table cells."""
-    return text.replace("|", "\\|").replace("\n", " ").replace("\r", "")
-
-
-def write_report(results: list[dict], out_path: Path) -> None:
-    """Write markdown table report sorted by tier priority."""
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-
-    # A match is a match -- exact / case-insensitive / suffix-tolerant all mean
-    # "this article's googleDoc is confidently this local doc_id". The tier
-    # that resolved it is an internal detail (still in the Decision log for
-    # anyone who needs it), not something worth showing per row once resolved.
-    MATCHED_TIERS = {"exact", "case-insensitive", "suffix-tolerant"}
-
-    def display_tier(tier: str) -> str:
-        return "matched" if tier in MATCHED_TIERS else tier
-
-    tier_order = {"matched": 1, "no match in index": 3, "fetch failed": 4}
-
-    def tier_key(tier: str) -> int:
-        disp = display_tier(tier)
-        if disp.startswith("ambiguous"):
-            return 2
-        return tier_order.get(disp, 99)
-
-    # Sort by tier priority first, then slug
-    sorted_results = sorted(
-        results,
-        key=lambda r: (tier_key(r["match_tier"]), r.get("slug", "")),
-    )
-
-    counts = {
-        "matched": sum(1 for r in results if r["match_tier"] in MATCHED_TIERS),
-        "ambiguous": sum(1 for r in results if r["match_tier"].startswith("ambiguous")),
-        "no match in index": sum(1 for r in results if r["match_tier"] == "no match in index"),
-        "fetch failed": sum(1 for r in results if r["match_tier"] == "fetch failed"),
-    }
-
-    lines: list[str] = [
-        "# Article to Google Drive Exact Title Matches",
-        "",
-        f"Total articles with googleDoc evaluated: {len(results)}",
-        "",
-        f"- **Matched**: {counts['matched']}",
-        f"- **Ambiguous** (multiple docs share a base title): {counts['ambiguous']}",
-        f"- **No match in index**: {counts['no match in index']}",
-        f"- **Fetch failed**: {counts['fetch failed']}",
-        "",
-        "| Slug | Article Title | Extracted Page Title | Match Tier | Matched Doc ID |",
-        "| :--- | :--- | :--- | :--- | :--- |",
+def write_to_db(results: list[dict], db_path: Path) -> None:
+    """Full-refresh gdocs_db's article_gdoc_matches table. Stores the raw,
+    full-fidelity match_tier ('exact' / 'case-insensitive' / 'suffix-tolerant'
+    / 'ambiguous (N candidates)' / 'no match in index' / 'fetch failed') --
+    collapsing 'exact'/'case-insensitive'/'suffix-tolerant' into a single
+    'matched' label was a markdown-report display convenience, not something
+    to bake into storage; a query can collapse it if it wants
+    (papers/db-schema/article_gdoc_matches.md has the example)."""
+    rows = [
+        {
+            "slug": r["slug"],
+            "article_title": r["title"],
+            "extracted_page_title": r["extracted_title"],
+            "match_tier": r["match_tier"],
+            # NULL, not "" -- an empty string isn't a valid FK reference to
+            # gdocs_index.doc_id and trips the FOREIGN KEY constraint (hit
+            # live: every unmatched row failed the full_refresh transaction).
+            "matched_doc_id": r["matched_doc_id"] or None,
+        }
+        for r in results
     ]
-
-    for r in sorted_results:
-        slug_str = escape_markdown(r["slug"])
-        title_str = escape_markdown(r["title"])
-        extracted_str = escape_markdown(r["extracted_title"]) if r["extracted_title"] else ""
-        tier_str = display_tier(r["match_tier"])
-        doc_id_str = escape_markdown(r["matched_doc_id"]) if r["matched_doc_id"] else ""
-
-        lines.append(
-            f"| {slug_str} | {title_str} | {extracted_str} | {tier_str} | {doc_id_str} |"
-        )
-
-    out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    conn = gdocs_db.connect(db_path)
+    try:
+        gdocs_db.full_refresh(conn, "article_gdoc_matches", rows)
+    finally:
+        conn.close()
 
 
 def main() -> None:
@@ -246,16 +212,10 @@ def main() -> None:
         help=f"Path to article data directory (default: {DEFAULT_ARTICLES_DIR})",
     )
     parser.add_argument(
-        "--index",
+        "--db",
         type=Path,
-        default=DEFAULT_INDEX_PATH,
-        help=f"Path to index.json (default: {DEFAULT_INDEX_PATH})",
-    )
-    parser.add_argument(
-        "--out",
-        type=Path,
-        default=DEFAULT_OUT_PATH,
-        help=f"Path to output markdown report (default: {DEFAULT_OUT_PATH})",
+        default=gdocs_db.DEFAULT_DB_PATH,
+        help=f"Path to gdocs.db (default: {gdocs_db.DEFAULT_DB_PATH})",
     )
     parser.add_argument(
         "--delay",
@@ -278,9 +238,9 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    if not args.index.exists():
+    if not args.db.exists():
         sys.exit(
-            f"Error: {args.index} does not exist.\n"
+            f"Error: {args.db} does not exist.\n"
             "Please run 'python scripts/sync_gdocs_index.py' first to build the index."
         )
 
@@ -292,11 +252,12 @@ def main() -> None:
     if args.limit > 0:
         articles = articles[: args.limit]
 
+    conn = gdocs_db.connect(args.db)
     try:
-        with open(args.index, "r", encoding="utf-8") as f:
-            gdocs = json.load(f)
-    except Exception as exc:
-        sys.exit(f"Error reading {args.index}: {exc}")
+        conn.row_factory = sqlite3.Row
+        gdocs = [dict(row) for row in conn.execute("SELECT * FROM gdocs_index")]
+    finally:
+        conn.close()
 
     print(f"Loaded {len(articles)} articles with googleDoc, {len(gdocs)} indexed docs.")
     print(f"Beginning title extraction and matching (delay: {args.delay}s)...")
@@ -334,7 +295,7 @@ def main() -> None:
         if idx < len(articles) and args.delay > 0:
             time.sleep(args.delay)
 
-    write_report(results, args.out)
+    write_to_db(results, args.db)
 
     matched_tiers = {"exact", "case-insensitive", "suffix-tolerant"}
     matched_count = sum(1 for r in results if r["match_tier"] in matched_tiers)
@@ -342,7 +303,7 @@ def main() -> None:
     no_match_count = sum(1 for r in results if r["match_tier"] == "no match in index")
     failed_count = sum(1 for r in results if r["match_tier"] == "fetch failed")
 
-    print(f"\nReport written to: {args.out}")
+    print(f"\narticle_gdoc_matches refreshed in: {args.db}")
     print(
         f"Summary: {matched_count} matched, {ambiguous_count} ambiguous, "
         f"{no_match_count} no match in index, {failed_count} fetch failed (Total: {len(results)})"

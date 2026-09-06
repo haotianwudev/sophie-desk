@@ -7,16 +7,18 @@ Each tick it:
      of the file
   2. writes supervisor/status.json — a small, committed summary of what needs
      you right now, so it's visible from the phone without opening every task
-  3. rebuilds the local paper-index SQLite DB, every tick unconditionally
-     (Papers.md and papers/db-schema/STATUS.md render off it now -- Desk.md
-     itself stays on live Dataview, tried on this DB and reverted the same
-     day since tasks change too often for a rebuild-based board to feel
-     live; see rebuild_paper_index(). A full rebuild is ~0.25s, cheap enough
-     to just always do it rather than track staleness per source tree),
-     then commits + pushes if a probe or dispatch-claim actually changed a
-     task
+  3. commits and pushes, but only if a probe or dispatch-claim actually
+     changed something
   4. logs a WARN line the moment a task newly enters "needs you" — no real
      notification channel is wired up yet, see the README for why
+
+Does NOT rebuild the local paper-index SQLite DB (papers.db) -- that was tried
+here 2026-09-05/06 and reverted: this file's whole job is tasks/probes, and
+tying a papers.db rebuild to the tick cadence meant rebuilding constantly for
+data that changes rarely. Whatever actually changes papers/candidates/gdocs
+data should trigger its own rebuild when it finishes (see
+sophie-desk/scripts/sync_gdocs_index.py and exact_match_gdocs.py for the
+pattern) -- see papers/db-schema/DATABASES.md for the full story.
 
 It never decides anything. It never advances a gate, promotes a study, writes
 to Neon/Supabase, or touches any repo but this one. If that ever looks
@@ -421,29 +423,6 @@ def git(*args: str) -> subprocess.CompletedProcess:
     )
 
 
-PAPER_INDEX_BUILD = VAULT.parent / "sophie-pipeline" / "paper-index" / "build_index.py"
-
-
-def rebuild_paper_index() -> None:
-    """Papers.md and papers/db-schema/STATUS.md render off paper-index now
-    (2026-09-05), not live Dataview queries -- so every tick refreshes the DB
-    unconditionally, or those pages silently show stale state until someone
-    remembers to rebuild by hand. (Desk.md was tried on this DB too, same
-    day, and reverted back to Dataview -- tasks change too often for a
-    rebuild-based board to feel live; it's outside this function's concern.)
-    Best-effort: a failure here shouldn't stop the tick from committing/
-    pushing what it already measured."""
-    if not PAPER_INDEX_BUILD.exists():
-        log(f"WARN paper index not rebuilt -- {PAPER_INDEX_BUILD} not found")
-        return
-    res = subprocess.run(
-        [sys.executable, str(PAPER_INDEX_BUILD)],
-        cwd=PAPER_INDEX_BUILD.parent, capture_output=True, text=True,
-    )
-    if res.returncode != 0:
-        log(f"WARN paper index rebuild failed: {res.stderr.strip()[-300:]}")
-
-
 def commit_and_push(reason: str) -> bool:
     status = git("status", "--porcelain").stdout
     if not status.strip():
@@ -497,14 +476,6 @@ def run_once(dry_run: bool = False, force: bool = False) -> None:
     if dry_run:
         print(json.dumps(summary, indent=2))
         return
-    # Unconditional, not gated on `changed`: `changed` only reflects task
-    # frontmatter this tick touched, but papers/candidates/gdocs edits (made
-    # by a human, or a separate task, completely outside this tick) need
-    # picking up too -- and a full rebuild is ~0.25s, cheap enough to just
-    # always do it rather than track staleness per source tree. commit_and_push
-    # stays gated on `changed`, though: that's specifically about committing
-    # THIS tick's own task-frontmatter writes, unrelated to the DB rebuild.
-    rebuild_paper_index()
     if changed:
         commit_and_push(f"{len(summary['needs_you'])} need you, {len(summary['stalled_probes'])} stalled")
 

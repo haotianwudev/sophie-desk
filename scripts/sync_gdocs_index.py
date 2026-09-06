@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Scan D:\\GoogleDrive recursively for .gdoc stubs and build gdocs/index.json.
+"""Scan D:\\GoogleDrive recursively for .gdoc stubs and refresh gdocs/db/gdocs.db's
+gdocs_index table.
 
 A .gdoc file in Google Drive's desktop sync folder is a small JSON stub:
 {"doc_id": "...", "resource_key": "...", "email": "..."}
 The filename without .gdoc is the document's title.
 
 This script extracts titles and doc_ids to build a fast local index without
-fetching actual document content.
+fetching actual document content. Writes directly to gdocs_db (see that
+module and papers/db-schema/DATABASES.md) -- gdocs/index.json is gone as of
+2026-09-06, this is the source of truth now.
 
 Note: .gsheet and .gslides files are currently out of scope.
 """
@@ -19,9 +22,10 @@ import os
 import sys
 from pathlib import Path
 
+import gdocs_db
+
 DEFAULT_DRIVE_DIR = Path("D:/GoogleDrive")
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_INDEX_PATH = REPO_ROOT / "gdocs" / "index.json"
 
 
 def is_personal_or_tmp_dir(dirname: str) -> bool:
@@ -31,9 +35,10 @@ def is_personal_or_tmp_dir(dirname: str) -> bool:
 
 def sync_index(
     drive_dir: Path = DEFAULT_DRIVE_DIR,
-    out_path: Path = DEFAULT_INDEX_PATH,
+    db_path: Path = gdocs_db.DEFAULT_DB_PATH,
 ) -> tuple[int, int]:
-    """Scans drive_dir for .gdoc files, writes index JSON, and returns (indexed_count, skipped_count)."""
+    """Scans drive_dir for .gdoc files, full-refreshes gdocs_db's gdocs_index
+    table, and returns (indexed_count, skipped_count)."""
     if not drive_dir.exists():
         raise FileNotFoundError(f"Drive directory not found: {drive_dir}")
 
@@ -79,11 +84,11 @@ def sync_index(
     # Sort deterministically by title
     docs.sort(key=lambda item: item["title"])
 
-    # Ensure target directory exists and write JSON
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(docs, f, indent=2, ensure_ascii=False)
-        f.write("\n")
+    conn = gdocs_db.connect(db_path)
+    try:
+        gdocs_db.full_refresh(conn, "gdocs_index", docs)
+    finally:
+        conn.close()
 
     return len(docs), skipped_count
 
@@ -97,16 +102,16 @@ def main() -> None:
         help=f"Path to Google Drive root (default: {DEFAULT_DRIVE_DIR})",
     )
     parser.add_argument(
-        "--out",
+        "--db",
         type=Path,
-        default=DEFAULT_INDEX_PATH,
-        help=f"Path to output index.json (default: {DEFAULT_INDEX_PATH})",
+        default=gdocs_db.DEFAULT_DB_PATH,
+        help=f"Path to gdocs.db (default: {gdocs_db.DEFAULT_DB_PATH})",
     )
 
     args = parser.parse_args()
 
     try:
-        indexed, skipped = sync_index(drive_dir=args.drive_dir, out_path=args.out)
+        indexed, skipped = sync_index(drive_dir=args.drive_dir, db_path=args.db)
     except FileNotFoundError as err:
         sys.exit(f"Error: {err}")
 
