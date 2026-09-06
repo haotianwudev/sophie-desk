@@ -4,6 +4,8 @@ Reference for the local SQLite index built from this vault's own markdown — `p
 `papers/candidates/`, `gdocs/`, and `tasks/`. The database itself lives at
 [papers/paper-index/papers.db](../paper-index/) (gitignored, disposable, rebuilt from
 markdown any time it changes) — these notes document its *shape*, they aren't the database.
+**Want current row counts, freshness, and what needs attention right now instead of a schema
+reference? See [STATUS.md](STATUS.md).**
 
 **This is what `Desk.md`, `Papers.md`, and `Skills.md` render off, as of 2026-09-05** —
 Dataview is no longer required anywhere in this vault, replaced by `sqlite-query` blocks
