@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T01:06:03+00:00Z",
+  "generated_at": "2026-09-06T01:36:04+00:00Z",
   "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
@@ -14,7 +14,7 @@
       "assignee": "none",
       "gate": "g3",
       "probe_status": "ERROR",
-      "progress": "<3>WSL (17652 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
+      "progress": "<3>WSL (17793 - Relay) ERROR: CreateProcessCommon:640: execvpe(/bin/bash) failed: No such file or directory"
     }
   ]
 }
