@@ -462,9 +462,23 @@ def run_once(dry_run: bool = False, force: bool = False) -> None:
     # (harmlessly that time -- agy's own redundant claim commit just re-wrote
     # the same state -- but it could as easily have double-dispatched). --dry-run
     # never writes, so it's always safe regardless of what else is running.
+    #
+    # Must exclude our OWN pid: run_loop() calls run_once() every interval,
+    # from inside the very loop that owns supervisor.pid via claim_singleton().
+    # Without the self-exclusion below, every single tick -- including the
+    # very first one right after start -- reads that same pid file, finds
+    # itself alive (of course it does), and refuses itself forever. Confirmed
+    # live 2026-09-05: a fresh --loop process logged "already running" on
+    # every 5s test interval, zero real ticks, from iteration 1 onward. This
+    # means --loop had likely been silently non-functional on-disk for a
+    # while -- whatever process looked like a working "persistent loop"
+    # earlier in the same session must have been running an older in-memory
+    # copy of this file from before whatever introduced this, since restarting
+    # it against current disk contents reproduced the bug immediately.
+    import os
     if not dry_run and not force:
         loop_pid = loop_already_running()
-        if loop_pid:
+        if loop_pid and loop_pid != os.getpid():
             log(f"a --loop is already running (pid {loop_pid}) -- skipping this "
                 f"--once to avoid racing it. Use --dry-run to just look, or "
                 f"--force if you specifically need to run anyway.")
