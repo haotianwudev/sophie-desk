@@ -29,5 +29,24 @@ SELECT title, datetime(mtime, 'unixepoch') AS modified FROM gdocs_index ORDER BY
 SELECT title FROM gdocs_index WHERE doc_id = '<doc_id>';
 ```
 
+**Finding duplicate research sessions** (recurring titles with a trailing `(1)`, `(2)`, etc.
+— e.g. re-running the same Gemini Deep Research prompt) needs stripping that suffix before
+grouping, which plain SQL can't do without a registered function. This replaced the old
+static `gdocs/duplicates.md` report (removed 2026-09-05, along with `gdocs/index.md` and
+every one-off batch-processing scratch file from the now-complete citation-extraction
+pipeline — `gdocs/` keeps only the two source files that feed this DB
+(`index.json`, `article-exact-matches.md`) plus `classified_state.json`/`extracted_state.json`,
+the resumable checkpoints `scripts/extract_gdoc_citations.py` still reads by default):
+
+```python
+import sqlite3, re
+conn = sqlite3.connect(r"F:\workspace\sophie-desk\papers\paper-index\papers.db")
+conn.create_function("base_title", 1, lambda t: re.sub(r"\s*\(\d+\)$", "", t or "").strip().lower())
+conn.execute("""
+    SELECT base_title(title) AS base, count(*) AS n, group_concat(title, ' | ') AS titles
+    FROM gdocs_index GROUP BY base HAVING n > 1 ORDER BY n DESC
+""").fetchall()
+```
+
 See [article_gdoc_matches](article_gdoc_matches.md) for the subset of these that are tied to
 a specific Sophie article.
