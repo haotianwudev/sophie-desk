@@ -6,6 +6,9 @@
   "databaseViewState": {
     "papers/paper-index/papers.db": {
       "lastSelectedTable": "candidates"
+    },
+    "gdocs/db/gdocs.db": {
+      "lastSelectedTable": "article_gdoc_matches"
     }
   }
 }
