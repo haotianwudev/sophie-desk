@@ -24,9 +24,16 @@ Each tick (`supervisor/run.py`):
    itself to `tasks/done/`, committed, and pushed — all with nobody watching.
 4. Builds `supervisor/status.json` — task count, which ones need you
    (`status: blocked` or `status: gate`), which probes came back `STALL`.
-5. Commits and pushes, but only if a probe or a dispatch-claim actually
+5. **If anything changed, rebuilds the local paper-index SQLite DB**
+   (`papers/paper-index/papers.db`) by invoking `build_index.py` from the
+   `sophie-pipeline` repo. Added 2026-09-05 when `Desk.md` moved off a live
+   Dataview query onto this DB's `tasks` table — without this step the board
+   would silently show stale state until someone remembered to rebuild by
+   hand. Best-effort: a rebuild failure is logged as a WARN, never blocks
+   the commit below.
+6. Commits and pushes, but only if a probe or a dispatch-claim actually
    changed something. A quiet tick with nothing new produces no commit.
-6. Logs a line the moment a task newly enters "needs you" — see the gap
+7. Logs a line the moment a task newly enters "needs you" — see the gap
    below before assuming that reaches you anywhere.
 
 ## The one thing worth being deliberate about: `--dangerously-skip-permissions`
@@ -47,10 +54,14 @@ code explicitly checks for this, on purpose.
 - **It never advances a gate or promotes a study.** `status: gate` tasks
   stay exactly as blocked as they were — that's a human decision by design,
   see `sophie/work-model.md`.
-- **It never touches Neon, Supabase, or any repo but this one.** A probe is
-  read-only by contract; the supervisor trusts that contract rather than
-  sandboxing it, which is also why a probe script must never be anything
-  but a measurement.
+- **It never touches Neon, Supabase, or writes to any repo but this one.** A
+  probe is read-only by contract; the supervisor trusts that contract rather
+  than sandboxing it, which is also why a probe script must never be
+  anything but a measurement. The one exception, and it's read-only from
+  `sophie-pipeline`'s own perspective: step 5 above *invokes* a script that
+  lives in that repo (`paper-index/build_index.py`) to rebuild a DB file
+  that lives entirely inside this vault — nothing gets written to or
+  committed in `sophie-pipeline` itself.
 - **It doesn't actually send you a notification yet.** The WARN log line in
   step 5 is real, but nothing pushes it anywhere — no email, no Slack, no
   phone alert. Right now, "did anything need me today" means either reading

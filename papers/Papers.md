@@ -5,71 +5,70 @@ instead of scrolled through by eye. New here? **`FOLLOWUP-CANDIDATES.md`** is th
 papers not yet gathered; this is the board for papers already in the library.
 
 Every field below lives in each paper's own frontmatter, not here — this page is nothing but
-queries. See the `sophie-desk` skill's "Tracking papers" section for the schema and how to
-keep it flat enough for Dataview to read.
+queries, rendered via [paper-index/papers.db](paper-index/README.md) (needs the **SQLite
+Explorer** Obsidian plugin — see [db-schema/README.md](db-schema/README.md)). **"Paper" below
+is the title only, not a clickable link** — the query returns `slug`/`title` from the `papers`
+table, not a file reference the plugin can render as a wiki-link; open the actual note from the
+file tree (`option-writing/<slug>.md`) if you need to. **Rebuild before trusting this page** —
+run `python build_index.py` in `sophie-pipeline/paper-index/` any time a paper note changes.
+See the `sophie-desk` skill's "Tracking papers" section for the frontmatter schema.
 
 ---
 
 ## By relevance
 
-```dataview
-TABLE WITHOUT ID
-  link(file.link, title) AS "Paper",
-  area AS "Area",
-  year AS "Year",
-  has_detailed_summary AS "Deep summary?",
-  has_pdf AS "PDF?"
-FROM "papers/option-writing"
-WHERE relevance
-SORT relevance DESC, area ASC
+```sqlite-query
+source: /papers/paper-index/papers.db
+sql: |
+  SELECT title AS "Paper", area AS "Area", year AS "Year",
+         has_detailed_summary AS "Deep summary?", has_pdf AS "PDF?"
+  FROM papers
+  WHERE COALESCE(relevance, '') <> ''
+  ORDER BY CASE relevance WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 WHEN 'Low' THEN 1 ELSE 0 END DESC,
+           area ASC
 ```
 
 ## By area
 
-```dataview
-TABLE WITHOUT ID
-  area AS "Area",
-  length(rows) AS "Papers",
-  join(rows.relevance, ", ") AS "Relevance mix"
-FROM "papers/option-writing"
-WHERE area
-GROUP BY area
-SORT length(rows) DESC
+```sqlite-query
+source: /papers/paper-index/papers.db
+sql: |
+  SELECT area AS "Area", count(*) AS "Papers", group_concat(relevance, ', ') AS "Relevance mix"
+  FROM papers
+  WHERE COALESCE(area, '') <> ''
+  GROUP BY area
+  ORDER BY count(*) DESC
 ```
 
 ## Still only abstract-level (no deep methodology read yet)
 
-```dataview
-TABLE WITHOUT ID
-  link(file.link, title) AS "Paper",
-  area AS "Area",
-  relevance AS "Relevance"
-FROM "papers/option-writing"
-WHERE has_detailed_summary = false
-SORT relevance DESC
+```sqlite-query
+source: /papers/paper-index/papers.db
+sql: |
+  SELECT title AS "Paper", area AS "Area", relevance AS "Relevance"
+  FROM papers
+  WHERE has_detailed_summary = 0
+  ORDER BY CASE relevance WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 WHEN 'Low' THEN 1 ELSE 0 END DESC
 ```
 
 ## Recorded but not actually downloaded
 
-```dataview
-TABLE WITHOUT ID
-  link(file.link, title) AS "Paper",
-  area AS "Area",
-  relevance AS "Relevance"
-FROM "papers/option-writing"
-WHERE has_pdf = false
+```sqlite-query
+source: /papers/paper-index/papers.db
+sql: |
+  SELECT title AS "Paper", area AS "Area", relevance AS "Relevance"
+  FROM papers
+  WHERE has_pdf = 0
 ```
 
 ## Everything, sortable
 
-```dataview
-TABLE WITHOUT ID
-  link(file.link, title) AS "Paper",
-  authors AS "Authors",
-  year AS "Year",
-  area AS "Area",
-  relevance AS "Relevance",
-  citations_surfaced AS "Citations found"
-FROM "papers/option-writing"
-SORT area ASC, relevance DESC
+```sqlite-query
+source: /papers/paper-index/papers.db
+sql: |
+  SELECT title AS "Paper", authors AS "Authors", year AS "Year", area AS "Area",
+         relevance AS "Relevance", citations_surfaced AS "Citations found"
+  FROM papers
+  ORDER BY area ASC,
+           CASE relevance WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 WHEN 'Low' THEN 1 ELSE 0 END DESC
 ```

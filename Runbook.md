@@ -115,18 +115,24 @@ Connect from the phone: `ssh <username>@<tailscale-hostname-or-ip>`
 
 ---
 
-## Local paper index (query the papers/candidates backlog with SQL)
+## Local paper index (query papers, tasks, and the candidates backlog with SQL)
 
-**Source:** [papers/FOLLOWUP-CANDIDATES.md](papers/FOLLOWUP-CANDIDATES.md) · `sophie-pipeline/paper-index/`
+**Source:** `sophie-pipeline/paper-index/` · powers `Desk.md`, `Papers.md`, `Skills.md`, and
+the papers/candidates backlog. This fully replaced Dataview vault-wide as of 2026-09-05 —
+uninstall the plugin if nothing else needs it.
 
-Rebuild any time `papers/` markdown changes — safe to re-run, fully replaces the DB each time:
+The supervisor rebuilds this automatically on every tick that changes something, if it's
+running (see "The supervisor" below). Rebuild by hand any time you've edited a task/paper
+file outside the supervisor, or just want to be sure — safe to re-run, fully replaces the DB
+each time:
 ```bash
 cd /f/workspace/sophie-pipeline/paper-index
 python build_index.py
 ```
 Writes to `papers/paper-index/papers.db` (inside this vault, gitignored) so Obsidian's own
 SQLite plugins can open it — see `paper-index/README.md`'s "Viewing it in Obsidian" section for
-plugin install steps (SQLite Explorer, recommended).
+plugin install steps (SQLite Explorer, recommended) and the exact `sqlite-query` fence syntax
+used in `Desk.md`/`Papers.md`.
 
 Query with Python (the CLI `sqlite3.exe` on this machine lacks the FTS5 extension, so full-text
 `MATCH` queries only work through Python, Obsidian's plugin, or a GUI client):
@@ -134,13 +140,13 @@ Query with Python (the CLI `sqlite3.exe` on this machine lacks the FTS5 extensio
 python -c "
 import sqlite3
 conn = sqlite3.connect(r'F:\workspace\sophie-desk\papers\paper-index\papers.db')
-print(conn.execute(\"SELECT topic, count(*) FROM candidates GROUP BY topic\").fetchall())
+print(conn.execute(\"SELECT status, count(*) FROM tasks WHERE in_done = 0 GROUP BY status\").fetchall())
 "
 ```
 See `paper-index/README.md` (in `sophie-pipeline`) for the build script and exact column
 types, or [papers/db-schema/](papers/db-schema/README.md) in this vault for a browsable,
-per-table reference (`papers`, `candidates`, `gdocs_index`, `article_gdoc_matches`) with
-example queries.
+per-table reference (`papers`, `candidates`, `gdocs_index`, `article_gdoc_matches`, `tasks`,
+`pipeline`) with example queries.
 
 ---
 
@@ -160,9 +166,12 @@ npm run use:prod-gql     # always switch back to this before pushing/deploying
 
 **Source:** `supervisor/run.py` · **Design:** [supervisor/README.md](supervisor/README.md)
 
-It measures and reports (probes, `status.json`, commit + push), **and auto-dispatches any
-queued task assigned to agy** (with no `gate` set) to agy's real terminal CLI — confirmed
-working live. It does not advance any gate, that stays a human decision.
+It measures and reports (probes, `status.json`, rebuilds the paper-index DB, commit + push),
+**and auto-dispatches any queued task assigned to agy** (with no `gate` set) to agy's real
+terminal CLI — confirmed working live. It does not advance any gate, that stays a human
+decision. `Desk.md` reads off that DB now (see the "Local paper index" section below), so a
+task change is only reflected there once a tick rebuilds it — automatic while the loop is
+running, otherwise rebuild by hand.
 
 Check if it's already running before touching it:
 ```powershell

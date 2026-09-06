@@ -7,7 +7,9 @@ Each tick it:
      of the file
   2. writes supervisor/status.json — a small, committed summary of what needs
      you right now, so it's visible from the phone without opening every task
-  3. commits and pushes, but only if something actually changed
+  3. if anything changed, rebuilds the local paper-index SQLite DB (Desk.md
+     renders off its `tasks` table now, not a live Dataview query -- see
+     rebuild_paper_index()) and commits + pushes
   4. logs a WARN line the moment a task newly enters "needs you" — no real
      notification channel is wired up yet, see the README for why
 
@@ -414,6 +416,26 @@ def git(*args: str) -> subprocess.CompletedProcess:
     )
 
 
+PAPER_INDEX_BUILD = VAULT.parent / "sophie-pipeline" / "paper-index" / "build_index.py"
+
+
+def rebuild_paper_index() -> None:
+    """Desk.md renders off paper-index's `tasks` table now (2026-09-05), not a
+    live Dataview query -- so a tick that changed a task file needs to also
+    refresh the DB, or the board silently shows stale state until someone
+    remembers to rebuild by hand. Best-effort: a failure here shouldn't stop
+    the tick from committing/pushing what it already measured."""
+    if not PAPER_INDEX_BUILD.exists():
+        log(f"WARN paper index not rebuilt -- {PAPER_INDEX_BUILD} not found")
+        return
+    res = subprocess.run(
+        [sys.executable, str(PAPER_INDEX_BUILD)],
+        cwd=PAPER_INDEX_BUILD.parent, capture_output=True, text=True,
+    )
+    if res.returncode != 0:
+        log(f"WARN paper index rebuild failed: {res.stderr.strip()[-300:]}")
+
+
 def commit_and_push(reason: str) -> bool:
     status = git("status", "--porcelain").stdout
     if not status.strip():
@@ -454,6 +476,7 @@ def run_once(dry_run: bool = False, force: bool = False) -> None:
         print(json.dumps(summary, indent=2))
         return
     if changed:
+        rebuild_paper_index()
         commit_and_push(f"{len(summary['needs_you'])} need you, {len(summary['stalled_probes'])} stalled")
 
 

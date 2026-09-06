@@ -52,7 +52,7 @@ Not every idea deserves a `tasks/<id>.md` file the moment it occurs to you — w
 picking a lane, an assignee, deciding on a gate, maybe a probe, and that's real thinking you may
 not want to spend right now (e.g. you're low on budget/tokens for this session but don't want to
 lose the idea). For that, `Todo.md` at the repo root is a plain, flat checklist — one line per
-idea, no frontmatter, not part of the Dataview board, not touched by the supervisor.
+idea, no frontmatter, not part of the `Desk.md` board, not touched by the supervisor.
 
 Add a line to `Todo.md` and commit it — that's the whole ritual. When you're ready to actually
 work it, promote it into a real task per "Creating a task" below, then delete the line from
@@ -76,9 +76,10 @@ skimming or embeddings (triaging many candidate papers, say), say so in its `## 
 `scripts/ollama_call.py` for the first pass" — and assign the task itself to `claude` or
 `agy`, whoever will actually read the output, decide what matters, and close it out.
 
-**Frontmatter must stay flat** — plain scalars, no nested YAML, no lists-of-objects. Dataview
-(the Obsidian plugin that renders `Desk.md`) reads it literally; anything nested breaks the
-board silently rather than erroring.
+**Frontmatter must stay flat** — plain scalars, no nested YAML, no lists-of-objects.
+`Desk.md` (2026-09-05: rendered via `paper-index`'s `tasks` table, not Dataview any more —
+see "Working with the supervisor" below) reads it with a lenient line-based parser, not real
+YAML; anything nested silently fails to round-trip rather than erroring.
 
 ## Claiming a task
 
@@ -110,11 +111,19 @@ itself it's Git's `bash.exe`; from plain PowerShell or Task Scheduler it can res
 Windows' WSL launcher stub instead and fail outright), so the tempting fix is pinning the full
 Git Bash path directly in the frontmatter value. **Don't** — a Windows path with spaces,
 quoted only around its first token, is not valid YAML (a value starting with `"` must be one
-whole quoted scalar), and Dataview uses a *real* YAML parser, unlike this skill's own lenient
-one. That exact fix once made a task silently vanish from every Dataview query — `status`
-itself failed to parse, not just `probe`. The actual fix lives in `supervisor/run.py`
-(`resolve_bash()`): it translates the word `bash` to the real Git Bash binary itself, so the
-frontmatter never needs to carry a Windows path at all.
+whole quoted scalar), and Dataview (back when it rendered `Desk.md`) used a *real* YAML
+parser, unlike this skill's own lenient one. That exact fix once made a task silently vanish
+from every board query — `status` itself failed to parse, not just `probe`. The actual fix
+lives in `supervisor/run.py` (`resolve_bash()`): it translates the word `bash` to the real Git
+Bash binary itself, so the frontmatter never needs to carry a Windows path at all. The same
+kind of gap resurfaced from the opposite direction building `paper-index`'s `tasks` table
+(2026-09-05): a task's `progress`/`blocker`/`outcome` routinely holds raw probe-error text
+with unquoted colons (`ERROR: CreateProcessCommon:640: ...`), and *that* breaks a real YAML
+parser too — `yaml.safe_load` choked on 8 of 24 task files. Fixed there the same way this
+skill's own parser has always done it: a lenient line-based reader
+(`parse_flat_frontmatter` in `sophie-pipeline/paper-index/build_index.py`), not real YAML.
+Moral either way: keep task frontmatter flat, single-line, and don't assume whatever reads it
+next tolerates what the supervisor's own parser does.
 
 ## Closing a task
 
@@ -151,13 +160,20 @@ gdoc_id: "<drive doc id>"              # optional -- see "Linking papers to your
 ---
 ```
 
-**Same flat-YAML rule as tasks** — Dataview needs to actually parse this, not just a lenient
-regex; this is exactly the class of thing that broke a task's frontmatter once already. Keep
-every value a plain scalar, quote strings that contain a colon or start oddly, never nest.
+**Same flat-YAML rule as tasks, but stricter** — `paper-index/build_index.py` parses a paper
+note's frontmatter with a *real* YAML parser (`yaml.safe_load`), unlike tasks' own lenient
+line-based reader (see the bash-quoting story above for why tasks can't use a real parser —
+free-text `progress`/`outcome` values routinely contain unquoted colons; paper frontmatter
+doesn't have that problem since every free-text field is already quoted). Keep every value a
+plain scalar, quote strings that contain a colon or start oddly, never nest — this is exactly
+the class of thing that broke a task's frontmatter once already.
 
-`papers/Papers.md` is the live board over this frontmatter (parallel to `Desk.md` for tasks) —
-by relevance, by area, which papers still lack a deep summary, which are recorded-but-not-downloaded.
-Update it (or at least don't break its queries) if the schema above ever gains a field.
+`papers/Papers.md` is the board over this frontmatter (parallel to `Desk.md` for tasks),
+rendered via `paper-index`'s `papers` table — by relevance, by area, which papers still lack a
+deep summary, which are recorded-but-not-downloaded. **Not live**: rebuild the index
+(`python build_index.py` in `sophie-pipeline/paper-index/`) after editing a paper note before
+trusting either board. Update the queries in `Papers.md` (or at least don't break them) if the
+schema above ever gains a field.
 
 ## Tracking papers worth fetching later
 
@@ -282,6 +298,16 @@ never advances a gate or writes outside this repo. Full design in
 `supervisor/README.md`; exact commands (check-if-running, relaunch,
 confirm-it-came-back-up) in `Runbook.md`'s supervisor section — use those,
 don't improvise new ones.
+
+**`Desk.md` moved off Dataview onto `paper-index`'s `tasks` table (2026-09-05)** — same for
+`Papers.md` and `Skills.md`, so Dataview is no longer required anywhere in this vault and can
+be uninstalled if nothing else needs it. The tradeoff: those boards are no longer *live*.
+Rebuild the index (`python build_index.py` in `sophie-pipeline/paper-index/`) any time a task
+file changes before trusting what `Desk.md` shows — the supervisor's own `--once`/`--loop`
+tick does this automatically when it's running, but a manual edit outside the supervisor
+(claiming a task by hand, say) needs an explicit rebuild. See
+`papers/db-schema/README.md` for the full schema and `Runbook.md`'s paper-index section for
+the rebuild command.
 
 **If you're setting a task's `gate:` field, understand what it actually buys you here**:
 dispatch's *only* check before handing a task to an unattended agy session is "does this
