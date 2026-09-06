@@ -137,7 +137,10 @@ conn = sqlite3.connect(r'F:\workspace\sophie-desk\papers\paper-index\papers.db')
 print(conn.execute(\"SELECT topic, count(*) FROM candidates GROUP BY topic\").fetchall())
 "
 ```
-See `paper-index/README.md` for the full schema (`papers`/`papers_fts`, `candidates`/`candidates_fts`).
+See `paper-index/README.md` (in `sophie-pipeline`) for the build script and exact column
+types, or [papers/db-schema/](papers/db-schema/README.md) in this vault for a browsable,
+per-table reference (`papers`, `candidates`, `gdocs_index`, `article_gdoc_matches`) with
+example queries.
 
 ---
 
