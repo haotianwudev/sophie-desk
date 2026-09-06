@@ -1,10 +1,12 @@
 {
-  "generated_at": "2026-09-06T17:04:50+00:00Z",
+  "generated_at": "2026-09-06T17:34:53+00:00Z",
   "task_count": 1,
   "needs_you": [
     "spx-option-backfill"
   ],
-  "stalled_probes": [],
+  "stalled_probes": [
+    "spx-option-backfill"
+  ],
   "stalled_active": [],
   "tasks": [
     {
@@ -15,8 +17,8 @@
       "assignee": "none",
       "gate": "g3",
       "stall_flag": "",
-      "probe_status": "RUN",
-      "progress": "SPXW 1143/1360 \u00b7 log 5h ago"
+      "probe_status": "STALL",
+      "progress": "SPXW 1145/1360 \u00b7 log idle 6h \u00b7 3 python procs"
     }
   ]
 }
