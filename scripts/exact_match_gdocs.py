@@ -29,6 +29,7 @@ import urllib.request
 from pathlib import Path
 
 import gdocs_db
+import sqlite_source_db
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_ARTICLES_DIR = Path("F:/workspace/ai-stock-suggestion-client/src/data/articles")
@@ -235,6 +236,11 @@ def main() -> None:
         default=0,
         help="Limit number of articles to process (0 = all, default: 0)",
     )
+    parser.add_argument(
+        "--no-rebuild-index",
+        action="store_true",
+        help="Skip triggering papers.db's rebuild after matching (it runs by default).",
+    )
 
     args = parser.parse_args()
 
@@ -308,6 +314,9 @@ def main() -> None:
         f"Summary: {matched_count} matched, {ambiguous_count} ambiguous, "
         f"{no_match_count} no match in index, {failed_count} fetch failed (Total: {len(results)})"
     )
+
+    if not args.no_rebuild_index:
+        sqlite_source_db.trigger_index_rebuild()
 
 
 if __name__ == "__main__":

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Fetch matched Google Drive docs for classification -- NOT a candidate writer.
 
-Reads matched article <-> Drive doc pairs from gdocs/article-exact-matches.md,
+Reads matched article <-> Drive doc pairs from gdocs/db/gdocs.db's
+article_gdoc_matches table (was gdocs/article-exact-matches.md before
+2026-09-06 -- see gdocs_db.py and papers/db-schema/DATABASES.md),
 fetches each public Google Doc page, and extracts content structure (title tag,
 H1, headings, a text sample) into a batch file for an agent to actually read
 and classify (research-paper / news / general-info) -- a plain script can't
@@ -29,16 +31,20 @@ import argparse
 import html
 import json
 import re
+import sqlite3
 import sys
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
+import gdocs_db
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_ARTICLES_DIR = Path("F:/workspace/ai-stock-suggestion-client/src/data/articles")
-DEFAULT_MATCHES_PATH = REPO_ROOT / "gdocs" / "article-exact-matches.md"
 DEFAULT_STATE_PATH = REPO_ROOT / "gdocs" / "classified_state.json"
+
+MATCHED_TIERS = {"exact", "case-insensitive", "suffix-tolerant"}
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -96,27 +102,34 @@ def load_all_articles(articles_dir: Path) -> dict[str, dict]:
     return articles_by_slug
 
 
-def load_matched_pairs(matches_path: Path) -> list[dict]:
-    """Load confirmed matched pairs from gdocs/article-exact-matches.md."""
-    if not matches_path.exists():
-        raise FileNotFoundError(f"Matches file not found: {matches_path}")
+def load_matched_pairs(db_path: Path = gdocs_db.DEFAULT_DB_PATH) -> list[dict]:
+    """Load confirmed matched pairs from gdocs_db's article_gdoc_matches table.
+    'Matched' means match_tier is one of the three confident tiers -- see
+    MATCHED_TIERS and papers/db-schema/article_gdoc_matches.md."""
+    if not db_path.exists():
+        raise FileNotFoundError(f"gdocs.db not found: {db_path}")
 
-    pairs: list[dict] = []
-    with open(matches_path, "r", encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("| ") and not line.startswith("| Slug") and not line.startswith("| :---"):
-                parts = [p.strip() for p in line.split("|")[1:-1]]
-                if len(parts) >= 5 and parts[3] == "matched":
-                    pairs.append(
-                        {
-                            "slug": parts[0],
-                            "article_title": parts[1],
-                            "extracted_page_title": parts[2],
-                            "match_tier": parts[3],
-                            "doc_id": parts[4],
-                        }
-                    )
-    return pairs
+    conn = gdocs_db.connect(db_path)
+    try:
+        conn.row_factory = sqlite3.Row
+        rows = conn.execute(
+            f"SELECT * FROM article_gdoc_matches WHERE match_tier IN "
+            f"({', '.join('?' for _ in MATCHED_TIERS)})",
+            tuple(MATCHED_TIERS),
+        ).fetchall()
+    finally:
+        conn.close()
+
+    return [
+        {
+            "slug": r["slug"],
+            "article_title": r["article_title"],
+            "extracted_page_title": r["extracted_page_title"],
+            "match_tier": r["match_tier"],
+            "doc_id": r["matched_doc_id"],
+        }
+        for r in rows
+    ]
 
 
 def fetch_doc_content(url: str, timeout: float = 12.0) -> dict | None:
@@ -183,10 +196,10 @@ def main() -> None:
         help=f"Path to article data directory (default: {DEFAULT_ARTICLES_DIR})",
     )
     parser.add_argument(
-        "--matches",
+        "--db",
         type=Path,
-        default=DEFAULT_MATCHES_PATH,
-        help=f"Path to article-exact-matches.md (default: {DEFAULT_MATCHES_PATH})",
+        default=gdocs_db.DEFAULT_DB_PATH,
+        help=f"Path to gdocs.db (default: {gdocs_db.DEFAULT_DB_PATH})",
     )
     parser.add_argument(
         "--state-file",
@@ -218,7 +231,7 @@ def main() -> None:
     start_time = time.time()
 
     articles_by_slug = load_all_articles(args.articles_dir)
-    matched_pairs = load_matched_pairs(args.matches)
+    matched_pairs = load_matched_pairs(args.db)
 
     # Load existing state if available
     state: dict[str, dict] = {}

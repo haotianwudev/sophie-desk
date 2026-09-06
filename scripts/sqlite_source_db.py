@@ -16,8 +16,12 @@ reimplementing pragmas/transaction handling per source.
 
 from __future__ import annotations
 
+import subprocess
+import sys
 import sqlite3
 from pathlib import Path
+
+PAPER_INDEX_BUILD = Path(__file__).resolve().parent.parent.parent / "sophie-pipeline" / "paper-index" / "build_index.py"
 
 
 def connect(db_path: Path, schema_sql: str) -> sqlite3.Connection:
@@ -42,6 +46,30 @@ def connect(db_path: Path, schema_sql: str) -> sqlite3.Connection:
     return conn
 
 
+def trigger_index_rebuild() -> bool:
+    """Run sophie-pipeline/paper-index/build_index.py so papers.db picks up
+    whatever this source db just wrote. Call this as the last step of any
+    script that writes to a source db and wants papers.db to reflect it
+    promptly, instead of waiting for someone to remember a manual rebuild --
+    the event that invalidates the index (this script finishing) is the
+    right trigger, not a poll on a timer (that was tried for tasks via the
+    supervisor and reverted, see papers/db-schema/DATABASES.md). Best-effort:
+    prints a warning and returns False on failure rather than raising, so a
+    sync failure here never masks the caller's own real work having
+    succeeded."""
+    if not PAPER_INDEX_BUILD.exists():
+        print(f"WARN: paper index not rebuilt -- {PAPER_INDEX_BUILD} not found")
+        return False
+    res = subprocess.run(
+        [sys.executable, str(PAPER_INDEX_BUILD)],
+        cwd=PAPER_INDEX_BUILD.parent, capture_output=True, text=True,
+    )
+    if res.returncode != 0:
+        print(f"WARN: paper index rebuild failed: {res.stderr.strip()[-300:]}")
+        return False
+    return True
+
+
 def full_refresh(conn: sqlite3.Connection, table: str, rows: list[dict]) -> None:
     """Atomically replace every row in `table` with `rows` (dicts whose keys
     match the table's columns). The right pattern when the caller re-derives
@@ -51,7 +79,19 @@ def full_refresh(conn: sqlite3.Connection, table: str, rows: list[dict]) -> None
     the complete old table or the complete new one, never a half-empty table
     mid-refresh. For a source that instead updates one row at a time, use
     plain parameterized INSERT ... ON CONFLICT DO UPDATE (SQLite upsert)
-    directly instead of this helper."""
+    directly instead of this helper.
+
+    Sets `defer_foreign_keys` for this transaction: refreshing one table that
+    another table holds a foreign key into (e.g. gdocs_index, referenced by
+    article_gdoc_matches.matched_doc_id) means the DELETE momentarily removes
+    rows a *different* table still points at, even though the following
+    INSERT restores the same keys -- SQLite checks FK constraints per
+    statement by default and rejects that DELETE outright. Deferring to
+    commit time means only a FK reference still dangling once everything is
+    back in place actually fails, which is the correct behavior. Hit live:
+    every gdocs_index refresh failed with FOREIGN KEY constraint failed
+    before this fix, as soon as article_gdoc_matches had any rows in it."""
+    conn.execute("PRAGMA defer_foreign_keys = ON")
     with conn:  # sqlite3's context manager commits on success, rolls back on exception
         conn.execute(f"DELETE FROM {table}")
         if rows:

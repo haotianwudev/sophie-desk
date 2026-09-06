@@ -222,9 +222,11 @@ so this splits into two tasks that must not be merged:
 
 - **`tasks/gdocs-index-sync.md`** (assignee `agy`, no gate) — `scripts/sync_gdocs_index.py`
   scans `D:\GoogleDrive` recursively for `.gdoc` stubs (skipping `.tmp.drivedownload` and any
-  `*personal*` directory) and writes `gdocs/index.json` (title, doc_id, resource_key, relpath,
-  mtime). `scripts/match_gdoc.py "<query>"` ranks index entries against a title by string
-  similarity, no network needed. Pure filesystem work — safe for unattended dispatch.
+  `*personal*` directory) and refreshes `gdocs/db/gdocs.db`'s `gdocs_index` table (title,
+  doc_id, resource_key, relpath, mtime) — a persistent Source DB as of 2026-09-06, not
+  `gdocs/index.json` any more; see `papers/db-schema/DATABASES.md`. `scripts/match_gdoc.py
+  "<query>"` ranks index entries against a title by string similarity, no network needed. Pure
+  filesystem work — safe for unattended dispatch.
 - **`tasks/gdocs-content-link.md`** (assignee `claude`) — the half that actually reads content:
   run the matcher against each paper's `title`, fetch a candidate's real content via the Drive
   connector, **read it before linking** (a plausible title match can still be the wrong doc),

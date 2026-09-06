@@ -23,6 +23,7 @@ import sys
 from pathlib import Path
 
 import gdocs_db
+import sqlite_source_db
 
 DEFAULT_DRIVE_DIR = Path("D:/GoogleDrive")
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -107,6 +108,11 @@ def main() -> None:
         default=gdocs_db.DEFAULT_DB_PATH,
         help=f"Path to gdocs.db (default: {gdocs_db.DEFAULT_DB_PATH})",
     )
+    parser.add_argument(
+        "--no-rebuild-index",
+        action="store_true",
+        help="Skip triggering papers.db's rebuild after syncing (it runs by default).",
+    )
 
     args = parser.parse_args()
 
@@ -116,6 +122,9 @@ def main() -> None:
         sys.exit(f"Error: {err}")
 
     print(f"indexed {indexed} docs, skipped {skipped} (personal/tmp)")
+
+    if not args.no_rebuild_index:
+        sqlite_source_db.trigger_index_rebuild()
 
 
 if __name__ == "__main__":

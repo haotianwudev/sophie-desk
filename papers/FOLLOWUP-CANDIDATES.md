@@ -14,14 +14,16 @@ folder or deliberately rejected. No longer option-writing-only — see Tags belo
    candidates here directly, not just leave them buried in a per-paper note. These rows link
    `Surfaced by` to an existing paper note, e.g. `[bondarenko-2014-why-are-puts-expensive]`.
 2. **The user's own Gemini Deep Research docs** (added 2026-08-30) — a doc tied to a Sophie
-   article via `gdocs/article-exact-matches.md` that turns out to be genuinely research-paper
-   grade (structured, evergreen, original synthesis — not a news reaction piece or a 101-level
-   explainer) is itself a candidate for a future `papers/<area>/` note. These rows link
-   `Surfaced by` to the **Sophie article slug** that cited it, as a live link:
-   `[Article Title](https://www.sophie-ai-finance.com/articles/<slug>)` — one click to the
-   actual article a human is reading — **and** carry the raw Drive `doc_id` in `Doc ID Source`
-   for machine lookup (fetch content, re-verify, etc. via `scripts/match_gdoc.py` /
-   `gdocs/index.json`). Both are kept: the slug for a human tracing "which article cited this,"
+   article via `gdocs/db/gdocs.db`'s `article_gdoc_matches` table (was
+   `gdocs/article-exact-matches.md` before 2026-09-06 — see `papers/db-schema/DATABASES.md`)
+   that turns out to be genuinely research-paper grade (structured, evergreen, original
+   synthesis — not a news reaction piece or a 101-level explainer) is itself a candidate for a
+   future `papers/<area>/` note. These rows link `Surfaced by` to the **Sophie article slug**
+   that cited it, as a live link: `[Article Title](https://www.sophie-ai-finance.com/articles/<slug>)`
+   — one click to the actual article a human is reading — **and** carry the raw Drive `doc_id`
+   in `Doc ID Source` for machine lookup (fetch content, re-verify, etc. via
+   `scripts/match_gdoc.py`, which reads `gdocs.db` too). Both are kept: the slug for a human
+   tracing "which article cited this,"
    the doc_id for anything that needs to programmatically get back to the source doc directly.
    **One underlying research subject can surface from more than one article** (the user
    independently researched the same topic more than once, from different angles, across

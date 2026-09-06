@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Extract cited research papers from research-paper-grade Gemini Google Docs (v2).
 
-Reads the 19 research-paper slugs from gdocs/classified_state.json, fetches the
+Reads the 19 research-paper slugs from gdocs/classified_state.json (matched
+doc_ids come from gdocs/db/gdocs.db -- see gdocs_db.py), fetches the
 full published Google Doc HTML, extracts citations from the 'Works cited' /
 'References' section, applies a domain-anchored filter (preprints, university
 domains, central banks, major academic publishers, quantitative research houses)
@@ -19,6 +20,7 @@ import argparse
 import html
 import json
 import re
+import sqlite3
 import sys
 import time
 import urllib.error
@@ -28,12 +30,15 @@ from collections import defaultdict
 from pathlib import Path
 from bs4 import BeautifulSoup
 
+import gdocs_db
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_ARTICLES_DIR = Path("F:/workspace/ai-stock-suggestion-client/src/data/articles")
-DEFAULT_MATCHES_PATH = REPO_ROOT / "gdocs" / "article-exact-matches.md"
 DEFAULT_CANDIDATES_PATH = REPO_ROOT / "papers" / "FOLLOWUP-CANDIDATES.md"
 DEFAULT_STATE_PATH = REPO_ROOT / "gdocs" / "classified_state.json"
 DEFAULT_EXTRACTED_STATE_PATH = REPO_ROOT / "gdocs" / "extracted_state.json"
+
+MATCHED_TIERS = {"exact", "case-insensitive", "suffix-tolerant"}
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -1316,18 +1321,25 @@ def load_article_metadata(articles_dir: Path, target_slugs: set[str]) -> dict[st
     return articles_by_slug
 
 
-def load_doc_ids(matches_path: Path) -> dict[str, str]:
-    """Load doc_id mappings for confirmed matches from gdocs/article-exact-matches.md."""
-    if not matches_path.exists():
+def load_doc_ids(db_path: Path) -> dict[str, str]:
+    """Load doc_id mappings for confirmed matches from gdocs_db's
+    article_gdoc_matches table (was gdocs/article-exact-matches.md before
+    2026-09-06 -- see gdocs_db.py and papers/db-schema/DATABASES.md).
+    'Matched' means match_tier is one of the three confident tiers -- see
+    MATCHED_TIERS."""
+    if not db_path.exists():
         return {}
-    doc_ids: dict[str, str] = {}
-    with open(matches_path, "r", encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("| ") and not line.startswith("| Slug") and not line.startswith("| :---"):
-                parts = [p.strip() for p in line.split("|")[1:-1]]
-                if len(parts) >= 5 and parts[3] == "matched":
-                    doc_ids[parts[0]] = parts[4]
-    return doc_ids
+    conn = gdocs_db.connect(db_path)
+    try:
+        conn.row_factory = sqlite3.Row
+        rows = conn.execute(
+            f"SELECT slug, matched_doc_id FROM article_gdoc_matches WHERE match_tier IN "
+            f"({', '.join('?' for _ in MATCHED_TIERS)})",
+            tuple(MATCHED_TIERS),
+        ).fetchall()
+    finally:
+        conn.close()
+    return {r["slug"]: r["matched_doc_id"] for r in rows}
 
 
 def unwrap_google_url(url: str) -> str:
@@ -2537,10 +2549,10 @@ def main() -> None:
         help=f"Path to article TS directory (default: {DEFAULT_ARTICLES_DIR})",
     )
     parser.add_argument(
-        "--matches",
+        "--db",
         type=Path,
-        default=DEFAULT_MATCHES_PATH,
-        help=f"Path to article-exact-matches.md (default: {DEFAULT_MATCHES_PATH})",
+        default=gdocs_db.DEFAULT_DB_PATH,
+        help=f"Path to gdocs.db (default: {gdocs_db.DEFAULT_DB_PATH})",
     )
     parser.add_argument(
         "--candidates-file",
@@ -2606,7 +2618,7 @@ def main() -> None:
                   f"(use --force to re-process).")
 
     articles_meta = load_article_metadata(args.articles_dir, target_slugs)
-    doc_ids = load_doc_ids(args.matches)
+    doc_ids = load_doc_ids(args.db)
 
     print(f"Fetching citations across {len(articles_meta)} published Google Docs...")
 

@@ -24,24 +24,19 @@ Each tick (`supervisor/run.py`):
    itself to `tasks/done/`, committed, and pushed — all with nobody watching.
 4. Builds `supervisor/status.json` — task count, which ones need you
    (`status: blocked` or `status: gate`), which probes came back `STALL`.
-5. **Rebuilds the local paper-index SQLite DB every tick, unconditionally**
-   (`papers/paper-index/papers.db`) by invoking `build_index.py` from the
-   `sophie-pipeline` repo. Added 2026-09-05 when `Papers.md` and
-   `papers/db-schema/STATUS.md` moved off live Dataview queries onto this DB
-   — without this step those pages would silently show stale state until
-   someone remembered to rebuild by hand. (`Desk.md` was tried on this DB
-   too, same day, and reverted back to Dataview — tasks change too often for
-   a rebuild-based board to feel live; it stays outside this step's concern.)
-   Unconditional (not gated on step 6 finding a task change) because a paper,
-   candidates-backlog, or `gdocs/` edit — made by a human, or a completely
-   separate task, outside this tick entirely — needs picking up too, and a
-   full rebuild only costs ~0.25s; tracking staleness per source tree wasn't
-   worth the complexity at that price. Best-effort: a rebuild failure is
-   logged as a WARN, never blocks the commit below.
-6. Commits and pushes, but only if a probe or a dispatch-claim actually
+5. Commits and pushes, but only if a probe or a dispatch-claim actually
    changed something. A quiet tick with nothing new produces no commit.
-7. Logs a line the moment a task newly enters "needs you" — see the gap
+6. Logs a line the moment a task newly enters "needs you" — see the gap
    below before assuming that reaches you anywhere.
+
+**Does not rebuild `papers/paper-index/papers.db`.** That was tried here 2026-09-05, tying a
+rebuild to every tick so `Papers.md`/`papers/db-schema/STATUS.md` (moved off live Dataview
+queries onto that DB) wouldn't show stale state — and reverted the next day: this file's whole
+job is tasks/probes, and a rebuild-per-tick meant rebuilding constantly for data (papers,
+candidates, gdocs) that changes rarely. The right trigger is whatever actually changed that
+data, not this loop's cadence — see `scripts/sync_gdocs_index.py`/`exact_match_gdocs.py` for
+the pattern (each triggers its own rebuild as its last step) and
+`papers/db-schema/DATABASES.md` for the full story.
 
 ## The one thing worth being deliberate about: `--dangerously-skip-permissions`
 
@@ -64,17 +59,25 @@ code explicitly checks for this, on purpose.
 - **It never touches Neon, Supabase, or writes to any repo but this one.** A
   probe is read-only by contract; the supervisor trusts that contract rather
   than sandboxing it, which is also why a probe script must never be
-  anything but a measurement. The one exception, and it's read-only from
-  `sophie-pipeline`'s own perspective: step 5 above *invokes* a script that
-  lives in that repo (`paper-index/build_index.py`) to rebuild a DB file
-  that lives entirely inside this vault — nothing gets written to or
-  committed in `sophie-pipeline` itself.
+  anything but a measurement. No exception now that step 5's `papers.db`
+  rebuild is gone (see above) — this file genuinely never invokes anything
+  outside itself.
 - **It doesn't actually send you a notification yet.** The WARN log line in
-  step 5 is real, but nothing pushes it anywhere — no email, no Slack, no
+  step 6 is real, but nothing pushes it anywhere — no email, no Slack, no
   phone alert. Right now, "did anything need me today" means either reading
   `supervisor/supervisor.log`, opening `Desk.md` in Obsidian, or asking the
   chat agent once it can read this vault. Wiring an actual channel is a
   clear next step, deliberately left undone rather than guessed at.
+- **`commit_and_push()` does `git add -A`, not just the task files it touched.**
+  If you have unrelated uncommitted work sitting in the working tree when a
+  tick fires, it gets swept into that tick's commit under the generic
+  "supervisor: N need you" message — harmless (nothing is lost, it's a real
+  commit either way) but confusing history, and it happened live twice while
+  building the `papers.db`/`gdocs.db` split (2026-09-05/06). If you're doing
+  a multi-step edit across a session and the loop is running, expect your
+  work to occasionally land under someone else's commit message rather than
+  your own — check `git log`/`git show --stat` before assuming a commit is
+  missing something.
 - **It doesn't enforce one-task-per-lane.** Every `status: queued,
   assignee: agy` task on the filesystem gets dispatched in the same tick —
   not just one. Hit live: two research-lane tasks queued at once launched

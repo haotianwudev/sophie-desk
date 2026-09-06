@@ -2,7 +2,8 @@
 
 Live snapshot of the local paper-index DB — how fresh it is, what's in it, and what needs
 attention. For the table-by-table column reference, see [README.md](README.md) and the
-per-table pages it links. Needs the **SQLite Explorer** Obsidian plugin to render.
+per-table pages it links; for what kinds of database exist and how rebuilds get triggered, see
+[DATABASES.md](DATABASES.md). Needs the **SQLite Explorer** Obsidian plugin to render.
 
 ## How stale is this right now
 
@@ -12,11 +13,12 @@ sql: |
   SELECT value AS "Last rebuilt (UTC)" FROM meta WHERE key = 'built_at'
 ```
 
-**As of 2026-09-06, the supervisor rebuilds this unconditionally on every tick** (see
-[Runbook.md](../../Runbook.md)'s supervisor section) — a paper note, the candidates backlog,
-`gdocs/`, or a task, any edit gets picked up, not just task changes. So this number is normally
-at most one tick interval old (30 min by default) *while the loop is running*. If it isn't —
-check first, don't assume — rebuild by hand:
+**Nothing rebuilds this on a timer** (that was tried via the supervisor and reverted 2026-09-06
+— see [DATABASES.md](DATABASES.md)). A rebuild happens when whatever changed the underlying
+data triggers one directly — a Source DB script (`sync_gdocs_index.py`,
+`exact_match_gdocs.py`) calls `sqlite_source_db.trigger_index_rebuild()` as its own last step
+— or when someone runs it by hand. So this number reflects whenever that last happened, not a
+fixed interval. Don't assume it's fresh; check this value, and rebuild if you need to be sure:
 
 ```bash
 cd /f/workspace/sophie-pipeline/paper-index
@@ -36,9 +38,9 @@ sql: |
   UNION ALL SELECT 'pipeline', count(*) FROM pipeline
 ```
 
-`gdocs_index`/`article_gdoc_matches` read 0 if built on a machine without `gdocs/` (gitignored
-personal data — only ever present on the user's own workstation). `pipeline` reads 0 always,
-as of 2026-09-05 — `notes/pipeline/` isn't implemented yet, see [pipeline.md](pipeline.md).
+`gdocs_index`/`article_gdoc_matches` read 0 if built on a machine without `gdocs/db/gdocs.db`
+(gitignored personal data — only ever present on the user's own workstation). `pipeline` reads
+0 always, as of 2026-09-05 — `notes/pipeline/` isn't implemented yet, see [pipeline.md](pipeline.md).
 
 ## Needs attention
 
@@ -71,13 +73,13 @@ sql: |
 
 - **Not live.** Every board on this DB (`Papers.md`, this page — not `Desk.md`, which stays on
   Dataview) reflects the last rebuild, not the current instant — see "How stale is this right
-  now" above. The supervisor
-  closes most of this gap automatically (every tick, unconditionally, ~30 min by default while
-  it's running) but a manual rebuild is still the only way to see an edit *immediately*.
+  now" above. Rebuilds are trigger-driven, not timer-driven (see [DATABASES.md](DATABASES.md))
+  — a manual rebuild is the only way to see an edit *immediately* if you're not sure the
+  triggering script already ran.
 - **`pipeline` is a schema with no data.** `notes/pipeline/` (supervisor-written pipeline
   health from Neon + Cloud Scheduler) doesn't exist on disk yet — planned, not built.
 - **`gdocs_index`/`article_gdoc_matches` are machine-local.** They read 0 rows on any machine
-  without the user's own `gdocs/` folder (gitignored, never committed).
+  without the user's own `gdocs/db/gdocs.db` (gitignored, never committed).
 - **Dataview is still required — for `Desk.md` only.** `Papers.md` and `Skills.md` migrated
   off it (2026-09-05); `Desk.md` was tried on this DB too and reverted the same day (tasks
   change too often for a rebuild-based board to feel live). `Skills.md` never used this DB at
