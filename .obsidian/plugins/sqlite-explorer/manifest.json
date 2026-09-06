@@ -1,0 +1,13 @@
+{
+  "id": "sqlite-explorer",
+  "name": "SQLite Explorer",
+  "version": "0.6.0",
+  "minAppVersion": "1.8.3",
+  "description": "Open a SQLite database from a vault path, list user tables, and preview rows.",
+  "author": "qf3l3k",
+  "authorUrl": "https://github.com/qf3l3k",
+  "fundingUrl": {
+    "Buy me a Coffee": "https://buymeacoffee.com/qf3l3k"
+  },  
+  "isDesktopOnly": true
+}

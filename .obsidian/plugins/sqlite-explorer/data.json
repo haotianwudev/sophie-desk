@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "previewLimit": 100,
+    "maxQueryResultRows": 500
+  },
+  "databaseViewState": {
+    "papers/paper-index/papers.db": {
+      "lastSelectedTable": "candidates"
+    }
+  }
+}
