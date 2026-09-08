@@ -9,7 +9,7 @@ repo: sophie-pipeline
 blocker: Vendor/scope decision — accept a monthly-cycle corpus, or pay for a faster tier
 next: Decide scope. 45-DTE studies never touch the near-daily tail that is stalling.
 probe: bash probes/spx-option-backfill.sh
-progress: SPXW 1281/1360 · log idle 8h · 8 python procs
+progress: SPXW 1282/1360 · log idle 9h · 8 python procs
 probe_status: STALL
 outcome:
 artifacts:
