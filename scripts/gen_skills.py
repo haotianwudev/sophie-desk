@@ -33,6 +33,7 @@ REPOS = [
 CLASSIFY = {
     "sophie-develop-guide":          ("guide",    "architect",  "claude"),
     "sophie-option-research-guide":  ("hybrid",   "architect",  "claude"),
+    "option-research-viewer":        ("guide",    "architect",  "claude"),
     "sophie-agent-dev":              ("guide",    "architect",  "claude"),
     "sophie-desk":                    ("guide",    "architect",  "either"),
 
