@@ -1,12 +1,26 @@
 {
-  "generated_at": "2026-09-20T04:16:13+00:00Z",
-  "task_count": 1,
+  "generated_at": "2026-09-20T19:16:58+00:00Z",
+  "task_count": 2,
   "needs_you": [
+    "option-research-viewer",
     "spx-option-backfill"
   ],
   "stalled_probes": [],
-  "stalled_active": [],
+  "stalled_active": [
+    "option-research-viewer"
+  ],
   "tasks": [
+    {
+      "id": "option-research-viewer",
+      "title": "Local research viewer for sophie-option-research (put writing first)",
+      "lane": "platform",
+      "status": "active",
+      "assignee": "claude",
+      "gate": "",
+      "stall_flag": "no commit in 14m while active",
+      "probe_status": "",
+      "progress": ""
+    },
     {
       "id": "spx-option-backfill",
       "title": "ThetaData backfill of the 2024-01 \u2192 2026-08 SPX chain gap",
