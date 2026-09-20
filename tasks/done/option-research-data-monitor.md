@@ -66,5 +66,12 @@ data runs to 2026. (2) Somewhere to monitor whether the raw SPX option-chain dat
   Re-running `scripts/update_baseline.py` skips them.
 - Live view of the data state: the viewer's `/data` page. Live check: `scripts/check_api.py`.
 - Lessons and how to operate it are in the `option-research-viewer` skill.
-- Not done: the 2022-start baseline set was not extended; the monitor does not query Postgres (a stale disk
-  cache is shown, but the loaders may have used fresher DB prices); nothing was pushed.
+- Follow-up the same day: the 2022-start baseline set was extended too (`update_baseline.py --start 2022-01-01`,
+  window `2022-01-01..2026-09-10`, five runs, none failed). It agrees with the 2016-start runs trade for trade
+  from mid-January (mid-March for the iron condor); the only difference is at the start, where the longer run was
+  still holding a position carried over from 2021. The 2022-start `vix_rank>0.8` warning (no 2023 entries) is the
+  same real one, and `rsi<40 & vix_rank>0.5` has 25 trades, which the viewer flags as anecdotal.
+- Not done: the other studies (sweep04, mgmt04, vrp09, wf_oos, optuna04) were not refreshed. They are searches,
+  not fixed configs, so "refresh" needs a decision per study; optuna04 in particular would be a new search
+  with a different result, not an update. The monitor does not query Postgres (a stale disk cache is shown, but
+  the loaders may have used fresher DB prices). Nothing was pushed.
