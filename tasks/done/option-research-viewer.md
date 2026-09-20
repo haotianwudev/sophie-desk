@@ -2,18 +2,18 @@
 id: option-research-viewer
 title: Local research viewer for sophie-option-research (put writing first)
 lane: platform
-status: active
+status: done
 assignee: claude
 gate:
 repo: sophie-option-research
 blocker:
-next: commit the sophie-option-research changes and close (user decision)
+next:
 probe: none
 progress:
 probe_status:
 stall_flag: no commit in 14m while active
-outcome:
-artifacts:
+outcome: local read-only research viewer built and verified for put writing, phase 2 views not built
+artifacts: sophie-option-research commit 81ebcbe, skill option-research-viewer
 created: 2026-09-20
 updated: 2026-09-20
 ---
@@ -75,3 +75,14 @@ decision log below.
 - 2026-09-20 — Skill written: `~/.claude/skills/option-research-viewer/skill.md`; registered in `scripts/gen_skills.py`. `sophie-option-research-guide` corrected (it said the frontend was not built).
 
 ## Result
+
+Pointers, not copies of numbers (those go stale on re-run).
+
+- Code: `sophie-option-research` commit `81ebcbe` — `src/lab/api/` (read model + API), `web/` (UI),
+  `scripts/serve_api.py`, `scripts/check_api.py`, `scripts/backfill_metrics.py`.
+- Live check that it still works: `PYTHONPATH=src ./.venv/Scripts/python.exe scripts/check_api.py`.
+- How to run, extend and what went wrong building it: the `option-research-viewer` skill.
+- Not built (phase 2): filter-comparison chart, walk-forward timeline, ML and rolling views. Publishing to
+  Postgres, launching runs from the browser and the production GraphQL path each need their own gated task.
+- Left uncommitted on purpose: the regenerated `Skills.md` and `skills/*.md` in this repo (the generator also
+  refreshed other skills' cards and added a new one; this repo is public).
