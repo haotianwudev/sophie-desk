@@ -3,7 +3,7 @@ name: investment-clock-analyze
 kind: workflow
 role: quant
 tier: claude
-lines: 242
+lines: 255
 shared: false
 ---
 
@@ -15,7 +15,7 @@ Analyze a Gemini Deep Research paper + FRED quantitative data to produce a final
 - **Role** — quant
 - **Runs as** — claude
 - **Lives in** — `~/.claude/skills`
-- **Size** — 242 lines
+- **Size** — 255 lines
 
 > [!warning] Not visible to both agents
 > Only in `~/.claude/skills/`, so agy cannot invoke it. Move to the repo's

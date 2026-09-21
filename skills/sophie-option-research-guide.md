@@ -3,7 +3,7 @@ name: sophie-option-research-guide
 kind: hybrid
 role: architect
 tier: claude
-lines: 135
+lines: 168
 shared: false
 ---
 
@@ -15,7 +15,7 @@ Current status and development guide for sophie-option-research (SPX options bac
 - **Role** — architect
 - **Runs as** — claude
 - **Lives in** — `~/.claude/skills`
-- **Size** — 135 lines
+- **Size** — 168 lines
 
 > [!warning] Not visible to both agents
 > Only in `~/.claude/skills/`, so agy cannot invoke it. Move to the repo's

@@ -3,7 +3,7 @@ name: spx-option-backfill
 kind: task
 role: ops
 tier: claude
-lines: 597
+lines: 643
 shared: false
 ---
 
@@ -15,7 +15,7 @@ Resume/run the free-tier ThetaData backfill of the SPX option chain gap (2024-01
 - **Role** — ops
 - **Runs as** — claude
 - **Lives in** — `~/.claude/skills`
-- **Size** — 597 lines
+- **Size** — 643 lines
 
 > [!warning] Not visible to both agents
 > Only in `~/.claude/skills/`, so agy cannot invoke it. Move to the repo's
