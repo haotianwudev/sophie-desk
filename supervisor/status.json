@@ -1,12 +1,10 @@
 {
-  "generated_at": "2026-11-18T02:22:08+00:00Z",
+  "generated_at": "2026-11-18T02:57:55+00:00Z",
   "task_count": 2,
   "needs_you": [
     "spx-option-backfill"
   ],
-  "stalled_probes": [
-    "spx-option-backfill"
-  ],
+  "stalled_probes": [],
   "stalled_active": [],
   "tasks": [
     {
@@ -28,8 +26,8 @@
       "assignee": "none",
       "gate": "g3",
       "stall_flag": "",
-      "probe_status": "STALL",
-      "progress": "probe timed out after 90s"
+      "probe_status": "OK",
+      "progress": "complete \u00b7 SPX 108 \u00b7 SPXW 1390"
     }
   ]
 }
